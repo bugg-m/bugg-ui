@@ -1,6 +1,9 @@
 {
-  "name": "@bugg/bugg-ui",
+  "name": "@bugg-m/bugg-ui",
   "version": "0.0.1",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "A design system built with Vite, React, TypeScript, Tailwind, and Storybook",
   "type": "module",
   "files": [
