@@ -1,13 +1,18 @@
 {
-  "name": "design-system",
+  "name": "bugg-ui",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "description": "A design system built with Vite, React, TypeScript, Tailwind, and Storybook",
   "type": "module",
   "files": [
     "dist"
   ],
   "main": "dist/bugg-ui-umd.cjs",
   "module": "dist/bugg-ui.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "url": "https://github.com/bugg-m/buggOrg"
+  },
   "exports": {
     ".": {
       "import": "./dist/bugg-ui.js",
@@ -61,5 +66,16 @@
     "vite": "^5.2.0",
     "vite-plugin-dts": "^3.9.1",
     "vite-tsconfig-paths": "^4.3.2"
-  }
+  },
+  "keywords": [
+    "design system",
+    "react",
+    "vite",
+    "storybook",
+    "typescript",
+    "tailwind",
+    "ui library"
+  ],
+  "author": "Bugg",
+  "license": "MIT"
 }
