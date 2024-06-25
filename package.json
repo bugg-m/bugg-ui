@@ -1,5 +1,5 @@
 {
-  "name": "bugg-ui",
+  "name": "@bugg/bugg-ui",
   "version": "0.0.1",
   "description": "A design system built with Vite, React, TypeScript, Tailwind, and Storybook",
   "type": "module",
@@ -10,7 +10,7 @@
   "module": "dist/bugg-ui.js",
   "types": "dist/index.d.ts",
   "repository": {
-    "url": "git+https://github.com/bugg-m/buggOrg.git"
+    "url": "git+https://github.com/bugg-m/bugg-ui.git"
   },
   "exports": {
     ".": {
