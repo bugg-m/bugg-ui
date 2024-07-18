@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { Stack } from '.';
-import { Box } from '../Box';
+import { Stack } from './Stack';
+import { Box } from '../Box/Box';
 
 const meta = {
   title: 'Layouts/Stack',

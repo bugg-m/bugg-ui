@@ -1,7 +1,7 @@
-import { ComponentProps, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { VariantProps, cva } from 'class-variance-authority';
 import { cn } from '@src/utils';
-import { Loader } from '../Loader';
+import { Loader } from '../Loader/Loader';
 
 const buttonStyles = cva(
   [
@@ -23,7 +23,8 @@ const buttonStyles = cva(
       variant: {
         solid: '',
         outline: 'border-2',
-        ghost: '',
+        ghost: 'bg-transparent',
+        link: 'bg-transparent hover:bg-transparent',
       },
       size: {
         sm: 'px-3 py-1.5 text-sm',
@@ -40,7 +41,7 @@ const buttonStyles = cva(
       },
       fullWidth: {
         true: 'w-full',
-        false: '',
+        false: 'w-auto',
       },
     },
     compoundVariants: [
@@ -124,6 +125,11 @@ const buttonStyles = cva(
         colorScheme: 'warning',
         className: 'bg-transparent text-warning hover:bg-warning-light',
       },
+      {
+        variant: 'solid',
+        colorScheme: 'primary',
+        className: 'text-primary hover:text-primary-light underline',
+      },
     ],
     defaultVariants: {
       variant: 'solid',
@@ -134,43 +140,53 @@ const buttonStyles = cva(
   }
 );
 
-export interface ButtonProps
-  extends ComponentProps<'button'>,
-    VariantProps<typeof buttonStyles> {
+type ButtonStylesProps = VariantProps<typeof buttonStyles>;
+
+export interface ButtonProps extends ButtonStylesProps {
+  as?: React.ElementType;
   isLoading?: boolean;
   loadingText?: string;
+  className?: string;
+  children?: React.ReactNode;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any; // This allows for additional props like 'href' for anchor tags
 }
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+export const Button = forwardRef<HTMLElement, ButtonProps>(
   (
     {
+      as: Component = 'button',
       variant,
       size,
       colorScheme,
-      className,
+      fullWidth,
       isLoading,
       loadingText,
-      disabled,
+      className,
       children,
-      fullWidth,
+      disabled,
       ...props
     },
     ref
-  ) => (
-    <button
-      ref={ref}
-      className={cn(
-        buttonStyles({ variant, size, colorScheme, fullWidth }),
-        className
-      )}
-      disabled={disabled || isLoading}
-      aria-disabled={disabled || isLoading}
-      {...props}
-    >
-      {isLoading && <Loader size={size} color='white' className='mr-2' />}
-      {isLoading ? loadingText || children : children}
-    </button>
-  )
+  ) => {
+    const isDisabled = disabled || isLoading;
+
+    return (
+      <Component
+        ref={ref}
+        className={cn(
+          buttonStyles({ variant, size, colorScheme, fullWidth }),
+          className
+        )}
+        disabled={Component === 'button' ? isDisabled : undefined}
+        aria-disabled={isDisabled}
+        {...props}
+      >
+        {isLoading && <Loader size={size} color='white' className='mr-2' />}
+        {isLoading ? loadingText || children : children}
+      </Component>
+    );
+  }
 );
 
 Button.displayName = 'Button';

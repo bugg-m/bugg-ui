@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Select } from '.';
+import { Select } from './Dropdown';
 
 const meta: Meta<typeof Select> = {
   title: 'Components/Select',

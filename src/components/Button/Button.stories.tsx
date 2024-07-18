@@ -1,25 +1,29 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from '.';
+import { Button } from './Button';
 
 const meta = {
   title: 'Components/Button',
   component: Button,
-  parameters: {
-    layout: 'centered',
-  },
   tags: ['autodocs'],
   argTypes: {
     variant: {
-      control: { type: 'select', options: ['solid', 'outline', 'ghost'] },
+      control: 'select',
+      options: ['solid', 'outline', 'ghost'],
     },
     size: {
-      control: { type: 'select', options: ['sm', 'md', 'lg'] },
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
     },
     colorScheme: {
-      control: {
-        type: 'select',
-        options: ['primary', 'secondary', 'danger', 'success', 'warning'],
-      },
+      control: 'select',
+      options: [
+        'primary',
+        'secondary',
+        'danger',
+        'success',
+        'warning',
+        'white',
+      ],
     },
     fullWidth: {
       control: 'boolean',
@@ -33,6 +37,10 @@ const meta = {
     disabled: {
       control: 'boolean',
     },
+    as: {
+      control: 'select',
+      options: ['button', 'a'],
+    },
   },
 } satisfies Meta<typeof Button>;
 
@@ -44,8 +52,6 @@ export const Default: Story = {
     children: 'Button',
   },
 };
-
-// ... (keep your existing stories)
 
 export const FullWidth: Story = {
   args: {
@@ -62,9 +68,14 @@ export const WithLoadingText: Story = {
   },
 };
 
-export const AsLink: Story = {
+export const TextLink: Story = {
   args: {
-    children: 'Link Button',
+    as: 'a',
+    href: 'https://example.com',
+    target: '_blank',
+    rel: 'noopener noreferrer',
+    children: 'Text Link',
+    className: 'text-blue-600 hover:text-blue-800 underline',
+    variant: 'link',
   },
-  render: (args) => <Button {...args} />,
 };
