@@ -1,7 +1,7 @@
 ````markdown
 # Bugg-ui
 
-In testing phase...
+In development phase...
 A modern, flexible UI component library built with React, TypeScript, and Tailwind CSS.
 
 ## Table of Contents
