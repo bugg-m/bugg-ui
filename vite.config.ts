@@ -22,9 +22,6 @@ export default defineConfig({
           react: 'React',
           'react-dom': 'ReactDOM',
         },
-        manualChunks: {
-          'react-vendors': ['react', 'react-dom'],
-        },
       },
     },
     chunkSizeWarningLimit: 1000,
