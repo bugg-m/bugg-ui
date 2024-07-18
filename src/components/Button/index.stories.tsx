@@ -8,27 +8,63 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    variant: {
+      control: { type: 'select', options: ['solid', 'outline', 'ghost'] },
+    },
+    size: {
+      control: { type: 'select', options: ['sm', 'md', 'lg'] },
+    },
+    colorScheme: {
+      control: {
+        type: 'select',
+        options: ['primary', 'secondary', 'danger', 'success', 'warning'],
+      },
+    },
+    fullWidth: {
+      control: 'boolean',
+    },
+    isLoading: {
+      control: 'boolean',
+    },
+    loadingText: {
+      control: 'text',
+    },
+    disabled: {
+      control: 'boolean',
+    },
+  },
 } satisfies Meta<typeof Button>;
 
 export default meta;
-
 type Story = StoryObj<typeof meta>;
 
-export const Solid: Story = {
+export const Default: Story = {
   args: {
-    variant: 'solid',
     children: 'Button',
   },
 };
-export const Outline: Story = {
+
+// ... (keep your existing stories)
+
+export const FullWidth: Story = {
   args: {
-    variant: 'outline',
-    children: 'Button',
+    children: 'Full Width Button',
+    fullWidth: true,
   },
 };
-export const Ghost: Story = {
+
+export const WithLoadingText: Story = {
   args: {
-    variant: 'ghost',
-    children: 'Button',
+    children: 'Submit',
+    isLoading: true,
+    loadingText: 'Submitting...',
   },
+};
+
+export const AsLink: Story = {
+  args: {
+    children: 'Link Button',
+  },
+  render: (args) => <Button {...args} />,
 };

@@ -1,14 +1,16 @@
-import { PolymorphicComponentsPropsWithRef, PolymorphicRef } from '@src/types';
-import { cn } from '@src/utils';
-import { VariantProps, cva } from 'class-variance-authority';
 import React, { forwardRef } from 'react';
+import { VariantProps, cva } from 'class-variance-authority';
+import { cn } from '@src/utils';
 
-const textStyles = cva('w-full', {
+const textStyles = cva('', {
   variants: {
     emphasis: {
-      low: 'text-gray-700 font-light',
+      low: 'text-gray-600',
+      medium: 'text-gray-700',
+      high: 'text-gray-900',
     },
     size: {
+      xs: 'text-xs',
       sm: 'text-sm',
       md: 'text-base',
       lg: 'text-lg',
@@ -24,8 +26,11 @@ const textStyles = cva('w-full', {
     },
     weight: {
       thin: 'font-thin',
+      extralight: 'font-extralight',
+      light: 'font-light',
       normal: 'font-normal',
       medium: 'font-medium',
+      semibold: 'font-semibold',
       bold: 'font-bold',
       extrabold: 'font-extrabold',
       black: 'font-black',
@@ -34,6 +39,13 @@ const textStyles = cva('w-full', {
       left: 'text-left',
       center: 'text-center',
       right: 'text-right',
+      justify: 'text-justify',
+    },
+    transform: {
+      uppercase: 'uppercase',
+      lowercase: 'lowercase',
+      capitalize: 'capitalize',
+      normalcase: 'normal-case',
     },
     italic: {
       true: 'italic',
@@ -41,39 +53,48 @@ const textStyles = cva('w-full', {
     underline: {
       true: 'underline underline-offset-2',
     },
+    lineClamp: {
+      1: 'line-clamp-1',
+      2: 'line-clamp-2',
+      3: 'line-clamp-3',
+      4: 'line-clamp-4',
+      5: 'line-clamp-5',
+      6: 'line-clamp-6',
+    },
   },
   defaultVariants: {
     size: 'md',
-    align: 'center',
+    emphasis: 'medium',
+    weight: 'normal',
+    align: 'left',
   },
 });
 
-type TextProps<T extends React.ElementType> = PolymorphicComponentsPropsWithRef<
-  T,
-  VariantProps<typeof textStyles>
->;
+type TextStylesProps = VariantProps<typeof textStyles>;
 
-type TextComponent = <T extends React.ElementType = 'span'>(
-  props: TextProps<T>
-) => React.ReactElement | null;
+export interface TextProps
+  extends React.HTMLAttributes<HTMLElement>,
+    TextStylesProps {
+  as?: React.ElementType;
+}
 
-// @ts-expect-error - unexpected error
-export const Text: TextComponent = forwardRef(
-  <T extends React.ElementType = 'span'>(
+export const Text = forwardRef<HTMLElement, TextProps>(
+  (
     {
-      as,
+      as: Component = 'span',
       emphasis,
       size,
       weight,
-      italic,
       align,
+      transform,
+      italic,
       underline,
+      lineClamp,
       className,
       ...props
-    }: TextProps<T>,
-    ref?: PolymorphicRef<T>
+    },
+    ref
   ) => {
-    const Component = as || 'span';
     return (
       <Component
         ref={ref}
@@ -82,14 +103,18 @@ export const Text: TextComponent = forwardRef(
             emphasis,
             size,
             weight,
-            italic,
             align,
+            transform,
+            italic,
             underline,
-            className,
-          })
+            lineClamp,
+          }),
+          className
         )}
         {...props}
       />
     );
   }
 );
+
+Text.displayName = 'Text';
