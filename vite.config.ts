@@ -11,7 +11,7 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: path.resolve(__dirname, './src/components/index.ts'),
+      entry: path.resolve(__dirname, './src/main.ts'),
       name: 'BuggUi',
       fileName: 'bugg-ui',
     },
@@ -22,8 +22,12 @@ export default defineConfig({
           react: 'React',
           'react-dom': 'ReactDOM',
         },
+        manualChunks: {
+          'react-vendors': ['react', 'react-dom'],
+        },
       },
     },
+    chunkSizeWarningLimit: 1000,
   },
   plugins: [react(), dts({ rollupTypes: true })],
 });

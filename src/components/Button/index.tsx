@@ -36,6 +36,7 @@ const buttonStyles = cva(
         danger: 'text-danger',
         success: 'text-success',
         warning: 'text-warning',
+        white: 'text-white',
       },
       fullWidth: {
         true: 'w-full',
@@ -45,18 +46,18 @@ const buttonStyles = cva(
     compoundVariants: [
       {
         variant: 'solid',
-        colorScheme: 'primary',
+        colorScheme: 'white',
         className: 'bg-primary hover:bg-primary-dark',
       },
       {
         variant: 'outline',
-        colorScheme: 'primary',
+        colorScheme: 'white',
         className:
           'border-primary bg-transparent text-primary hover:bg-primary-light',
       },
       {
         variant: 'ghost',
-        colorScheme: 'primary',
+        colorScheme: 'white',
         className: 'bg-transparent text-primary hover:bg-primary-light',
       },
       {
@@ -127,7 +128,7 @@ const buttonStyles = cva(
     defaultVariants: {
       variant: 'solid',
       size: 'md',
-      colorScheme: 'primary',
+      colorScheme: 'white',
       fullWidth: false,
     },
   }
@@ -166,7 +167,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       aria-disabled={disabled || isLoading}
       {...props}
     >
-      {isLoading && <Loader size={size} className='mr-2' />}
+      {isLoading && <Loader size={size} color='white' className='mr-2' />}
       {isLoading ? loadingText || children : children}
     </button>
   )

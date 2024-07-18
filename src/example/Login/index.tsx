@@ -1,6 +1,4 @@
-import { Button, Input, Text } from '@src/components';
-import { Box } from '@src/components/Layouts/Box';
-import { Stack } from '@src/components/Layouts/Stack';
+import { Box, Button, Input, Stack, Text } from '@src/main';
 
 const Login = () => {
   return (
