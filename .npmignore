@@ -25,3 +25,4 @@ dist-ssr
 src
 tsconfig.json
 tsconfig.node.json
+storybook-static
