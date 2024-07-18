@@ -11,7 +11,7 @@
   ],
   "main": "dist/bugg-ui-umd.cjs",
   "module": "dist/bugg-ui.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/bugg-ui.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bugg-m/bugg-ui.git"
@@ -19,18 +19,19 @@
   "exports": {
     ".": {
       "import": "./dist/bugg-ui.js",
-      "require": "./dist/bugg-ui-umd.cjs"
+      "require": "./dist/bugg-ui-umd.cjs",
+      "types": "./dist/bugg-ui.d.ts"
     }
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc --project tsconfig.json && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build-static-webapp": "expo build:web"
+    "build-all": "yarn build && yarn build-storybook"
   },
   "peerDependencies": {
     "class-variance-authority": "^0.7.0",
