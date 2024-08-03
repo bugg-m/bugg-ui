@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import { VariantProps, cva } from 'class-variance-authority';
 import { cn } from '@src/utils';
 import { Loader } from '../Loader/Loader';
@@ -9,184 +9,171 @@ const buttonStyles = cva(
     'items-center',
     'justify-center',
     'rounded-md',
-    'font-semibold',
-    'focus:outline-none',
+    'text-sm',
+    'font-medium',
+    'transition-all',
+    'focus-visible:outline-none',
     'focus-visible:ring-2',
     'focus-visible:ring-offset-2',
-    'transition-colors',
-    'duration-200',
+    'disabled:pointer-events-none',
     'disabled:opacity-50',
-    'disabled:cursor-not-allowed',
+    'select-none',
+    'whitespace-nowrap',
+    'shadow-button',
+    'relative',
   ],
   {
     variants: {
       variant: {
-        solid: '',
-        outline: 'border-2',
-        ghost: 'bg-transparent',
-        link: 'bg-transparent hover:bg-transparent',
+        primary: [
+          'bg-primary',
+          'text-white',
+          'hover:bg-primary-dark',
+          'focus-visible:ring-primary-light',
+        ],
+        secondary: [
+          'bg-secondary',
+          'text-white',
+          'hover:bg-secondary-dark',
+          'focus-visible:ring-secondary-light',
+        ],
+        outline: [
+          'border',
+          'border-secondary',
+          'bg-white',
+          'text-secondary-dark',
+          'hover:bg-secondary-light/10',
+          'focus-visible:ring-secondary',
+        ],
+        destructive: [
+          'bg-danger',
+          'text-white',
+          'hover:bg-danger-dark',
+          'focus-visible:ring-danger-light',
+        ],
+        ghost: [
+          'text-secondary-dark',
+          'hover:bg-secondary-light/10',
+          'focus-visible:ring-secondary',
+        ],
+        link: [
+          'text-primary',
+          'underline-offset-4',
+          'hover:underline',
+          'focus-visible:ring-primary-light',
+        ],
+        success: [
+          'bg-success',
+          'text-white',
+          'hover:bg-success-dark',
+          'focus-visible:ring-success-light',
+        ],
+        warning: [
+          'bg-warning',
+          'text-white',
+          'hover:bg-warning-dark',
+          'focus-visible:ring-warning-light',
+        ],
       },
       size: {
-        sm: 'px-3 py-1.5 text-sm',
-        md: 'px-4 py-2 text-base',
-        lg: 'px-6 py-3 text-lg',
-      },
-      colorScheme: {
-        primary: 'text-primary',
-        secondary: 'text-secondary',
-        danger: 'text-danger',
-        success: 'text-success',
-        warning: 'text-warning',
-        white: 'text-white',
+        sm: 'h-8 px-3 text-xs',
+        md: 'h-10 px-4 py-2',
+        lg: 'h-12 px-6 text-base',
+        icon: 'h-10 w-10',
       },
       fullWidth: {
         true: 'w-full',
-        false: 'w-auto',
       },
     },
     compoundVariants: [
       {
-        variant: 'solid',
-        colorScheme: 'white',
-        className: 'bg-primary hover:bg-primary-dark',
-      },
-      {
         variant: 'outline',
-        colorScheme: 'white',
-        className:
-          'border-primary bg-transparent text-primary hover:bg-primary-light',
+        className: 'hover:bg-secondary-light/10 hover:text-secondary-dark',
       },
       {
-        variant: 'ghost',
-        colorScheme: 'white',
-        className: 'bg-transparent text-primary hover:bg-primary-light',
+        variant: ['ghost', 'link'],
+        className: 'shadow-none hover:bg-transparent',
       },
       {
-        variant: 'solid',
-        colorScheme: 'secondary',
-        className: 'bg-secondary hover:bg-secondary-dark',
+        size: 'sm',
+        className: 'rounded',
       },
       {
-        variant: 'outline',
-        colorScheme: 'secondary',
-        className:
-          'border-secondary bg-transparent text-secondary hover:bg-secondary-light',
+        size: 'lg',
+        className: 'rounded-lg',
       },
       {
-        variant: 'ghost',
-        colorScheme: 'secondary',
-        className: 'bg-transparent text-secondary hover:bg-secondary-light',
-      },
-      {
-        variant: 'solid',
-        colorScheme: 'danger',
-        className: 'bg-danger hover:bg-danger-dark',
-      },
-      {
-        variant: 'outline',
-        colorScheme: 'danger',
-        className:
-          'border-danger bg-transparent text-danger hover:bg-danger-light',
-      },
-      {
-        variant: 'ghost',
-        colorScheme: 'danger',
-        className: 'bg-transparent text-danger hover:bg-danger-light',
-      },
-      {
-        variant: 'solid',
-        colorScheme: 'success',
-        className: 'bg-success hover:bg-success-dark',
-      },
-      {
-        variant: 'outline',
-        colorScheme: 'success',
-        className:
-          'border-success bg-transparent text-success hover:bg-success-light',
-      },
-      {
-        variant: 'ghost',
-        colorScheme: 'success',
-        className: 'bg-transparent text-success hover:bg-success-light',
-      },
-      {
-        variant: 'solid',
-        colorScheme: 'warning',
-        className: 'bg-warning hover:bg-warning-dark',
-      },
-      {
-        variant: 'outline',
-        colorScheme: 'warning',
-        className:
-          'border-warning bg-transparent text-warning hover:bg-warning-light',
-      },
-      {
-        variant: 'ghost',
-        colorScheme: 'warning',
-        className: 'bg-transparent text-warning hover:bg-warning-light',
-      },
-      {
-        variant: 'solid',
-        colorScheme: 'primary',
-        className: 'text-primary hover:text-primary-light underline',
+        variant: 'primary',
+        size: 'icon',
+        className: 'bg-primary text-white hover:bg-primary-dark p-0',
       },
     ],
     defaultVariants: {
-      variant: 'solid',
+      variant: 'primary',
       size: 'md',
-      colorScheme: 'white',
-      fullWidth: false,
     },
   }
 );
 
-type ButtonStylesProps = VariantProps<typeof buttonStyles>;
-
-export interface ButtonProps extends ButtonStylesProps {
-  as?: React.ElementType;
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonStyles> {
   isLoading?: boolean;
   loadingText?: string;
-  className?: string;
-  children?: React.ReactNode;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [key: string]: any; // This allows for additional props like 'href' for anchor tags
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
+  loaderColor?:
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'warning'
+    | 'danger'
+    | 'white';
 }
 
-export const Button = forwardRef<HTMLElement, ButtonProps>(
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
-      as: Component = 'button',
+      className,
       variant,
       size,
-      colorScheme,
-      fullWidth,
       isLoading,
       loadingText,
-      className,
+      leftIcon,
+      rightIcon,
       children,
-      disabled,
+      loaderColor,
       ...props
     },
     ref
   ) => {
-    const isDisabled = disabled || isLoading;
-
     return (
-      <Component
+      <button
+        className={cn(buttonStyles({ variant, size, className }), 'relative')}
         ref={ref}
-        className={cn(
-          buttonStyles({ variant, size, colorScheme, fullWidth }),
-          className
-        )}
-        disabled={Component === 'button' ? isDisabled : undefined}
-        aria-disabled={isDisabled}
+        disabled={isLoading || props.disabled}
         {...props}
       >
-        {isLoading && <Loader size={size} color='white' className='mr-2' />}
-        {isLoading ? loadingText || children : children}
-      </Component>
+        {isLoading && (
+          <span className='absolute inset-0 flex items-center justify-center'>
+            <Loader className='h-4 w-4 animate-spin' color={loaderColor} />
+          </span>
+        )}
+        <span
+          className={cn(
+            'flex items-center justify-center',
+            isLoading && 'invisible'
+          )}
+        >
+          {leftIcon && <span className='mr-2'>{leftIcon}</span>}
+          {isLoading && loadingText ? loadingText : children}
+          {rightIcon && <span className='ml-2'>{rightIcon}</span>}
+        </span>
+      </button>
     );
   }
 );
 
 Button.displayName = 'Button';
+
+export { Button };
