@@ -32,7 +32,7 @@ const Login = () => {
         <Input type='password' placeholder='Password' required />
       </Stack>
       <Stack className='p-2 gap-2'>
-        <Button children='Login' variant={'solid'} />
+        <Button children='Login' variant={'primary'} />
       </Stack>
     </Box>
   );
