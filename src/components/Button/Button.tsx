@@ -128,6 +128,7 @@ export interface ButtonProps
     | 'warning'
     | 'danger'
     | 'white';
+  type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
 }
 
@@ -143,6 +144,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       rightIcon,
       children,
       loaderColor,
+      type = 'button',
       disabled,
       ...props
     },
@@ -164,7 +166,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={isLoading || disabled}
         aria-busy={isLoading}
-        type='button'
+        type={type}
         {...props}
       >
         {isLoading ? (
