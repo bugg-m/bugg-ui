@@ -76,13 +76,15 @@ export const WithCustomClass: Story = {
 
 export const AllColors: Story = {
   render: () => (
-    <div className='flex space-x-4'>
+    <div className='space-y-4'>
       <Loader color='primary' />
       <Loader color='secondary' />
       <Loader color='danger' />
       <Loader color='success' />
       <Loader color='warning' />
-      <Loader color='white' />
+      <div className='p-4 bg-gray-800 rounded-md'>
+        <Loader color='white' />
+      </div>
     </div>
   ),
 };
@@ -94,5 +96,14 @@ export const AllSizes: Story = {
       <Loader size='md' />
       <Loader size='lg' />
     </div>
+  ),
+};
+
+export const InButton: Story = {
+  render: () => (
+    <button className='px-4 py-2 bg-blue-500 text-white rounded flex items-center space-x-2'>
+      <span>Loading</span>
+      <Loader size='sm' color='white' />
+    </button>
   ),
 };
