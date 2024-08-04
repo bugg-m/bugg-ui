@@ -12,7 +12,7 @@
 
 ## 🚀 Features
 
-- 📦 **30+ Components**: A comprehensive suite of UI components
+- 📦 **10+ Components**: A comprehensive suite of UI components
 - 🎨 **Customizable**: Easily theme and style to match your brand
 - 🔧 **TypeScript Support**: Full type definitions for enhanced development
 - 📚 **Well Documented**: Detailed Storybook with live examples and API references
