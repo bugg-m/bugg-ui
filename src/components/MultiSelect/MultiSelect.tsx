@@ -3,7 +3,7 @@ import { cn } from '@src/utils';
 import { ChevronDown, X, Check } from 'lucide-react';
 import { useOnClickOutside } from '@src/hooks/useOnClickOutside';
 
-export interface DropdownOption {
+export interface MultiSelectOptions {
   value: string;
   label: string;
 }
@@ -13,7 +13,7 @@ export interface MultiSelectProps
     React.SelectHTMLAttributes<HTMLSelectElement>,
     'size' | 'value' | 'onChange'
   > {
-  options: DropdownOption[];
+  options: MultiSelectOptions[];
   size?: 'sm' | 'md' | 'lg';
   placeholder?: string;
   error?: string;
