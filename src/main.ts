@@ -7,3 +7,4 @@ export * from './components/Card/Card';
 export * from './components/Checkbox/Checkbox';
 export * from './components/Dropdown/Dropdown';
 export * from './components/Modal/Modal';
+export * from './components/Date Picker/Datepicker';

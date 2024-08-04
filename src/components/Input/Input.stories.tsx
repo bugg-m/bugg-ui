@@ -1,47 +1,36 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Input } from './Input';
 
-const meta = {
+const meta: Meta<typeof Input> = {
   title: 'Components/Input',
   component: Input,
-  parameters: {
-    layout: 'centered',
-  },
   tags: ['autodocs'],
   argTypes: {
     variant: {
-      control: { type: 'select', options: ['solid', 'outline', 'ghost'] },
+      control: 'select',
+      options: ['solid', 'outline', 'ghost'],
     },
     inputSize: {
-      control: { type: 'select', options: ['sm', 'md', 'lg'] },
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
     },
     colorScheme: {
-      control: {
-        type: 'select',
-        options: ['primary', 'secondary', 'danger', 'success', 'warning'],
-      },
+      control: 'select',
+      options: ['primary', 'secondary', 'danger', 'success', 'warning'],
     },
-    fullWidth: {
-      control: 'boolean',
-    },
-    label: {
-      control: 'text',
-    },
-    error: {
-      control: 'text',
-    },
-    disabled: {
-      control: 'boolean',
+    type: {
+      control: 'select',
+      options: ['text', 'password', 'email', 'number'],
     },
   },
-} satisfies Meta<typeof Input>;
+};
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {
   args: {
-    placeholder: 'Enter text...',
+    placeholder: 'Enter text',
   },
 };
 
@@ -62,38 +51,24 @@ export const WithError: Story = {
 
 export const Password: Story = {
   args: {
-    type: 'password',
     label: 'Password',
+    type: 'password',
     placeholder: 'Enter your password',
-  },
-};
-
-export const Number: Story = {
-  args: {
-    type: 'number',
-    label: 'Age',
-    placeholder: 'Enter your age',
-  },
-};
-
-export const Date: Story = {
-  args: {
-    type: 'date',
-    label: 'Birth Date',
+    showPasswordToggle: true,
   },
 };
 
 export const Outline: Story = {
   args: {
     variant: 'outline',
-    placeholder: 'Outline variant',
+    placeholder: 'Outline input',
   },
 };
 
 export const Ghost: Story = {
   args: {
     variant: 'ghost',
-    placeholder: 'Ghost variant',
+    placeholder: 'Ghost input',
   },
 };
 
@@ -111,24 +86,10 @@ export const Large: Story = {
   },
 };
 
-export const Disabled: Story = {
-  args: {
-    disabled: true,
-    placeholder: 'Disabled input',
-  },
-};
-
-export const FullWidth: Story = {
-  args: {
-    fullWidth: true,
-    placeholder: 'Full width input',
-  },
-};
-
 export const ColorSchemes: Story = {
   render: () => (
-    <div className='space-y-4'>
-      <Input colorScheme='primary' placeholder='Primary' />
+    <div className='space-y-2'>
+      <Input placeholder='Primary (default)' />
       <Input colorScheme='secondary' placeholder='Secondary' />
       <Input colorScheme='danger' placeholder='Danger' />
       <Input colorScheme='success' placeholder='Success' />

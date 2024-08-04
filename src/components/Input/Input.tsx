@@ -1,6 +1,13 @@
-import { ComponentProps, forwardRef } from 'react';
+import {
+  ComponentProps,
+  forwardRef,
+  useState,
+  useEffect,
+  useMemo,
+} from 'react';
 import { cn } from '@src/utils';
 import { VariantProps, cva } from 'class-variance-authority';
+import { Eye, EyeOff } from 'lucide-react';
 
 const inputStyles = cva(
   [
@@ -40,10 +47,6 @@ const inputStyles = cva(
         warning:
           'text-warning border-warning placeholder:text-warning-light focus:ring-warning',
       },
-      fullWidth: {
-        true: 'w-full',
-        false: 'w-auto',
-      },
     },
     compoundVariants: [
       {
@@ -76,7 +79,6 @@ const inputStyles = cva(
       variant: 'solid',
       inputSize: 'md',
       colorScheme: 'primary',
-      fullWidth: true,
     },
   }
 );
@@ -86,9 +88,10 @@ export interface InputProps
     VariantProps<typeof inputStyles> {
   label?: string;
   error?: string;
+  showPasswordToggle?: boolean;
 }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(
+const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
       variant,
@@ -97,32 +100,66 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       className,
       label,
       error,
-      fullWidth,
+      showPasswordToggle,
+      type = 'text',
       ...props
     },
     ref
-  ) => (
-    <div className={cn('flex flex-col', fullWidth ? 'w-full' : 'w-auto')}>
-      {label && (
-        <label
-          className='mb-1 text-sm font-medium text-gray-700'
-          htmlFor={props.id}
+  ) => {
+    const [showPassword, setShowPassword] = useState(false);
+    const [inputType, setInputType] = useState(type);
+
+    useEffect(() => {
+      if (type === 'password') {
+        setInputType(showPassword ? 'text' : 'password');
+      }
+    }, [showPassword, type]);
+
+    const passwordToggleButton = useMemo(() => {
+      if (!showPasswordToggle || type !== 'password') return null;
+
+      return (
+        <button
+          type='button'
+          className='absolute inset-y-0 right-0 pr-3 flex items-center'
+          onClick={() => setShowPassword((prev) => !prev)}
+          aria-label={showPassword ? 'Hide password' : 'Show password'}
         >
-          {label}
-        </label>
-      )}
-      <input
-        ref={ref}
-        className={cn(
-          inputStyles({ variant, inputSize, colorScheme, fullWidth }),
-          error && 'border-danger focus:ring-danger',
-          className
+          {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+        </button>
+      );
+    }, [showPasswordToggle, type, showPassword]);
+
+    return (
+      <div className='flex flex-col w-full'>
+        {label && (
+          <label
+            className='mb-1 text-sm font-medium text-gray-700'
+            htmlFor={props.id}
+          >
+            {label}
+          </label>
         )}
-        {...props}
-      />
-      {error && <p className='mt-1 text-sm text-danger'>{error}</p>}
-    </div>
-  )
+        <div className='relative'>
+          <input
+            ref={ref}
+            className={cn(
+              inputStyles({ variant, inputSize, colorScheme }),
+              error && 'border-danger focus:ring-danger',
+              showPasswordToggle && 'pr-10',
+              className
+            )}
+            type={inputType}
+            {...props}
+          />
+          {passwordToggleButton}
+        </div>
+        {error && <p className='mt-1 text-sm text-danger'>{error}</p>}
+      </div>
+    );
+  }
 );
 
 Input.displayName = 'Input';
+
+export { Input };
