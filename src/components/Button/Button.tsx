@@ -16,7 +16,6 @@ const buttonStyles = cva(
     'focus-visible:ring-2',
     'focus-visible:ring-offset-2',
     'disabled:pointer-events-none',
-    'disabled:opacity-50',
     'select-none',
     'whitespace-nowrap',
     'shadow-button',
@@ -129,7 +128,7 @@ export interface ButtonProps
     | 'warning'
     | 'danger'
     | 'white';
-  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -144,35 +143,42 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       rightIcon,
       children,
       loaderColor,
-      type = 'button',
+      disabled,
       ...props
     },
     ref
   ) => {
+    const loaderSize = size === 'sm' ? 'sm' : size === 'lg' ? 'lg' : 'md';
+
     return (
       <button
-        className={cn(buttonStyles({ variant, size, className }), 'relative')}
+        className={cn(
+          buttonStyles({ variant, size }),
+          isLoading
+            ? 'cursor-wait'
+            : disabled
+              ? 'cursor-not-allowed opacity-50'
+              : '',
+          className
+        )}
         ref={ref}
-        disabled={isLoading || props.disabled}
+        disabled={isLoading || disabled}
         aria-busy={isLoading}
-        type={type}
+        type='button'
         {...props}
       >
-        {isLoading && (
-          <span className='absolute inset-0 flex items-center justify-center'>
-            <Loader className='h-4 w-4 animate-spin' color={loaderColor} />
+        {isLoading ? (
+          <span className='flex items-center justify-center'>
+            <Loader size={loaderSize} color={loaderColor || 'white'} />
+            {loadingText && <span className='ml-2'>{loadingText}</span>}
+          </span>
+        ) : (
+          <span className='flex items-center justify-center'>
+            {leftIcon && <span className='mr-2'>{leftIcon}</span>}
+            {children}
+            {rightIcon && <span className='ml-2'>{rightIcon}</span>}
           </span>
         )}
-        <span
-          className={cn(
-            'flex items-center justify-center',
-            isLoading && 'invisible'
-          )}
-        >
-          {leftIcon && <span className='mr-2'>{leftIcon}</span>}
-          {isLoading && loadingText ? loadingText : children}
-          {rightIcon && <span className='ml-2'>{rightIcon}</span>}
-        </span>
       </button>
     );
   }
