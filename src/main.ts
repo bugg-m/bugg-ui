@@ -5,5 +5,6 @@ export * from './components/Layouts/Stack/Stack';
 export * from './components/Text/Text';
 export * from './components/Card/Card';
 export * from './components/Checkbox/Checkbox';
-export * from './components/Dropdown/Dropdown';
+export * as MultiSelect from './components/Dropdown/MultiSelect';
+export * as SingleSelect from './components/Dropdown/SingleSelect';
 export * from './components/Modal/Modal';
