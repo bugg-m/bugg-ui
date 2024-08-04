@@ -30,6 +30,8 @@ const meta: Meta<typeof Button> = {
       control: 'boolean',
     },
     onClick: { action: 'clicked' },
+    leftIcon: { control: 'boolean' },
+    rightIcon: { control: 'boolean' },
   },
 };
 
@@ -161,22 +163,16 @@ export const LoadingWithoutText: Story = {
 export const WithLeftIcon: Story = {
   args: {
     ...Default.args,
-    children: (
-      <>
-        <Mail className='mr-2 h-4 w-4' /> Email
-      </>
-    ),
+    leftIcon: <Mail className='mr-2 h-4 w-4' />,
+    children: 'Email',
   },
 };
 
 export const WithRightIcon: Story = {
   args: {
     ...Default.args,
-    children: (
-      <>
-        Next <ArrowRight className='ml-2 h-4 w-4' />
-      </>
-    ),
+    rightIcon: <ArrowRight className='ml-2 h-4 w-4' />,
+    children: 'Next',
   },
 };
 
@@ -217,10 +213,16 @@ export const ComplexButton: Story = {
 // Button Group
 export const ButtonGroup: Story = {
   render: () => (
-    <div className='flex space-x-2'>
-      <Button variant='outline'>Cancel</Button>
-      <Button variant='primary'>Submit</Button>
-      <Button variant='destructive'>Delete</Button>
+    <div className='inline-flex rounded-md shadow-sm' role='group'>
+      <Button variant='outline' className='rounded-r-none'>
+        Cancel
+      </Button>
+      <Button variant='primary' className='rounded-none border-l-0 border-r-0'>
+        Submit
+      </Button>
+      <Button variant='destructive' className='rounded-l-none'>
+        Delete
+      </Button>
     </div>
   ),
 };
@@ -266,6 +268,21 @@ export const LoadingStates: Story = {
         Submit
       </Button>
       <Button loaderColor='primary' isLoading variant='outline' />
+    </div>
+  ),
+};
+
+// New story for button with tooltip
+export const WithTooltip: Story = {
+  render: () => (
+    <div className='flex items-center justify-center h-32'>
+      <Button
+        variant='primary'
+        aria-label='Add item'
+        title='Add a new item to the list'
+      >
+        <Plus className='h-4 w-4' />
+      </Button>
     </div>
   ),
 };
