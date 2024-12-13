@@ -1,7 +1,8 @@
 <div align="center">
   <h1>🐞 Bugg-ui</h1>
   <p>In development phase</p>
-  <p>A modern, flexible UI component library for React</p>
+  <p>A UI component library for React</p>
+  <p>This UI component library is primarily for personal use. I created it to utilize in my various projects, but it is also available for anyone who wishes to use it in their own work.</p>
   
   [![npm version](https://badge.fury.io/js/%40bugg-m%2Fbugg-ui.svg)](https://badge.fury.io/js/%40bugg-m%2Fbugg-ui)
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)

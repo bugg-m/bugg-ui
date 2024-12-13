@@ -6,3 +6,4 @@ export * from './components/Checkbox/Checkbox';
 export * from './components/Datepicker/Datepicker';
 export * from './components/SingleSelect/SingleSelect';
 export * from './components/MultiSelect/MultiSelect';
+export * from './components/Loader/Loader';
