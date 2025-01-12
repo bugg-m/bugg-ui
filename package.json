@@ -21,17 +21,21 @@
       "import": "./dist/bugg-ui.js",
       "require": "./dist/bugg-ui-umd.cjs",
       "types": "./dist/bugg-ui.d.ts"
-    }
+    },
+    "./styles.css": "./dist/bugg-ui.css"
   },
   "scripts": {
     "dev": "vite",
+    "prebuild": "rm -rf dist",
     "build": "tsc --project tsconfig.json && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build-all": "yarn build && yarn build-storybook"
+    "build-all": "yarn build && yarn build-storybook",
+    "prepublish": "yarn build",
+    "publish": "npm publish"
   },
   "peerDependencies": {
     "class-variance-authority": "^0.7.0",
