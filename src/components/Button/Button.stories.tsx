@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from './Button';
 import { Mail, ArrowRight, Plus } from 'lucide-react';
+import { Badge } from '../Badge/Badge';
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',
@@ -201,9 +202,7 @@ export const ComplexButton: Story = {
       <>
         <Mail className='mr-2 h-5 w-5' />
         <span>Send Newsletter</span>
-        <span className='ml-auto bg-primary text-primary-foreground rounded-full px-2 py-0.5 text-xs'>
-          99+
-        </span>
+        <Badge value='91+' variant='notification' />
       </>
     ),
     className: 'w-full justify-start',

@@ -143,7 +143,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       leftIcon,
       rightIcon,
       children,
-      loaderColor,
+      loaderColor = 'white',
       type = 'button',
       disabled,
       ...props
@@ -171,7 +171,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {isLoading ? (
           <span className='flex items-center justify-center'>
-            <Loader size={loaderSize} color={loaderColor || 'white'} />
+            <Loader size={loaderSize} color={loaderColor} />
             {loadingText && <span className='ml-2'>{loadingText}</span>}
           </span>
         ) : (
