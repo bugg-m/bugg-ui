@@ -39,14 +39,12 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-// Base Button story
 export const Default: Story = {
   args: {
     children: 'Button',
   },
 };
 
-// Variant stories
 export const Primary: Story = {
   args: {
     ...Default.args,
@@ -105,7 +103,6 @@ export const Warning: Story = {
   },
 };
 
-// Size stories
 export const Small: Story = {
   args: {
     ...Default.args,
@@ -127,7 +124,6 @@ export const Large: Story = {
   },
 };
 
-// State stories
 export const Disabled: Story = {
   args: {
     ...Default.args,
@@ -160,7 +156,6 @@ export const LoadingWithoutText: Story = {
   },
 };
 
-// Icon stories
 export const WithLeftIcon: Story = {
   args: {
     ...Default.args,
@@ -185,7 +180,6 @@ export const IconOnly: Story = {
   },
 };
 
-// Full width button
 export const FullWidth: Story = {
   args: {
     ...Default.args,
@@ -193,7 +187,6 @@ export const FullWidth: Story = {
   },
 };
 
-// Complex example
 export const ComplexButton: Story = {
   args: {
     variant: 'outline',
@@ -209,7 +202,6 @@ export const ComplexButton: Story = {
   },
 };
 
-// Button Group
 export const ButtonGroup: Story = {
   render: () => (
     <div className='inline-flex rounded-md shadow-sm' role='group'>
@@ -226,7 +218,6 @@ export const ButtonGroup: Story = {
   ),
 };
 
-// Showcase all variants
 export const AllVariants: Story = {
   render: () => (
     <div className='flex flex-wrap gap-4'>
@@ -242,7 +233,6 @@ export const AllVariants: Story = {
   ),
 };
 
-// Showcase all sizes
 export const AllSizes: Story = {
   render: () => (
     <div className='flex items-center space-x-4'>
@@ -256,7 +246,6 @@ export const AllSizes: Story = {
   ),
 };
 
-// Showcase loading state
 export const LoadingStates: Story = {
   render: () => (
     <div className='flex space-x-4'>
@@ -271,7 +260,6 @@ export const LoadingStates: Story = {
   ),
 };
 
-// New story for button with tooltip
 export const WithTooltip: Story = {
   render: () => (
     <div className='flex items-center justify-center h-32'>
