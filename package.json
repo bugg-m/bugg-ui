@@ -19,8 +19,7 @@
   "exports": {
     ".": {
       "import": "./dist/bugg-ui.js",
-      "require": "./dist/bugg-ui-umd.cjs",
-      "types": "./dist/bugg-ui.d.ts"
+      "require": "./dist/bugg-ui-umd.cjs"
     },
     "./dist/styles.css": "./dist/styles.css"
   },
@@ -39,10 +38,10 @@
     "publish": "npm publish"
   },
   "dependencies": {
+    "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.424.0",
-    "tailwind-merge": "^2.3.0",
-    "class-variance-authority": "^0.7.0"
+    "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.6.1",
@@ -58,6 +57,7 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.13",
+    "@types/node": "^22.10.7",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",

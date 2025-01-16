@@ -4,7 +4,7 @@ import { MultiSelect } from './MultiSelect';
 import { action } from '@storybook/addon-actions';
 
 const meta: Meta<typeof MultiSelect> = {
-  title: 'Components/MultiSelect',
+  title: 'Core/MultiSelect',
   component: MultiSelect,
   tags: ['autodocs'],
   argTypes: {

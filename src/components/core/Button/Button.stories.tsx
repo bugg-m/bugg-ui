@@ -4,7 +4,7 @@ import { Mail, ArrowRight, Plus } from 'lucide-react';
 import { Badge } from '../Badge/Badge';
 
 const meta: Meta<typeof Button> = {
-  title: 'Components/Button',
+  title: 'Core/Button',
   component: Button,
   tags: ['autodocs'],
   argTypes: {

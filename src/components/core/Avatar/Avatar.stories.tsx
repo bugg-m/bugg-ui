@@ -2,8 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Avatar } from './Avatar';
 
 const meta: Meta<typeof Avatar> = {
-  title: 'Components/Avatar',
+  title: 'Core/Avatar',
   component: Avatar,
+  tags: ['autodocs'],
   argTypes: {
     shape: {
       control: { type: 'select' },
@@ -37,6 +38,7 @@ export const Default: Story = {
   args: {
     src: 'https://avatars.githubusercontent.com/u/75472873?s=96&v=4',
     alt: 'Avatar',
+    size: 'md',
   },
 };
 export const WithInitials: Story = {

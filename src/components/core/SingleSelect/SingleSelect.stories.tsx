@@ -4,7 +4,7 @@ import { SingleSelect } from './SingleSelect';
 import { action } from '@storybook/addon-actions';
 
 const meta: Meta<typeof SingleSelect> = {
-  title: 'Components/SingleSelect',
+  title: 'Core/SingleSelect',
   component: SingleSelect,
   tags: ['autodocs'],
   argTypes: {

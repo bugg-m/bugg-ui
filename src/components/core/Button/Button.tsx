@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { VariantProps, cva } from 'class-variance-authority';
 import { cn } from '@src/utils';
-import { Loader } from '../Loader/Loader';
+import { Loader } from '../../feedback/Loader/Loader';
 
 const buttonStyles = cva(
   [

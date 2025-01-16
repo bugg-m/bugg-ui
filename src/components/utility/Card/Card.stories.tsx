@@ -2,8 +2,9 @@ import { Meta, StoryObj } from '@storybook/react';
 import { Card, CardProps } from './Card';
 
 const meta: Meta<typeof Card> = {
-  title: 'Components/Card',
+  title: 'Utility/Card',
   component: Card,
+  tags: ['autodocs'],
   argTypes: {
     variant: {
       control: 'select',

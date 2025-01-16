@@ -2,8 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Badge } from './Badge';
 
 const meta: Meta<typeof Badge> = {
-  title: 'Components/Badge',
+  title: 'Core/Badge',
   component: Badge,
+  tags: ['autodocs'],
   argTypes: {
     variant: {
       control: { type: 'select' },
@@ -33,6 +34,12 @@ const meta: Meta<typeof Badge> = {
 
 export default meta;
 type Story = StoryObj<typeof Badge>;
+
+export const Default: Story = {
+  args: {
+    value: 'Default Badge',
+  },
+};
 
 export const Primary: Story = {
   args: {
