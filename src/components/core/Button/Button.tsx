@@ -4,75 +4,25 @@ import { cn } from '@src/utils';
 import { Loader } from '../../feedback/Loader/Loader';
 
 const buttonStyles = cva(
-  [
-    'inline-flex',
-    'items-center',
-    'justify-center',
-    'rounded-md',
-    'text-sm',
-    'font-medium',
-    'transition-all',
-    'focus-visible:outline-none',
-    'focus-visible:ring-2',
-    'focus-visible:ring-offset-2',
-    'disabled:pointer-events-none',
-    'select-none',
-    'whitespace-nowrap',
-    'shadow-button',
-    'relative',
-  ],
+  'inline-flex items-center justify-center rounded-md text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none select-none whitespace-nowrap shadow-button relative',
   {
     variants: {
       variant: {
-        primary: [
-          'bg-primary',
-          'text-white',
-          'hover:bg-primary-dark',
-          'focus-visible:ring-primary-light',
-        ],
-        secondary: [
-          'bg-secondary',
-          'text-white',
-          'hover:bg-secondary-dark',
-          'focus-visible:ring-secondary-light',
-        ],
-        outline: [
-          'border',
-          'border-secondary',
-          'bg-white',
-          'text-secondary-dark',
-          'hover:bg-secondary-light/10',
-          'focus-visible:ring-secondary',
-        ],
-        destructive: [
-          'bg-danger',
-          'text-white',
-          'hover:bg-danger-dark',
-          'focus-visible:ring-danger-light',
-        ],
-        ghost: [
-          'text-secondary-dark',
-          'hover:bg-secondary-light/10',
-          'focus-visible:ring-secondary',
-        ],
-        link: [
-          'text-primary',
-          'underline-offset-4',
-          'hover:underline',
-          'focus-visible:ring-primary-light',
-        ],
-        success: [
-          'bg-success',
-          'text-white',
-          'hover:bg-success-dark',
-          'focus-visible:ring-success-light',
-        ],
-        warning: [
-          'bg-warning',
-          'text-white',
-          'hover:bg-warning-dark',
-          'focus-visible:ring-warning-light',
-        ],
+        primary:
+          'bg-primary text-white hover:bg-primary-dark focus-visible:ring-primary-light',
+        secondary:
+          'bg-secondary text-white hover:bg-secondary-dark focus-visible:ring-secondary-light',
+        outline:
+          'border border-secondary bg-white text-secondary-dark hover:bg-secondary-light/10 focus-visible:ring-secondary',
+        destructive:
+          'bg-danger text-white hover:bg-danger-dark focus-visible:ring-danger-light',
+        ghost:
+          'text-secondary-dark hover:bg-secondary-light/10 focus-visible:ring-secondary',
+        link: 'text-primary underline-offset-4 hover:underline focus-visible:ring-primary-light',
+        success:
+          'bg-success text-white hover:bg-success-dark focus-visible:ring-success-light',
+        warning:
+          'bg-warning text-white hover:bg-warning-dark focus-visible:ring-warning-light',
       },
       size: {
         sm: 'h-8 px-3 text-xs',
