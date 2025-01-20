@@ -17,8 +17,8 @@ const avatarStyles = cva('flex items-center justify-center relative', {
     },
     border: {
       none: '',
-      thin: 'border border-gray-300',
-      thick: 'border-2 border-gray-400',
+      thin: 'border border-secondary-300',
+      thick: 'border-2 border-secondary-400',
       colorful: 'border-2 border-primary',
     },
     shadow: {
@@ -80,7 +80,7 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
           <span
             className={cn(
               avatarStyles({ shape, size }),
-              'font-medium text-gray-50 capitalize bg-gray-400 flex items-center justify-center w-full h-full'
+              'font-medium text-secondary-50 capitalize bg-secondary-400 flex items-center justify-center w-full h-full'
             )}
           >
             {initials}

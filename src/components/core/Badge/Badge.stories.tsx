@@ -12,19 +12,17 @@ const meta: Meta<typeof Badge> = {
         'primary',
         'secondary',
         'outline',
-        'destructive',
+        'error',
         'ghost',
         'link',
         'success',
         'warning',
+        'notification',
       ],
     },
     size: {
       control: { type: 'select' },
       options: ['sm', 'md', 'lg'],
-    },
-    value: {
-      control: 'text',
     },
     className: {
       control: 'text',
@@ -37,54 +35,78 @@ type Story = StoryObj<typeof Badge>;
 
 export const Default: Story = {
   args: {
-    value: 'Default Badge',
+    children: 'Default Badge',
   },
 };
 
 export const Primary: Story = {
   args: {
-    value: 'Primary Badge',
     variant: 'primary',
     size: 'md',
+    children: 'Primary Badge',
   },
 };
 
 export const Secondary: Story = {
   args: {
-    value: 'Secondary Badge',
     variant: 'secondary',
     size: 'md',
+    children: 'Secondary Badge',
   },
 };
 
 export const Outline: Story = {
   args: {
-    value: 'Outline Badge',
     variant: 'outline',
     size: 'md',
+    children: 'Outline Badge',
   },
 };
 
 export const Destructive: Story = {
   args: {
-    value: 'Destructive Badge',
-    variant: 'destructive',
+    variant: 'error',
     size: 'md',
+    children: 'Destructive Badge',
   },
 };
 
 export const Ghost: Story = {
-  args: { value: 'Ghost Badge', variant: 'ghost', size: 'md' },
+  args: {
+    variant: 'ghost',
+    size: 'md',
+    children: 'Ghost Badge',
+  },
 };
 
 export const Link: Story = {
-  args: { value: 'Link Badge', variant: 'link', size: 'md' },
+  args: {
+    variant: 'link',
+    size: 'md',
+    children: 'Link Badge',
+  },
 };
 
 export const Success: Story = {
-  args: { value: 'Success Badge', variant: 'success', size: 'md' },
+  args: {
+    variant: 'success',
+    size: 'md',
+    children: 'Success Badge',
+  },
 };
 
 export const Warning: Story = {
-  args: { value: 'Warning Badge', variant: 'warning', size: 'md' },
+  args: {
+    variant: 'warning',
+    size: 'md',
+    children: 'Warning Badge',
+  },
+};
+
+export const Notification: Story = {
+  args: {
+    variant: 'notification',
+    size: 'md',
+    children: '1',
+  },
 };

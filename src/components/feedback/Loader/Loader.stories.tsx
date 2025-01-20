@@ -18,9 +18,10 @@ const meta = {
         options: [
           'primary',
           'secondary',
-          'danger',
+          'error',
           'success',
           'warning',
+          'info',
           'white',
         ],
       },
@@ -62,7 +63,7 @@ export const Large: Story = {
 export const CustomColor: Story = {
   args: {
     size: 'md',
-    color: 'danger',
+    color: 'error',
   },
 };
 
@@ -79,9 +80,10 @@ export const AllColors: Story = {
     <div className='space-y-4'>
       <Loader color='primary' />
       <Loader color='secondary' />
-      <Loader color='danger' />
+      <Loader color='error' />
       <Loader color='success' />
       <Loader color='warning' />
+      <Loader color='info' />
       <div className='p-4 bg-gray-800 rounded-md'>
         <Loader color='white' />
       </div>

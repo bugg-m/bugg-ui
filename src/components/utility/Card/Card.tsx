@@ -12,7 +12,7 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
     | 'secondary'
     | 'success'
     | 'warning'
-    | 'danger'
+    | 'error'
     | 'info'
     | 'light'
     | 'dark'
@@ -75,7 +75,7 @@ export const Card = forwardRef<
           color === 'secondary',
         'bg-green-100 border-green-200 text-green-800': color === 'success',
         'bg-yellow-100 border-yellow-200 text-yellow-800': color === 'warning',
-        'bg-red-100 border-red-200 text-red-800': color === 'danger',
+        'bg-red-100 border-red-200 text-red-800': color === 'error',
         'bg-cyan-100 border-cyan-200 text-cyan-800': color === 'info',
         'bg-gray-50 border-gray-200 text-gray-800': color === 'light',
         'bg-gray-800 border-gray-700 text-gray-100': color === 'dark',

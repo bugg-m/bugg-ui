@@ -16,7 +16,7 @@ const meta: Meta<typeof TextArea> = {
     },
     colorScheme: {
       control: 'select',
-      options: ['primary', 'secondary', 'danger', 'success', 'warning'],
+      options: ['primary', 'secondary', 'error', 'success', 'warning'],
     },
   },
 };

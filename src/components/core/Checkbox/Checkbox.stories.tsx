@@ -21,7 +21,7 @@ const meta: Meta<typeof Checkbox> = {
     },
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'success', 'warning', 'danger', 'info'],
+      options: ['primary', 'secondary', 'success', 'warning', 'error', 'info'],
       description: 'Variant style of the checkbox',
     },
   },

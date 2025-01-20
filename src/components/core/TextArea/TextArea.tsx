@@ -83,13 +83,13 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
           ref={ref}
           className={cn(
             textareaStyles({ variant, textAreaSize, colorScheme }),
-            error && 'border-danger focus:ring-danger',
+            error && 'border-error focus:ring-error',
             className
           )}
           {...props}
         />
       </div>
-      {error && <p className='mt-1 text-sm text-danger'>{error}</p>}
+      {error && <p className='mt-1 text-sm text-error'>{error}</p>}
     </div>
   )
 );

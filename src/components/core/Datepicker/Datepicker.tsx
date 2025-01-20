@@ -9,7 +9,7 @@ import {
 import { cn } from '@src/utils';
 
 interface DatePickerProps {
-  onDateSelect: (date: Date | [Date, Date] | undefined) => void;
+  onDateSelect?: (date: Date | [Date, Date]) => void;
   selectedDate?: Date | [Date, Date];
   minDate?: Date;
   maxDate?: Date;
@@ -74,13 +74,13 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         if (!prev || !Array.isArray(prev)) return [date, date] as [Date, Date];
         if (date < prev[0]) return [date, prev[1]] as [Date, Date];
         const newRange = [prev[0], date] as [Date, Date];
-        onDateSelect(newRange);
+        onDateSelect && onDateSelect(newRange);
         setIsOpen(prev[0] !== prev[1]); // Close only if end date is selected
         return newRange;
       });
     } else {
       setSelectedDate(date);
-      onDateSelect(date);
+      onDateSelect && onDateSelect(date);
       setIsOpen(false); // Close the modal after selection
     }
   };
@@ -114,7 +114,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
       const isSelected =
         selectedDate &&
         (Array.isArray(selectedDate)
-          ? selectedDate.includes(date)
+          ? selectedDate.some((d) => d.toDateString() === date.toDateString())
           : date.toDateString() === selectedDate.toDateString());
       const isDisabled =
         (minDate && date < minDate) || (maxDate && date > maxDate);
@@ -125,12 +125,12 @@ export const DatePicker: React.FC<DatePickerProps> = ({
           onClick={() => !isDisabled && handleDateSelect(date)}
           className={cn(
             'w-8 h-8 rounded-full flex items-center justify-center text-sm',
-            isSelected && 'bg-primary text-primary-foreground',
+            isSelected && 'bg-primary-500 text-white',
             isDisabled && 'text-secondary-light cursor-not-allowed',
             !isSelected &&
               !isDisabled &&
-              'hover:bg-secondary-dark text-text dark:text-text-dark',
-            isInRange(date) && !isSelected && 'bg-primary/20' // Add light shade for date range
+              'hover:bg-secondary-100 text-text dark:text-text-dark',
+            isInRange(date) && !isSelected && 'bg-primary-100' // Add light shade for date range
           )}
           disabled={isDisabled}
         >
@@ -189,8 +189,11 @@ export const DatePicker: React.FC<DatePickerProps> = ({
           </div>
           <div className='p-2'>
             <div className='grid grid-cols-7 gap-1 text-center mb-2'>
-              {['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'].map((day) => (
-                <div key={day} className='text-secondary text-sm'>
+              {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
+                <div
+                  key={day}
+                  className='text-center font-medium text-secondary-700'
+                >
                   {day}
                 </div>
               ))}

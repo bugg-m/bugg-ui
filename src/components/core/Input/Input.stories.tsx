@@ -6,26 +6,33 @@ const meta: Meta<typeof Input> = {
   component: Input,
   tags: ['autodocs'],
   argTypes: {
+    error: { control: 'text', description: 'Error message for the input' },
+    disabled: { control: 'boolean', description: 'Disable the input' },
+    type: {
+      control: 'select',
+      options: ['text', 'password', 'email', 'number'],
+      description: 'Type of the input',
+    },
     variant: {
       control: 'select',
-      options: ['solid', 'outline', 'ghost'],
+      options: ['outline', 'ghost', 'filled'],
+      description: 'Variant style of the input',
     },
     inputSize: {
       control: 'select',
       options: ['sm', 'md', 'lg'],
+      description: 'Size of the input',
     },
     colorScheme: {
       control: 'select',
-      options: ['primary', 'secondary', 'danger', 'success', 'warning'],
-    },
-    type: {
-      control: 'select',
-      options: ['text', 'password', 'email', 'number'],
+      options: ['primary', 'secondary', 'success', 'warning', 'error'],
+      description: 'Color scheme of the input',
     },
   },
 };
 
 export default meta;
+
 type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {
@@ -36,14 +43,12 @@ export const Default: Story = {
 
 export const WithLabel: Story = {
   args: {
-    label: 'Username',
     placeholder: 'Enter your username',
   },
 };
 
 export const WithError: Story = {
   args: {
-    label: 'Email',
     placeholder: 'Enter your email',
     error: 'Invalid email address',
   },
@@ -51,10 +56,8 @@ export const WithError: Story = {
 
 export const Password: Story = {
   args: {
-    label: 'Password',
     type: 'password',
     placeholder: 'Enter your password',
-    showPasswordToggle: true,
   },
 };
 
@@ -69,6 +72,13 @@ export const Ghost: Story = {
   args: {
     variant: 'ghost',
     placeholder: 'Ghost input',
+  },
+};
+
+export const Filled: Story = {
+  args: {
+    variant: 'filled',
+    placeholder: 'Filled input',
   },
 };
 
@@ -91,7 +101,7 @@ export const ColorSchemes: Story = {
     <div className='space-y-2'>
       <Input placeholder='Primary (default)' />
       <Input colorScheme='secondary' placeholder='Secondary' />
-      <Input colorScheme='danger' placeholder='Danger' />
+      <Input colorScheme='error' placeholder='Error' />
       <Input colorScheme='success' placeholder='Success' />
       <Input colorScheme='warning' placeholder='Warning' />
     </div>

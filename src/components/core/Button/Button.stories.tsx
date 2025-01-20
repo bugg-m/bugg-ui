@@ -14,7 +14,7 @@ const meta: Meta<typeof Button> = {
         'primary',
         'secondary',
         'outline',
-        'destructive',
+        'error',
         'ghost',
         'link',
         'success',
@@ -69,7 +69,7 @@ export const Outline: Story = {
 export const Destructive: Story = {
   args: {
     ...Default.args,
-    variant: 'destructive',
+    variant: 'error',
   },
 };
 
@@ -195,7 +195,7 @@ export const ComplexButton: Story = {
       <>
         <Mail className='mr-2 h-5 w-5' />
         <span>Send Newsletter</span>
-        <Badge value='91+' variant='notification' />
+        <Badge children='91+' variant='notification' />
       </>
     ),
     className: 'w-full justify-start',
@@ -211,7 +211,7 @@ export const ButtonGroup: Story = {
       <Button variant='primary' className='rounded-none border-l-0 border-r-0'>
         Submit
       </Button>
-      <Button variant='destructive' className='rounded-l-none'>
+      <Button variant='error' className='rounded-l-none'>
         Delete
       </Button>
     </div>
@@ -224,7 +224,7 @@ export const AllVariants: Story = {
       <Button variant='primary'>Primary</Button>
       <Button variant='secondary'>Secondary</Button>
       <Button variant='outline'>Outline</Button>
-      <Button variant='destructive'>Destructive</Button>
+      <Button variant='error'>Destructive</Button>
       <Button variant='ghost'>Ghost</Button>
       <Button variant='link'>Link</Button>
       <Button variant='success'>Success</Button>

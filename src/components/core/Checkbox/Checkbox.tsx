@@ -1,18 +1,18 @@
 import React, { forwardRef } from 'react';
+import { VariantProps, cva } from 'class-variance-authority';
 import { cn } from '@src/utils';
-import { cva, VariantProps } from 'class-variance-authority';
 
 const checkboxStyles = cva(
-  'form-checkbox h-4 w-4 rounded transition duration-150 ease-in-out',
+  'form-checkbox rounded transition duration-150 ease-in-out',
   {
     variants: {
       variant: {
-        primary: 'text-primary',
-        secondary: 'text-secondary',
-        success: 'text-success',
-        warning: 'text-warning',
-        danger: 'text-danger',
-        default: '',
+        primary: 'text-primary-500 focus:ring-primary-400',
+        secondary: 'text-secondary-500 focus:ring-secondary-400',
+        success: 'text-success-500 focus:ring-success-400',
+        warning: 'text-warning-500 focus:ring-warning-400',
+        error: 'text-error-500 focus:ring-error-400',
+        info: 'text-info-500 focus:ring-info-400',
       },
       checkboxSize: {
         xs: 'h-3 w-3',
@@ -23,7 +23,7 @@ const checkboxStyles = cva(
       },
     },
     defaultVariants: {
-      variant: 'default',
+      variant: 'primary',
       checkboxSize: 'md',
     },
   }

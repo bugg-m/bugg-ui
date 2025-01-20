@@ -1,22 +1,16 @@
-import {
-  ComponentProps,
-  forwardRef,
-  useState,
-  useEffect,
-  useMemo,
-} from 'react';
+import React, { forwardRef, useState, useEffect, useMemo } from 'react';
 import { cn } from '@src/utils';
 import { VariantProps, cva } from 'class-variance-authority';
 import { Eye, EyeOff } from 'lucide-react';
 
 const inputStyles = cva(
-  'w-full border rounded-lg transition-all duration-200 outline-none placeholder:text-sm focus:ring-2 focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed',
+  'w-full rounded-md transition-all duration-200 outline-none focus:ring-0 disabled:opacity-50 peer block appearance-none bg-transparent text-sm focus:outline-none',
   {
     variants: {
       variant: {
-        solid: 'bg-white',
-        outline: 'border-2 bg-transparent',
-        ghost: 'bg-transparent border-transparent',
+        filled: 'bg-secondary-50',
+        outline: 'border bg-transparent',
+        ghost: 'bg-transparent border-b',
       },
       inputSize: {
         sm: 'px-2 py-1 text-sm',
@@ -25,46 +19,19 @@ const inputStyles = cva(
       },
       colorScheme: {
         primary:
-          'text-primary border-primary placeholder:text-primary-light focus:ring-primary',
+          'text-primary-700 border-primary-500 placeholder:text-primary-400 ',
         secondary:
-          'text-secondary border-secondary placeholder:text-secondary-light focus:ring-secondary',
-        danger:
-          'text-danger border-danger placeholder:text-danger-light focus:ring-danger',
+          'text-secondary-700 border-secondary-500 placeholder:text-secondary-400 ',
+        error: 'text-error-700 border-error-500 placeholder:text-error-400 ',
         success:
-          'text-success border-success placeholder:text-success-light focus:ring-success',
+          'text-success-700 border-success-500 placeholder:text-success-400 ',
         warning:
-          'text-warning border-warning placeholder:text-warning-light focus:ring-warning',
+          'text-warning-700 border-warning-500 placeholder:text-warning-400 ',
+        info: 'text-info-700 border-info-500 placeholder:text-info-400 ',
       },
     },
-    compoundVariants: [
-      {
-        variant: 'ghost',
-        colorScheme: 'primary',
-        class: 'hover:bg-primary-light/10',
-      },
-      {
-        variant: 'ghost',
-        colorScheme: 'secondary',
-        class: 'hover:bg-secondary-light/10',
-      },
-      {
-        variant: 'ghost',
-        colorScheme: 'danger',
-        class: 'hover:bg-danger-light/10',
-      },
-      {
-        variant: 'ghost',
-        colorScheme: 'success',
-        class: 'hover:bg-success-light/10',
-      },
-      {
-        variant: 'ghost',
-        colorScheme: 'warning',
-        class: 'hover:bg-warning-light/10',
-      },
-    ],
     defaultVariants: {
-      variant: 'solid',
+      variant: 'outline',
       inputSize: 'md',
       colorScheme: 'primary',
     },
@@ -72,11 +39,9 @@ const inputStyles = cva(
 );
 
 export interface InputProps
-  extends ComponentProps<'input'>,
+  extends React.InputHTMLAttributes<HTMLInputElement>,
     VariantProps<typeof inputStyles> {
-  label?: string;
   error?: string;
-  showPasswordToggle?: boolean;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -86,9 +51,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       inputSize,
       colorScheme,
       className,
-      label,
       error,
-      showPasswordToggle,
       type = 'text',
       ...props
     },
@@ -104,7 +67,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     }, [showPassword, type]);
 
     const passwordToggleButton = useMemo(() => {
-      if (!showPasswordToggle || type !== 'password') return null;
+      if (type !== 'password') return null;
 
       return (
         <button
@@ -113,36 +76,50 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           onClick={() => setShowPassword((prev) => !prev)}
           aria-label={showPassword ? 'Hide password' : 'Show password'}
         >
-          {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+          {showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
         </button>
       );
-    }, [showPasswordToggle, type, showPassword]);
+    }, [type, showPassword]);
+
+    const labelTextStyles = {
+      primary: 'text-primary-400',
+      secondary: 'text-secondary-400',
+      error: 'text-error-400',
+      success: 'text-success-400',
+      warning: 'text-warning-400',
+      info: 'text-info-400',
+    };
 
     return (
       <div className='flex flex-col w-full'>
-        {label && (
-          <label
-            className='mb-1 text-sm font-medium text-gray-700'
-            htmlFor={props.id}
-          >
-            {label}
-          </label>
-        )}
         <div className='relative'>
           <input
             ref={ref}
             className={cn(
               inputStyles({ variant, inputSize, colorScheme }),
-              error && 'border-danger focus:ring-danger',
-              showPasswordToggle && 'pr-10',
+              error && 'border-error-500',
               className
             )}
             type={inputType}
             {...props}
+            placeholder=''
           />
           {passwordToggleButton}
+          {props.placeholder && (
+            <label
+              className={cn(
+                colorScheme
+                  ? labelTextStyles[colorScheme]
+                  : 'text-secondary-500',
+                'mb-1 peer-focus-within:bg-white font-medium origin-[0] peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 absolute left-1 top-2 z-10 -translate-y-4 scale-75 transform cursor-text select-none px-2 text-xs duration-300'
+              )}
+              htmlFor={props.id}
+            >
+              {props.placeholder}
+            </label>
+          )}
         </div>
-        {error && <p className='mt-1 text-sm text-danger'>{error}</p>}
+        {error && <p className='mt-0.5 ml-1 text-xs text-error-500'>{error}</p>}
       </div>
     );
   }

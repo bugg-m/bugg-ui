@@ -9,20 +9,20 @@ const buttonStyles = cva(
     variants: {
       variant: {
         primary:
-          'bg-primary text-white hover:bg-primary-dark focus-visible:ring-primary-light',
+          'bg-primary-500 text-white hover:bg-primary-600 focus-visible:ring-primary-400',
         secondary:
-          'bg-secondary text-white hover:bg-secondary-dark focus-visible:ring-secondary-light',
+          'bg-secondary-500 text-white hover:bg-secondary-600 focus-visible:ring-secondary-400',
         outline:
-          'border border-secondary bg-white text-secondary-dark hover:bg-secondary-light/10 focus-visible:ring-secondary',
-        destructive:
-          'bg-danger text-white hover:bg-danger-dark focus-visible:ring-danger-light',
+          'border border-secondary-500 bg-white text-secondary-700 hover:bg-secondary-100 focus-visible:ring-secondary-500',
+        error:
+          'bg-error-500 text-white hover:bg-error-600 focus-visible:ring-error-400',
         ghost:
-          'text-secondary-dark hover:bg-secondary-light/10 focus-visible:ring-secondary',
-        link: 'text-primary underline-offset-4 hover:underline focus-visible:ring-primary-light',
+          'text-secondary-700 hover:bg-secondary-100 focus-visible:ring-secondary-500',
+        link: 'text-primary-500 underline-offset-4 hover:underline focus-visible:ring-primary-400',
         success:
-          'bg-success text-white hover:bg-success-dark focus-visible:ring-success-light',
+          'bg-success-500 text-white hover:bg-success-600 focus-visible:ring-success-400',
         warning:
-          'bg-warning text-white hover:bg-warning-dark focus-visible:ring-warning-light',
+          'bg-warning-500 text-white hover:bg-warning-600 focus-visible:ring-warning-400',
       },
       size: {
         sm: 'h-8 px-3 text-xs',
@@ -37,7 +37,7 @@ const buttonStyles = cva(
     compoundVariants: [
       {
         variant: 'outline',
-        className: 'hover:bg-secondary-light/10 hover:text-secondary-dark',
+        className: 'hover:bg-secondary-100 hover:text-secondary-700',
       },
       {
         variant: ['ghost', 'link'],
@@ -54,7 +54,7 @@ const buttonStyles = cva(
       {
         variant: 'primary',
         size: 'icon',
-        className: 'bg-primary text-white hover:bg-primary-dark p-0',
+        className: 'bg-primary-500 text-white hover:bg-primary-600 p-0',
       },
     ],
     defaultVariants: {
@@ -76,7 +76,7 @@ export interface ButtonProps
     | 'secondary'
     | 'success'
     | 'warning'
-    | 'danger'
+    | 'error'
     | 'white';
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;

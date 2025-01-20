@@ -9,22 +9,22 @@ const badgeStyles = cva(
     variants: {
       variant: {
         primary:
-          'bg-primary text-white hover:bg-primary-dark focus:ring-primary-light',
+          'bg-primary-500 text-white hover:bg-primary-600 focus-visible:ring-primary-400',
         secondary:
-          'bg-secondary text-white hover:bg-secondary-dark focus:ring-secondary-light',
+          'bg-secondary-500 text-white hover:bg-secondary-600 focus-visible:ring-secondary-400',
         outline:
-          'border border-secondary bg-white text-secondary-dark hover:bg-secondary-light/10 focus:ring-secondary',
-        destructive:
-          'bg-danger text-white hover:bg-danger-dark focus:ring-danger-light',
+          'border border-secondary-500 bg-white text-secondary-700 hover:bg-secondary-100 focus-visible:ring-secondary-500',
+        error:
+          'bg-error-500 text-white hover:bg-error-600 focus-visible:ring-error-400',
         ghost:
-          'text-secondary-dark hover:bg-secondary-light/10 focus:ring-secondary',
-        link: 'text-primary underline-offset-4 hover:underline focus:ring-primary-light',
+          'text-secondary-700 hover:bg-secondary-100 focus-visible:ring-secondary-500',
+        link: 'text-primary-500 underline-offset-4 hover:underline focus-visible:ring-primary-400',
         success:
-          'bg-success text-white hover:bg-success-dark focus:ring-success-light',
+          'bg-success-500 text-white hover:bg-success-600 focus-visible:ring-success-400',
         warning:
-          'bg-warning text-white hover:bg-warning-dark focus:ring-warning-light',
+          'bg-warning-500 text-white hover:bg-warning-600 focus-visible:ring-warning-400',
         notification:
-          'absolute top-0 right-0 leading-none !text-[8px] text-white transform translate-x-1/2 -translate-y-1/2 bg-danger size-5',
+          'absolute top-0 right-0 leading-none !text-[8px] text-white transform translate-x-1/2 -translate-y-1/2 bg-error-500 size-5',
       },
       size: {
         sm: 'px-2 py-0.5 text-xs',
@@ -32,33 +32,21 @@ const badgeStyles = cva(
         lg: 'px-4 py-1.5 text-base',
       },
     },
-    compoundVariants: [
-      { size: 'sm', className: 'rounded' },
-      { size: 'lg', className: 'rounded-lg' },
-    ],
-    defaultVariants: {
-      variant: 'primary',
-      size: 'md',
-    },
+    compoundVariants: [{ size: 'sm', className: 'rounded' }],
   }
 );
 
 export interface BadgeProps
-  extends HTMLAttributes<HTMLSpanElement>,
-    VariantProps<typeof badgeStyles> {
-  value: string;
-  className?: string;
-}
+  extends HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof badgeStyles> {}
 
-const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
-  ({ value, variant, size, className, ...props }, ref) => (
-    <span
-      ref={ref}
+const Badge = forwardRef<HTMLDivElement, BadgeProps>(
+  ({ className, variant, size, ...props }, ref) => (
+    <div
       className={cn(badgeStyles({ variant, size }), className)}
+      ref={ref}
       {...props}
-    >
-      {value}
-    </span>
+    />
   )
 );
 
