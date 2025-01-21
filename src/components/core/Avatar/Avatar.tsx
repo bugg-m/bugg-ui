@@ -17,9 +17,16 @@ const avatarStyles = cva('flex items-center justify-center relative', {
     },
     border: {
       none: '',
-      thin: 'border border-secondary-300',
-      thick: 'border-2 border-secondary-400',
-      colorful: 'border-2 border-primary',
+      thin: 'border',
+      thick: 'border-2',
+    },
+    borderColor: {
+      primary: 'border-primary-500',
+      secondary: 'border-secondary-300',
+      error: 'border-error-500',
+      success: 'border-success-500',
+      warning: 'border-warning-500',
+      info: 'border-info-500',
     },
     shadow: {
       none: '',
@@ -54,6 +61,7 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
       status,
       shape,
       size,
+      borderColor,
       border,
       shadow,
       className,
@@ -64,7 +72,10 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
     return (
       <div
         ref={ref}
-        className={cn(avatarStyles({ shape, size, border, shadow }), className)}
+        className={cn(
+          avatarStyles({ shape, borderColor, size, border, shadow }),
+          className
+        )}
         {...props}
       >
         {src ? (

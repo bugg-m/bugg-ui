@@ -12,10 +12,20 @@ const meta: Meta<typeof MultiSelect> = {
       control: 'select',
       options: ['sm', 'md', 'lg'],
     },
-    disabled: {
-      control: 'boolean',
+    variant: {
+      control: 'select',
+      options: [
+        'primary',
+        'secondary',
+        'error',
+        'success',
+        'warning',
+        'info',
+        'disabled',
+        'default',
+      ],
     },
-    error: {
+    placeholder: {
       control: 'text',
     },
   },
@@ -29,7 +39,9 @@ const options = [
   { value: 'bootstrap', label: 'Bootstrap' },
   { value: 'react', label: 'React.js' },
   { value: 'vue', label: 'Vue.js' },
-  { value: 'django', label: 'Django' },
+  { value: 'django2', label: 'Django' },
+  { value: 'django3', label: 'Django' },
+  { value: 'django4', label: 'Django' },
 ];
 
 export const Default: Story = {
@@ -57,6 +69,7 @@ export const WithError: Story = {
 export const Disabled: Story = {
   args: {
     ...Default.args,
+    variant: 'disabled',
     disabled: true,
   },
 };

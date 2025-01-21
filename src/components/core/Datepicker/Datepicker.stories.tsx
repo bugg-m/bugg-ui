@@ -56,14 +56,14 @@ export const Interactive: Story = {
       Date | [Date, Date] | undefined
     >(undefined);
     return (
-      <div>
+      <div className='flex flex-col items-start'>
         <DatePicker
           selectedDate={selectedDate}
           onDateSelect={setSelectedDate}
           minDate={new Date(2024, 0, 1)} // January 1, 2024
           maxDate={new Date(2024, 11, 31)} // December 31, 2024
         />
-        <p className='mt-4'>
+        <p className='mt-4 text-gray-700'>
           Selected date:{' '}
           {selectedDate
             ? Array.isArray(selectedDate)

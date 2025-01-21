@@ -4,10 +4,13 @@ import { cn } from '@src/utils';
 
 const textStyles = cva('', {
   variants: {
-    emphasis: {
-      low: 'text-gray-600',
-      medium: 'text-gray-700',
-      high: 'text-gray-900',
+    textColors: {
+      primary: 'text-primary-500',
+      secondary: 'text-secondary-500',
+      error: 'text-error-500',
+      success: 'text-success-500',
+      warning: 'text-warning-500',
+      info: 'text-info-500',
     },
     size: {
       xs: 'text-xs',
@@ -64,7 +67,7 @@ const textStyles = cva('', {
   },
   defaultVariants: {
     size: 'md',
-    emphasis: 'medium',
+    textColors: 'primary',
     weight: 'normal',
     align: 'left',
   },
@@ -82,7 +85,7 @@ export const Text = forwardRef<HTMLElement, TextProps>(
   (
     {
       as: Component = 'span',
-      emphasis,
+      textColors,
       size,
       weight,
       align,
@@ -100,7 +103,7 @@ export const Text = forwardRef<HTMLElement, TextProps>(
         ref={ref}
         className={cn(
           textStyles({
-            emphasis,
+            textColors,
             size,
             weight,
             align,

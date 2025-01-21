@@ -16,7 +16,11 @@ const meta: Meta<typeof Avatar> = {
     },
     border: {
       control: { type: 'select' },
-      options: ['none', 'thin', 'thick', 'colorful'],
+      options: ['none', 'thin', 'thick'],
+    },
+    borderColor: {
+      control: { type: 'select' },
+      options: ['primary', 'secondary', 'error', 'success', 'warning', 'info'],
     },
     shadow: {
       control: { type: 'select' },
@@ -45,7 +49,8 @@ export const WithInitials: Story = {
   args: {
     initials: 'AB',
     size: 'lg',
-    border: 'colorful',
+    border: 'thick',
+    borderColor: 'success',
     shadow: 'md',
   },
 };
@@ -56,5 +61,6 @@ export const WithStatus: Story = {
     status: true,
     size: 'md',
     border: 'thin',
+    borderColor: 'primary',
   },
 };

@@ -32,7 +32,6 @@ export const Default: Story = {
 
 export const WithLabel: Story = {
   args: {
-    label: 'Message',
     placeholder: 'Write message',
   },
 };

@@ -6,8 +6,12 @@ import { forwardRef } from 'react';
 const breadcrumbStyles = cva('flex items-center justify-start gap-1', {
   variants: {
     variant: {
-      default: 'text-secondary font-semibold text-sm',
-      primary: 'text-primary font-semibold text-sm',
+      primary: 'text-primary-500 font-semibold text-sm',
+      secondary: 'text-secondary-500 font-semibold text-sm',
+      error: 'text-error-500 font-semibold text-sm',
+      success: 'text-success-500 font-semibold text-sm',
+      warning: 'text-warning-500 font-semibold text-sm',
+      info: 'text-info-500 font-semibold text-sm',
     },
     // TODO: fix background styling
     // background: {
@@ -37,6 +41,9 @@ const breadcrumbStyles = cva('flex items-center justify-start gap-1', {
   //     className: 'text-primary-foreground font-semibold text-sm',
   //   },
   // ],
+  defaultVariants: {
+    variant: 'primary',
+  },
 });
 
 type BreadCrumbList = {

@@ -8,7 +8,7 @@ const meta: Meta<typeof Breadcrumb> = {
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['default', 'primary'],
+      options: ['primary', 'secondary', 'error', 'success', 'warning', 'info'],
     },
     // background: {
     //   control: { type: 'select' },
@@ -27,7 +27,7 @@ type Story = StoryObj<typeof Breadcrumb>;
 
 export const Default: Story = {
   args: {
-    variant: 'default',
+    variant: 'primary',
     // background: 'default',
     list: [
       { name: 'Workspaces', link: '/' },

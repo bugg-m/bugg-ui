@@ -7,8 +7,43 @@ import {
   ChevronsRight,
 } from 'lucide-react';
 import { cn } from '@src/utils';
+import { cva, VariantProps } from 'class-variance-authority';
 
-interface DatePickerProps {
+const calendarButtonStyles = cva(
+  'w-8 h-8 rounded-full flex items-center justify-center text-sm transition-all',
+  {
+    variants: {
+      state: {
+        default: 'hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-900',
+        selected: 'bg-primary-500 text-white',
+        disabled: 'text-gray-400 cursor-not-allowed',
+        inRange: 'bg-primary-100 text-primary-700',
+      },
+    },
+    defaultVariants: {
+      state: 'default',
+    },
+  }
+);
+
+const datePickerWrapperStyles = cva(
+  'relative w-64 p-2 rounded-lg shadow-lg cursor-pointer flex items-center transition-all',
+  {
+    variants: {
+      variant: {
+        default: 'bg-white dark:bg-gray-800',
+        outline: 'border border-gray-300 dark:border-gray-600',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+    },
+  }
+);
+
+interface DatePickerProps
+  extends VariantProps<typeof datePickerWrapperStyles>,
+    VariantProps<typeof calendarButtonStyles> {
   onDateSelect?: (date: Date | [Date, Date]) => void;
   selectedDate?: Date | [Date, Date];
   minDate?: Date;
@@ -24,6 +59,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
   maxDate,
   dateFormat = (date: Date) => date.toLocaleDateString(),
   isRange = false,
+  variant,
 }) => {
   const [currentMonth, setCurrentMonth] = useState(
     Array.isArray(propSelectedDate)
@@ -102,7 +138,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     const daysArray = [];
 
     // Add empty cells for days before the first day of the month
-    for (let i = 0; i < (firstDayOfMonth + 6) % 7; i++) {
+    for (let i = 0; i < firstDayOfMonth; i++) {
       daysArray.push(
         <div key={`empty-${i}`} className='text-secondary-light'></div>
       );
@@ -124,13 +160,15 @@ export const DatePicker: React.FC<DatePickerProps> = ({
           key={day}
           onClick={() => !isDisabled && handleDateSelect(date)}
           className={cn(
-            'w-8 h-8 rounded-full flex items-center justify-center text-sm',
-            isSelected && 'bg-primary-500 text-white',
-            isDisabled && 'text-secondary-light cursor-not-allowed',
-            !isSelected &&
-              !isDisabled &&
-              'hover:bg-secondary-100 text-text dark:text-text-dark',
-            isInRange(date) && !isSelected && 'bg-primary-100' // Add light shade for date range
+            calendarButtonStyles({
+              state: isSelected
+                ? 'selected'
+                : isDisabled
+                  ? 'disabled'
+                  : isInRange(date)
+                    ? 'inRange'
+                    : 'default',
+            })
           )}
           disabled={isDisabled}
         >
@@ -145,7 +183,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
   return (
     <div className='relative' ref={datePickerRef}>
       <div
-        className='w-64 p-2 bg-background dark:bg-background-dark rounded-lg shadow-lg cursor-pointer flex items-center'
+        className={cn(datePickerWrapperStyles({ variant }))}
         onClick={() => setIsOpen(!isOpen)}
       >
         <Calendar size={20} className='text-secondary mr-2' />
@@ -189,7 +227,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
           </div>
           <div className='p-2'>
             <div className='grid grid-cols-7 gap-1 text-center mb-2'>
-              {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
+              {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day) => (
                 <div
                   key={day}
                   className='text-center font-medium text-secondary-700'

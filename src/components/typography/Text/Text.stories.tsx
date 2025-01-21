@@ -10,9 +10,9 @@ const meta: Meta<typeof Text> = {
       control: 'select',
       options: ['span', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
     },
-    emphasis: {
+    textColors: {
       control: 'select',
-      options: ['low', 'medium', 'high'],
+      options: ['primary', 'secondary', 'error', 'success', 'warning', 'info'],
     },
     size: {
       control: 'select',
@@ -95,7 +95,7 @@ export const Paragraph: Story = {
 
 export const Emphasized: Story = {
   args: {
-    emphasis: 'high',
+    textColors: 'primary',
     weight: 'semibold',
     children: 'This is emphasized text',
   },

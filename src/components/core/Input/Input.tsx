@@ -4,7 +4,7 @@ import { VariantProps, cva } from 'class-variance-authority';
 import { Eye, EyeOff } from 'lucide-react';
 
 const inputStyles = cva(
-  'w-full rounded-md transition-all duration-200 outline-none focus:ring-0 disabled:opacity-50 peer block appearance-none bg-transparent text-sm focus:outline-none',
+  'w-full rounded-md transition-all duration-200 outline-none focus:ring-0 disabled:opacity-50 peer block appearance-none bg-transparent text-sm focus:outline-none disabled:cursor-not-allowed',
   {
     variants: {
       variant: {

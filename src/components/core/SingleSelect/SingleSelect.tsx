@@ -2,6 +2,7 @@ import React, { forwardRef, useState, useRef } from 'react';
 import { cn } from '@src/utils';
 import { ChevronDown, Check } from 'lucide-react';
 import { useOnClickOutside } from '@src/hooks/useOnClickOutside';
+import { cva, VariantProps } from 'class-variance-authority';
 
 export interface SingleSelectOptions {
   value: string;
@@ -10,16 +11,49 @@ export interface SingleSelectOptions {
 
 export interface SingleSelectProps
   extends Omit<
-    React.SelectHTMLAttributes<HTMLSelectElement>,
-    'size' | 'value' | 'onChange'
-  > {
+      React.SelectHTMLAttributes<HTMLSelectElement>,
+      'size' | 'value' | 'onChange'
+    >,
+    VariantProps<typeof singleSelectStyles> {
   options: SingleSelectOptions[];
-  size?: 'sm' | 'md' | 'lg';
   placeholder?: string;
   error?: string;
   value?: string;
   onChange?: (value: string) => void;
 }
+
+const singleSelectStyles = cva(
+  'flex items-center justify-between w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2',
+  {
+    variants: {
+      size: {
+        sm: 'text-sm p-2',
+        md: 'text-base p-3',
+        lg: 'text-lg p-4',
+      },
+      variant: {
+        disabled: 'cursor-not-allowed',
+        default:
+          'bg-white border-primary-500 text-primary-700 focus:ring-primary-500',
+        primary:
+          'bg-primary-25 border-primary-300 text-primary-500 focus:ring-primary-500',
+        secondary:
+          'bg-secondary-25 border-secondary-300 text-secondary-500 focus:ring-secondary-500',
+        error:
+          'bg-error-25 border-error-300 text-error-500 focus:ring-error-500',
+        success:
+          'bg-success-25 border-success-300 text-success-500 focus:ring-success-500',
+        warning:
+          'bg-warning-25 border-warning-300 text-warning-500 focus:ring-warning-500',
+        info: 'bg-info-25 border-info-300 text-info-500 focus:ring-info-500',
+      },
+    },
+    defaultVariants: {
+      size: 'md',
+      variant: 'default',
+    },
+  }
+);
 
 const SingleSelect = forwardRef<HTMLSelectElement, SingleSelectProps>(
   (
@@ -30,6 +64,7 @@ const SingleSelect = forwardRef<HTMLSelectElement, SingleSelectProps>(
       placeholder,
       error,
       value,
+      variant,
       onChange,
       ...props
     },
@@ -59,18 +94,7 @@ const SingleSelect = forwardRef<HTMLSelectElement, SingleSelectProps>(
       <div className='relative' ref={dropdownRef}>
         <button
           type='button'
-          className={cn(
-            'flex items-center justify-between w-full p-2 border rounded-md',
-            'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500',
-            {
-              'text-sm': size === 'sm',
-              'text-base': size === 'md',
-              'text-lg': size === 'lg',
-              'border-red-500': error,
-              'border-gray-300': !error,
-            },
-            className
-          )}
+          className={cn(singleSelectStyles({ size, variant }), className)}
           onClick={() => setIsOpen(!isOpen)}
           aria-haspopup='listbox'
           aria-expanded={isOpen}

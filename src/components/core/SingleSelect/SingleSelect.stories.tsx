@@ -8,6 +8,19 @@ const meta: Meta<typeof SingleSelect> = {
   component: SingleSelect,
   tags: ['autodocs'],
   argTypes: {
+    variant: {
+      control: 'select',
+      options: [
+        'primary',
+        'secondary',
+        'error',
+        'success',
+        'warning',
+        'info',
+        'disabled',
+        'default',
+      ],
+    },
     size: {
       control: 'select',
       options: ['sm', 'md', 'lg'],
