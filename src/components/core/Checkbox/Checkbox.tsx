@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { VariantProps, cva } from 'class-variance-authority';
-import { cn } from '@src/utils';
+import { cn } from '@src/utils/core-css-utility';
 
 const checkboxStyles = cva(
   'form-checkbox rounded transition duration-150 ease-in-out',

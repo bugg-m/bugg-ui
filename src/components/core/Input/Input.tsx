@@ -1,5 +1,5 @@
 import React, { forwardRef, useState, useEffect, useMemo } from 'react';
-import { cn } from '@src/utils';
+import { cn } from '@src/utils/core-css-utility';
 import { VariantProps, cva } from 'class-variance-authority';
 import { Eye, EyeOff } from 'lucide-react';
 

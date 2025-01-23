@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { cn } from '@src/utils';
+import { cn } from '@src/utils/core-css-utility';
 import { Loader, LoaderProps } from '@src/main';
 
 type AnchorProps = React.AnchorHTMLAttributes<HTMLAnchorElement>;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from '@src/utils';
+import { cn } from '@src/utils/core-css-utility';
 import { cva, VariantProps } from 'class-variance-authority';
 
 const loaderStyles = cva('flex space-x-1', {

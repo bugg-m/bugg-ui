@@ -1,8 +1,8 @@
 import React, { forwardRef, useState, useRef } from 'react';
-import { cn } from '@src/utils';
+import { cn } from '@src/utils/core-css-utility';
 import { cva, VariantProps } from 'class-variance-authority';
 import { ChevronDown, X, Check } from 'lucide-react';
-import { useOnClickOutside } from '@src/hooks/useOnClickOutside';
+import { useOnClickOutside } from '@src/hooks/use-click-outside-hook';
 
 export interface MultiSelectOptions {
   value: string;

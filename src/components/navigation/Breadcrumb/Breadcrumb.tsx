@@ -1,4 +1,4 @@
-import { cn } from '@src/utils';
+import { cn } from '@src/utils/core-css-utility';
 import { cva, VariantProps } from 'class-variance-authority';
 import { ChevronRight } from 'lucide-react';
 import { forwardRef } from 'react';

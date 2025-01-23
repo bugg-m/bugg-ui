@@ -1,7 +1,7 @@
 import React, { forwardRef, useState, useRef } from 'react';
-import { cn } from '@src/utils';
+import { cn } from '@src/utils/core-css-utility';
 import { ChevronDown, Check } from 'lucide-react';
-import { useOnClickOutside } from '@src/hooks/useOnClickOutside';
+import { useOnClickOutside } from '@src/hooks/use-click-outside-hook';
 import { cva, VariantProps } from 'class-variance-authority';
 
 export interface SingleSelectOptions {

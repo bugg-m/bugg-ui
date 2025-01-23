@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { VariantProps, cva } from 'class-variance-authority';
-import { cn } from '@src/utils';
+import { cn } from '@src/utils/core-css-utility';
 import { Loader } from '../../feedback/Loader/Loader';
 
 const buttonStyles = cva(
@@ -25,9 +25,9 @@ const buttonStyles = cva(
           'bg-warning-500 text-white hover:bg-warning-600 focus-visible:ring-warning-400',
       },
       size: {
-        sm: 'h-8 px-3 text-xs',
+        sm: 'h-8 px-3 py-1 text-xs',
         md: 'h-10 px-4 py-2 text-sm',
-        lg: 'h-12 px-6 text-base',
+        lg: 'h-12 px-6 py-3 text-base',
         icon: 'h-10 w-10',
       },
       fullWidth: {
