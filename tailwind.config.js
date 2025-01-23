@@ -1,66 +1,209 @@
-import colors from 'tailwindcss/colors';
 import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
 import aspectRatio from '@tailwindcss/aspect-ratio';
-
+import defaultTheme from 'tailwindcss/defaultTheme';
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   darkMode: ['class', '[data-mode="dark"]'],
   theme: {
+    screens: {
+      df: '0px',
+      ...defaultTheme.screens,
+    },
+    container: {
+      center: true,
+      padding: '2rem',
+      screens: {
+        '2xl': '1400px',
+      },
+    },
     extend: {
-      colors: {
-        white: colors.white,
-        primary: {
-          DEFAULT: colors.blue[500],
-          light: colors.blue[400],
-          dark: colors.blue[600],
-          foreground: colors.white,
-        },
-        secondary: {
-          DEFAULT: colors.gray[500],
-          light: colors.gray[400],
-          dark: colors.gray[600],
-          foreground: colors.white,
-        },
-        danger: {
-          DEFAULT: colors.red[600],
-          light: colors.red[500],
-          dark: colors.red[700],
-          foreground: colors.white,
-        },
-        success: {
-          DEFAULT: colors.green[500],
-          light: colors.green[400],
-          dark: colors.green[600],
-          foreground: colors.white,
-        },
-        warning: {
-          DEFAULT: colors.yellow[500],
-          light: colors.yellow[400],
-          dark: colors.yellow[600],
-          foreground: colors.gray[900],
-        },
-        background: {
-          DEFAULT: colors.white,
-          dark: colors.gray[900],
-        },
-        text: {
-          DEFAULT: colors.gray[900],
-          dark: colors.gray[100],
-        },
+      borderWidth: {
+        1: '1px',
       },
       boxShadow: {
-        button: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
-        'button-hover': '0 2px 4px 0 rgba(0, 0, 0, 0.1)',
+        xs: 'var(--shadow-xs)',
+        modal: 'var(--shadow-modal)',
       },
-      keyframes: {
-        shimmer: {
-          '100%': {
-            transform: 'translateX(100%)',
-          },
+      borderRadius: {
+        none: 'var(--radius-none)',
+        xxs: 'var(--radius-xxs)',
+        xs: 'var(--radius-xs)',
+        sm: 'var(--radius-sm)',
+        md: 'var(--radius-md)',
+        lg: 'var(--radius-lg)',
+        xl: 'var(--radius-xl)',
+        '2xl': 'var(--radius-2xl)',
+        '3xl': 'var(--radius-3xl)',
+        '4xl': 'var(--radius-4xl)',
+        full: 'var(--radius-full)',
+      },
+      colors: {
+        primary: {
+          50: 'var(--primary-50)',
+          100: 'var(--primary-100)',
+          200: 'var(--primary-200)',
+          300: 'var(--primary-300)',
+          400: 'var(--primary-400)',
+          500: 'var(--primary-500)',
+          600: 'var(--primary-600)',
+          700: 'var(--primary-700)',
+          800: 'var(--primary-800)',
+          900: 'var(--primary-900)',
         },
+        secondary: {
+          25: 'var(--secondary-25)',
+          50: 'var(--secondary-50)',
+          100: 'var(--secondary-100)',
+          200: 'var(--secondary-200)',
+          300: 'var(--secondary-300)',
+          400: 'var(--secondary-400)',
+          500: 'var(--secondary-500)',
+          600: 'var(--secondary-600)',
+          700: 'var(--secondary-700)',
+          800: 'var(--secondary-800)',
+          900: 'var(--secondary-900)',
+          950: 'var(--secondary-950)',
+        },
+        error: {
+          25: 'var(--error-25)',
+          50: 'var(--error-50)',
+          100: 'var(--error-100)',
+          200: 'var(--error-200)',
+          300: 'var(--error-300)',
+          400: 'var(--error-400)',
+          500: 'var(--error-500)',
+          600: 'var(--error-600)',
+          700: 'var(--error-700)',
+          800: 'var(--error-800)',
+          900: 'var(--error-900)',
+          950: 'var(--error-950)',
+        },
+        warning: {
+          25: 'var(--warning-25)',
+          50: 'var(--warning-50)',
+          100: 'var(--warning-100)',
+          200: 'var(--warning-200)',
+          300: 'var(--warning-300)',
+          400: 'var(--warning-400)',
+          500: 'var(--warning-500)',
+          600: 'var(--warning-600)',
+          700: 'var(--warning-700)',
+          800: 'var(--warning-800)',
+          900: 'var(--warning-900)',
+          950: 'var(--warning-950)',
+        },
+        success: {
+          25: 'var(--success-25)',
+          50: 'var(--success-50)',
+          100: 'var(--success-100)',
+          200: 'var(--success-200)',
+          300: 'var(--success-300)',
+          400: 'var(--success-400)',
+          500: 'var(--success-500)',
+          600: 'var(--success-600)',
+          700: 'var(--success-700)',
+          800: 'var(--success-800)',
+          900: 'var(--success-900)',
+          950: 'var(--success-950)',
+        },
+        info: {
+          25: 'var(--info-25)',
+          50: 'var(--info-50)',
+          100: 'var(--info-100)',
+          200: 'var(--info-200)',
+          300: 'var(--info-300)',
+          400: 'var(--info-400)',
+          500: 'var(--info-500)',
+          600: 'var(--info-600)',
+          700: 'var(--info-700)',
+          800: 'var(--info-800)',
+          900: 'var(--info-900)',
+          950: 'var(--info-950)',
+        },
+        black: 'var(--black)',
+        white: 'var(--white)',
+        transparent: 'var(--transparent)',
       },
+      spacing: {
+        none: 'var(--spacing-none)',
+        xxs: 'var(--spacing-xxs)',
+        xs: 'var(--spacing-xs)',
+        sm: 'var(--spacing-sm)',
+        md: 'var(--spacing-md)',
+        lg: 'var(--spacing-lg)',
+        xl: 'var(--spacing-xl)',
+        '2xl': 'var(--spacing-2xl)',
+        '3xl': 'var(--spacing-3xl)',
+        '4xl': 'var(--spacing-4xl)',
+        '5xl': 'var(--spacing-5xl)',
+        '6xl': 'var(--spacing-6xl)',
+        '7xl': 'var(--spacing-7xl)',
+        '8xl': 'var(--spacing-8xl)',
+        '9xl': 'var(--spacing-9xl)',
+        '10xl': 'var(--spacing-10xl)',
+        '11xl': 'var(--spacing-11xl)',
+      },
+      width: {
+        xxs: 'var(--width-xxs)',
+        xs: 'var(--width-xs)',
+        sm: 'var(--width-sm)',
+        md: 'var(--width-md)',
+        lg: 'var(--width-lg)',
+        xl: 'var(--width-xl)',
+        '2xl': 'var(--width-2xl)',
+        '3xl': 'var(--width-3xl)',
+        '4xl': 'var(--width-4xl)',
+        '5xl': 'var(--width-5xl)',
+        '6xl': 'var(--width-6xl)',
+      },
+    },
+    keyframes: {
+      'accordion-down': {
+        from: { height: '0' },
+        to: { height: 'var(--radix-accordion-content-height)' },
+      },
+      'accordion-up': {
+        from: { height: 'var(--radix-accordion-content-height)' },
+        to: { height: '0' },
+      },
+    },
+    animation: {
+      'accordion-down': 'accordion-down 0.2s ease-out',
+      'accordion-up': 'accordion-up 0.2s ease-out',
+    },
+    fontFamily: {
+      sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+    },
+    fontSize: {
+      ...defaultTheme.fontSize,
+      xxs: '0.625rem', // 10px
+    },
+    borderWidth: {
+      DEFAULT: '1px',
+      0: '0',
+      2: '2px',
+      3: '3px',
+      4: '4px',
+      6: '6px',
+      8: '8px',
+    },
+    minHeight: {
+      ...defaultTheme.height,
+    },
+    minWidth: {
+      ...defaultTheme.width,
+    },
+    boxShadow: {
+      ...defaultTheme.boxShadow,
+      boxShadowFilter: 'rgb(204, 204, 204) 1px 1px 1px 1px',
+      boxShadowOnWhiteBg:
+        '0 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
+    },
+    backgroundImage: {
+      headerBottom:
+        'linear-gradient(180deg, rgba(9, 30, 66, 0.13) 0%, rgba(9, 30, 66, 0.13) 25%, rgba(9, 30, 66, 0.08) 25.01%, rgba(9, 30, 66, 0.00) 100%)',
     },
   },
   plugins: [forms, typography, aspectRatio],

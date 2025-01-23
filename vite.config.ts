@@ -2,13 +2,10 @@ import react from '@vitejs/plugin-react-swc';
 import path from 'path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
+import tsconfigPaths from 'vite-tsconfig-paths';
 // https://vitejs.dev/config/
 export default defineConfig({
-  resolve: {
-    alias: {
-      '@src': path.resolve(__dirname, './src'),
-    },
-  },
+  plugins: [react(), dts({ rollupTypes: true }), tsconfigPaths()],
   build: {
     lib: {
       entry: path.resolve(__dirname, './src/main.ts'),
@@ -16,15 +13,15 @@ export default defineConfig({
       fileName: 'bugg-ui',
     },
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      external: ['react', 'react-dom', 'react/jsx-runtime'],
       output: {
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
+          'react/jsx-runtime': 'react/jsx-runtime',
         },
       },
     },
     chunkSizeWarningLimit: 1000,
   },
-  plugins: [react(), dts({ rollupTypes: true })],
 });

@@ -1,25 +1,47 @@
-<div align="center">
-  <h1>🐞 Bugg-ui</h1>
+<div align="center">  
+  <h1>🐞 Bugg-ui</h1>  
   <p>In development phase</p>
-  <p>A UI component library for React</p>
-  <p>This UI component library is primarily for personal use. I created it to utilize in my various projects, but it is also available for anyone who wishes to use it in their own work.</p>
+  <p>A modern, customizable UI component library for React</p>  
+  <p>Built with TypeScript and Tailwind CSS, designed for rapid development and scalability.</p>  
+  <p>This UI component library was initially crafted for personal use, serving as a foundational tool for my diverse projects. However, it is freely available for anyone looking to integrate it into their own work and benefit from its features.</p>
   
-  [![npm version](https://badge.fury.io/js/%40bugg-m%2Fbugg-ui.svg)](https://badge.fury.io/js/%40bugg-m%2Fbugg-ui)
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-  [![React](https://img.shields.io/badge/React-17%2B-blue)](https://reactjs.org/)
-  [![TypeScript](https://img.shields.io/badge/TypeScript-4.5%2B-blue)](https://www.typescriptlang.org/)
-  [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.0%2B-blue)](https://tailwindcss.com/)
+  [![npm version](https://badge.fury.io/js/%40bugg-m%2Fbugg-ui.svg)](https://badge.fury.io/js/%40bugg-m%2Fbugg-ui)  
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
+  [![React](https://img.shields.io/badge/React-17%2B-blue)](https://reactjs.org/)  
+  [![TypeScript](https://img.shields.io/badge/TypeScript-4.5%2B-blue)](https://www.typescriptlang.org/)  
+  [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.0%2B-blue)](https://tailwindcss.com/)  
 </div>
+
+---
+
+## 📖 Table of Contents
+
+1. [🚀 Features](#-features)
+2. [📦 Installation](#-installation)
+3. [🏁 Quick Start](#-quick-start)
+4. [🧩 Components](#-components)
+5. [📚 Documentation](#-documentation)
+6. [🛠️ Development](#️-development)
+7. [🤝 Contributing](#-contributing)
+8. [📄 License](#-license)
+9. [📞 Support](#-support)
+10. [👤 Stay in Touch](#-stay-in-touch)
+
+---
 
 ## 🚀 Features
 
-- 📦 **10+ Components**: A comprehensive suite of UI components
-- 🎨 **Customizable**: Easily theme and style to match your brand
-- 🔧 **TypeScript Support**: Full type definitions for enhanced development
-- 📚 **Well Documented**: Detailed Storybook with live examples and API references
-- 🌙 **Dark Mode**: Built-in support for light and dark themes
+- 📦 **15+ Components**: Intuitive, reusable UI elements for rapid development.
+- 🎨 **Customizable**: Full Tailwind CSS support for easy theming and branding.
+- 🌗 **Dark Mode**: Built-in light/dark theme support.
+- 🔧 **TypeScript First**: Complete type definitions for robust, scalable development.
+- 📚 **Storybook Integration**: Interactive live previews and API documentation.
+
+---
 
 ## 📦 Installation
+
+### Install Bugg-ui
 
 ```bash
 npm install @bugg-m/bugg-ui
@@ -27,12 +49,15 @@ npm install @bugg-m/bugg-ui
 yarn add @bugg-m/bugg-ui
 ```
 
+### Set Up Tailwind CSS
+
+Follow the [Tailwind CSS installation guide](https://tailwindcss.com/docs/installation) to configure Tailwind CSS in your project.
+
+---
+
 ## 🏁 Quick Start
 
-1. Ensure Tailwind CSS is set up in your project.
-2. Import and use components:
-
-```jsx
+```tsx
 import { Button, Input, Card } from '@bugg-m/bugg-ui';
 
 function App() {
@@ -46,29 +71,33 @@ function App() {
 }
 ```
 
+For advanced usage, see our [documentation](https://bugg-ui.netlify.app/).
+
+---
+
 ## 🧩 Components
 
-Bugg-ui offers a wide range of components, including:
+Bugg-ui provides versatile components, including:
 
-- 🔘 Button
-- 📝 Input
-- 🃏 Card
-- 📊 Modal
-- ✅ Checkbox
-- 🔽 Select
-- 🔄 Loader
-- ... and many more!
+- **Button**: Configurable buttons with multiple variants.
+- **Card**: Stylish container for grouping elements.
+- **Input**: Forms simplified with accessible input fields.
+- **Modal**: Easy-to-use modal dialogs.
+- **Loader**: Visual indicators for loading states.
 
-Explore all components in our [Storybook](https://bugg-ui.netlify.app/).
+Check out live examples and code snippets in [Storybook](https://bugg-ui.netlify.app/).
+
+---
 
 ## 📚 Documentation
 
-Visit our [comprehensive documentation](https://bugg-ui.netlify.app/) to learn more about:
+Visit our [Documentation Site](https://bugg-ui.netlify.app/) for details about:
 
-- Component API
-- Theming
-- Accessibility features
-- Best practices
+- Component properties and examples.
+- Theming and dark mode setup.
+- Accessibility best practices.
+
+---
 
 ## 🛠️ Development
 
@@ -79,28 +108,40 @@ git clone https://github.com/bugg-m/bugg-ui.git
 # Install dependencies
 npm install
 
-# Run development server
+# Run the development server
 npm run dev
 
-# Run Storybook
+# Start Storybook
 npm run storybook
 
 # Build for production
 npm run build
 ```
 
-## Contributing
+---
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+## 🤝 Contributing
 
-## License
+We welcome contributions! Check out our [Contributing Guide](CONTRIBUTING.md) for guidelines.
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+---
 
-## Support
+## 📄 License
 
-If you encounter any issues or have questions, please [open an issue](https://github.com/your-username/bugg-ui/issues) on our GitHub repository.
+Licensed under the [MIT License](LICENSE).
 
-## Stay in Touch
+---
 
-- Author - [Manish Kumar]
+## 📞 Support
+
+If you encounter any issues or have questions, feel free to:
+
+- Open an [issue](https://github.com/bugg-m/bugg-ui/issues).
+- Contact the author via [GitHub](https://github.com/bugg-m).
+
+---
+
+## 👤 Stay in Touch
+
+- **Author**: [Manish Kumar](https://github.com/bugg-m)
+- **GitHub Repository**: [bugg-ui](https://github.com/bugg-m/bugg-ui)
