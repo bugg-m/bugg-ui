@@ -21,7 +21,7 @@
       "import": "./dist/bugg-ui.js",
       "require": "./dist/bugg-ui-umd.cjs"
     },
-    "./dist/styles.css": "./dist/styles.css"
+    "./style.css": "./dist/style.css"
   },
   "sideEffects": false,
   "scripts": {
