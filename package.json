@@ -1,6 +1,6 @@
 {
   "name": "@bugg-m/bugg-ui",
-  "version": "2.1.0",
+  "version": "2.1.2",
   "publishConfig": {
     "access": "public"
   },
@@ -33,9 +33,7 @@
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build-all": "yarn build && yarn build-storybook",
-    "prepublish": "yarn build",
-    "publish": "npm publish"
+    "build-all": "yarn build && yarn build-storybook"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.0",
