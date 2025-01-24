@@ -1,14 +1,13 @@
 <div align="center">  
   <h1>🐞 Bugg-ui</h1>  
-  <p>Currently in development phase, an UI component library for React</p>
+  <p>Currently in active development, with an expected release date in 2026, an UI component library for React</p>
   <p>Built with TypeScript and Tailwind CSS, designed for rapid development and scalability.</p>  
-  <p>This UI component library was initially crafted for personal use. It serves as a foundational tool for my diverse projects. However, it is freely available for anyone looking to integrate it into their own work and benefit from its features.</p>
-  
-  [![npm version](https://badge.fury.io/js/%40bugg-m%2Fbugg-ui.svg)](https://badge.fury.io/js/%40bugg-m%2Fbugg-ui)  
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
-  [![React](https://img.shields.io/badge/React-17%2B-blue)](https://reactjs.org/)  
-  [![TypeScript](https://img.shields.io/badge/TypeScript-4.5%2B-blue)](https://www.typescriptlang.org/)  
-  [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.0%2B-blue)](https://tailwindcss.com/)  
+  <p>This UI component library was initially crafted for personal use. It serves as a foundational tool for my diverse projects.</p>
+  <p>However, it is freely available for anyone looking to integrate it into their own work and benefit from its features.</p>
+
+[![npm version](https://badge.fury.io/js/%40bugg-m%2Fbugg-ui.svg)](https://badge.fury.io/js/%40bugg-m%2Fbugg-ui) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![React](https://img.shields.io/badge/React-17%2B-blue)](https://reactjs.org/) [![TypeScript](https://img.shields.io/badge/TypeScript-4.5%2B-blue)](https://www.typescriptlang.org/) [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.0%2B-blue)](https://tailwindcss.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.0%2B-blue)](https://tailwindcss.com/)
+
 </div>
 
 ---
@@ -30,7 +29,7 @@
 
 ## 🚀 Features
 
-- 📦 **15+ Components**: Intuitive, reusable UI elements for rapid development.
+- 📦 **10+ Components**: Intuitive, reusable UI elements for rapid development.
 - 🎨 **Customizable**: Full Tailwind CSS support for easy theming and branding.
 - 🌗 **Dark Mode**: Built-in light/dark theme support.
 - 🔧 **TypeScript First**: Complete type definitions for robust, scalable development.
@@ -54,9 +53,34 @@ Follow the [Tailwind CSS installation guide](https://tailwindcss.com/docs/instal
 
 ---
 
+## 🎨 Set Up CSS
+
+Add the following directive to your root CSS file (e.g., `index.css`)
+
+```tsx
+@import '@bugg-m/bugg-ui/style.css';
+```
+
+Alternatively, import it in your root app file (e.g., `index.tsx`)
+
+```tsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import './index.css';
+import '@bugg-m/bugg-ui/style.css';
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+```
+
 ## 🏁 Quick Start
 
 ```tsx
+// Importing components from Bugg-ui
 import { Button, Input, Card } from '@bugg-m/bugg-ui';
 
 function App() {
@@ -70,7 +94,7 @@ function App() {
 }
 ```
 
-For advanced usage, see our [documentation](https://bugg-ui.netlify.app/).
+For advanced usage, see our [full documentation](https://bugg-ui.netlify.app/).
 
 ---
 
@@ -121,7 +145,7 @@ npm run build
 
 ## 🤝 Contributing
 
-We welcome contributions! Check out our [Contributing Guide](CONTRIBUTING.md) for guidelines.
+We welcome contributions! Check out our [Contributing Guide](CONTRIBUTING.md) for guidelines on how to contribute.
 
 ---
 
