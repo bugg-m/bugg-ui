@@ -3,6 +3,8 @@ import path from 'path';
 import tsConfigPaths from 'vite-tsconfig-paths';
 import svgr from 'vite-plugin-svgr';
 
+const __dirname = import.meta.dirname;
+
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.@(ts|tsx)'],
   addons: [
@@ -21,9 +23,7 @@ const config: StorybookConfig = {
   viteFinal: async (config) => {
     config.plugins?.push(
       tsConfigPaths({
-        projects: [
-          path.resolve(path.dirname(import.meta.dirname), 'tsconfig.json'),
-        ],
+        projects: [path.resolve(path.dirname(__dirname), 'tsconfig.json')],
       })
     );
     config.plugins?.push(svgr());
