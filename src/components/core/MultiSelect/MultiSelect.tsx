@@ -2,21 +2,21 @@ import React, { forwardRef, useState, useRef } from 'react';
 import { cn } from '@src/utils/core-css-utility';
 import { cva, VariantProps } from 'class-variance-authority';
 import { useOnClickOutside } from '@src/hooks/use-click-outside-hook';
-import Icon from '../Icon/Icon';
+import { Icon } from '../Icon/Icon';
 import icons from '@src/constants/icons';
 
-export interface MultiSelectOptions {
+interface IMultiSelectOptions {
   value: string;
   label: string;
 }
 
-export interface MultiSelectProps
+interface IMultiSelectProps
   extends Omit<
       React.SelectHTMLAttributes<HTMLSelectElement>,
       'size' | 'value' | 'onChange'
     >,
     VariantProps<typeof multiSelectStyles> {
-  options: MultiSelectOptions[];
+  options: IMultiSelectOptions[];
   placeholder?: string;
   error?: string;
   value?: string[];
@@ -95,7 +95,7 @@ const colorStyles = cva('', {
   },
 });
 
-const MultiSelect = forwardRef<HTMLSelectElement, MultiSelectProps>(
+const MultiSelect = forwardRef<HTMLSelectElement, IMultiSelectProps>(
   (
     {
       className,

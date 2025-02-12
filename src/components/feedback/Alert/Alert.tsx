@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '@src/utils/core-css-utility';
-import Icon from '@src/components/core/Icon/Icon';
+import { Icon } from '@src/components/core/Icon/Icon';
 import icons from '@src/constants/icons';
 const alertStyles = cva(
   'flex items-start justify-center p-4 gap-2 rounded-lg',
@@ -59,7 +59,7 @@ const textStyles = cva('', {
   },
 });
 
-interface AlertProps
+interface IAlertProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof alertStyles> {
   title?: string;
@@ -77,10 +77,7 @@ const Icons = {
   warning: <Icon icon={icons.triangleAlert} size='md' />,
 };
 
-export const Alert: React.FC<AlertProps> = forwardRef<
-  HTMLDivElement,
-  AlertProps
->(
+const Alert = forwardRef<HTMLDivElement, IAlertProps>(
   (
     {
       title,
@@ -141,3 +138,7 @@ export const Alert: React.FC<AlertProps> = forwardRef<
     );
   }
 );
+
+Alert.displayName = 'Alert';
+
+export { Alert };

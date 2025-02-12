@@ -1,4 +1,4 @@
-import Icon from '@src/components/core/Icon/Icon';
+import { Icon } from '@src/components/core/Icon/Icon';
 import icons from '@src/constants/icons';
 import { cn } from '@src/utils/core-css-utility';
 import { cva, VariantProps } from 'class-variance-authority';
@@ -53,14 +53,14 @@ type BreadCrumbList = {
   onClick?: React.MouseEventHandler<HTMLDivElement>;
 };
 
-export interface BreadcrumbProps
+interface IBreadcrumbProps
   extends React.HTMLAttributes<HTMLLIElement>,
     VariantProps<typeof breadcrumbStyles> {
   list: BreadCrumbList[];
   separator?: 'line' | 'arrow';
 }
 
-const Breadcrumb = forwardRef<HTMLLIElement, BreadcrumbProps>(
+const Breadcrumb = forwardRef<HTMLLIElement, IBreadcrumbProps>(
   ({ list, variant, separator = 'arrow', className, ...props }, ref) => (
     <ul className='flex items-center justify-start gap-1'>
       {list?.map((current, ind) => (

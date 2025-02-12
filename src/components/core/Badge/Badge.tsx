@@ -36,17 +36,19 @@ const badgeStyles = cva(
   }
 );
 
-export interface BadgeProps
+interface IBadgeProps
   extends HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof badgeStyles> {}
 
-const Badge = forwardRef<HTMLDivElement, BadgeProps>(
-  ({ className, variant, size, ...props }, ref) => (
+const Badge = forwardRef<HTMLDivElement, IBadgeProps>(
+  ({ className, variant, children = 'Badge', size, ...props }, ref) => (
     <div
       className={cn(badgeStyles({ variant, size }), className)}
       ref={ref}
       {...props}
-    />
+    >
+      {children}
+    </div>
   )
 );
 

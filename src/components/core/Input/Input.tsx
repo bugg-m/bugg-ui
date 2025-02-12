@@ -2,7 +2,7 @@ import React, { forwardRef, useState, useEffect, useMemo } from 'react';
 import { cn } from '@src/utils/core-css-utility';
 import { VariantProps, cva } from 'class-variance-authority';
 import icons from '@src/constants/icons';
-import Icon from '../Icon/Icon';
+import { Icon } from '../Icon/Icon';
 
 const inputStyles = cva(
   'w-full rounded-md transition-all duration-200 outline-none focus:ring-0 disabled:opacity-50 peer block appearance-none bg-transparent text-sm focus:outline-none disabled:cursor-not-allowed',
@@ -39,7 +39,7 @@ const inputStyles = cva(
   }
 );
 
-export interface InputProps
+interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement>,
     VariantProps<typeof inputStyles> {
   error?: string;

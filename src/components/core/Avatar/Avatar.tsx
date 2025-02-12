@@ -43,7 +43,7 @@ const avatarStyles = cva('flex items-center justify-center relative', {
   },
 });
 
-export interface AvatarProps
+interface IAvatarProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof avatarStyles> {
   src?: string;
@@ -52,7 +52,7 @@ export interface AvatarProps
   status: boolean;
 }
 
-const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
+const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
   (
     {
       src,
@@ -68,42 +68,40 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
       ...props
     },
     ref
-  ) => {
-    return (
-      <div
-        ref={ref}
-        className={cn(
-          avatarStyles({ shape, borderColor, size, border, shadow }),
-          className
-        )}
-        {...props}
-      >
-        {src ? (
-          <img
-            src={src}
-            alt={alt || 'Avatar'}
-            className={cn(
-              avatarStyles({ shape, size }),
-              'object-cover w-full h-full'
-            )}
-          />
-        ) : (
-          <span
-            className={cn(
-              avatarStyles({ shape, size }),
-              'font-medium text-secondary-50 capitalize bg-secondary-400 flex items-center justify-center w-full h-full'
-            )}
-          >
-            {initials}
-          </span>
-        )}
+  ) => (
+    <div
+      ref={ref}
+      className={cn(
+        avatarStyles({ shape, borderColor, size, border, shadow }),
+        className
+      )}
+      {...props}
+    >
+      {src ? (
+        <img
+          src={src}
+          alt={alt || 'Avatar'}
+          className={cn(
+            avatarStyles({ shape, size }),
+            'object-cover w-full h-full'
+          )}
+        />
+      ) : (
+        <span
+          className={cn(
+            avatarStyles({ shape, size }),
+            'font-medium text-secondary-50 capitalize bg-secondary-400 flex items-center justify-center w-full h-full'
+          )}
+        >
+          {initials}
+        </span>
+      )}
 
-        {status && (
-          <span className='absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white bg-green-600' />
-        )}
-      </div>
-    );
-  }
+      {status && (
+        <span className='absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white bg-green-600' />
+      )}
+    </div>
+  )
 );
 
 Avatar.displayName = 'Avatar';

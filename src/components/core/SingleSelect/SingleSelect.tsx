@@ -2,21 +2,21 @@ import React, { forwardRef, useState, useRef } from 'react';
 import { cn } from '@src/utils/core-css-utility';
 import { useOnClickOutside } from '@src/hooks/use-click-outside-hook';
 import { cva, VariantProps } from 'class-variance-authority';
-import Icon from '../Icon/Icon';
+import { Icon } from '../Icon/Icon';
 import icons from '@src/constants/icons';
 
-export interface SingleSelectOptions {
+interface ISingleSelectOptions {
   value: string;
   label: string;
 }
 
-export interface SingleSelectProps
+interface ISingleSelectProps
   extends Omit<
       React.SelectHTMLAttributes<HTMLSelectElement>,
       'size' | 'value' | 'onChange'
     >,
     VariantProps<typeof singleSelectStyles> {
-  options: SingleSelectOptions[];
+  options: ISingleSelectOptions[];
   placeholder?: string;
   error?: string;
   value?: string;
@@ -56,7 +56,7 @@ const singleSelectStyles = cva(
   }
 );
 
-const SingleSelect = forwardRef<HTMLSelectElement, SingleSelectProps>(
+const SingleSelect = forwardRef<HTMLSelectElement, ISingleSelectProps>(
   (
     {
       className,

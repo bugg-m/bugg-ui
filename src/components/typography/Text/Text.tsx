@@ -73,15 +73,13 @@ const textStyles = cva('', {
   },
 });
 
-type TextStylesProps = VariantProps<typeof textStyles>;
-
-export interface TextProps
+interface ITextProps
   extends React.HTMLAttributes<HTMLElement>,
-    TextStylesProps {
+    VariantProps<typeof textStyles> {
   as?: React.ElementType;
 }
 
-export const Text = forwardRef<HTMLElement, TextProps>(
+const Text = forwardRef<HTMLElement, ITextProps>(
   (
     {
       as: Component = 'span',
@@ -121,3 +119,5 @@ export const Text = forwardRef<HTMLElement, TextProps>(
 );
 
 Text.displayName = 'Text';
+
+export { Text };

@@ -2,7 +2,7 @@ import React from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '@src/utils/core-css-utility';
 
-export interface IconProps
+interface IconProps
   extends React.SVGProps<SVGSVGElement>,
     VariantProps<typeof iconStyles> {
   icon: React.FC<React.SVGProps<SVGSVGElement>>;
@@ -48,16 +48,16 @@ const iconStyles = cva('stroke-current fill-none', {
   },
 });
 
-const Icon: React.FC<IconProps> = ({
-  icon: SvgIcon,
-  className,
-  size,
-  iconColor,
-  shape,
-  backgroundColor,
-  ...props
-}) => {
-  return (
+const Icon = React.forwardRef<SVGSVGElement, IconProps>(
+  ({
+    icon: SvgIcon,
+    className,
+    size,
+    iconColor,
+    shape,
+    backgroundColor,
+    ...props
+  }) => (
     <SvgIcon
       className={cn(
         iconStyles({ size, iconColor, shape, backgroundColor }),
@@ -65,8 +65,9 @@ const Icon: React.FC<IconProps> = ({
       )}
       {...props}
     />
-  );
-};
+  )
+);
 
 Icon.displayName = 'Icon';
-export default Icon;
+
+export { Icon };
