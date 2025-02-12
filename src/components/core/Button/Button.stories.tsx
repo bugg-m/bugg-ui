@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from './Button';
-import { Mail, ArrowRight, Plus } from 'lucide-react';
 import { Badge } from '../Badge/Badge';
+import Icon from '../Icon/Icon';
+import icons from '@src/constants/icons';
 
 const meta: Meta<typeof Button> = {
   title: 'Core/Button',
@@ -159,7 +160,7 @@ export const LoadingWithoutText: Story = {
 export const WithLeftIcon: Story = {
   args: {
     ...Default.args,
-    leftIcon: <Mail className='mr-2 h-4 w-4' />,
+    leftIcon: <Icon icon={icons.mail} iconColor={'success'} />,
     children: 'Email',
   },
 };
@@ -167,7 +168,7 @@ export const WithLeftIcon: Story = {
 export const WithRightIcon: Story = {
   args: {
     ...Default.args,
-    rightIcon: <ArrowRight className='ml-2 h-4 w-4' />,
+    rightIcon: <Icon icon={icons.next} />,
     children: 'Next',
   },
 };
@@ -176,7 +177,7 @@ export const IconOnly: Story = {
   args: {
     size: 'icon',
     'aria-label': 'Add item',
-    children: <Plus className='h-4 w-4' />,
+    children: <Icon icon={icons.plus} />,
   },
 };
 
@@ -193,7 +194,7 @@ export const ComplexButton: Story = {
     size: 'lg',
     children: (
       <>
-        <Mail className='mr-2 h-5 w-5' />
+        <Icon icon={icons.mail} className='mr-2' />
         <span>Send Newsletter</span>
         <Badge children='91+' variant='notification' />
       </>
@@ -240,7 +241,7 @@ export const AllSizes: Story = {
       <Button size='md'>Medium</Button>
       <Button size='lg'>Large</Button>
       <Button size='icon' aria-label='Add'>
-        <Plus className='h-4 w-4' />
+        <Icon icon={icons.plus} />
       </Button>
     </div>
   ),
@@ -268,7 +269,7 @@ export const WithTooltip: Story = {
         aria-label='Add item'
         title='Add a new item to the list'
       >
-        <Plus className='h-4 w-4' />
+        <Icon icon={icons.plus} />
       </Button>
     </div>
   ),

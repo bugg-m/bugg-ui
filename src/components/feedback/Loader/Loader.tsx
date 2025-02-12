@@ -16,7 +16,7 @@ const loaderStyles = cva('flex space-x-1', {
       success: '[&>div]:bg-success-500',
       warning: '[&>div]:bg-warning-500',
       info: '[&>div]:bg-info-500',
-      white: '[&>div]:bg-white-500',
+      white: '[&>div]:bg-white',
     },
   },
   defaultVariants: {

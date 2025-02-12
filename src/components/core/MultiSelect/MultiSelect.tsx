@@ -1,8 +1,9 @@
 import React, { forwardRef, useState, useRef } from 'react';
 import { cn } from '@src/utils/core-css-utility';
 import { cva, VariantProps } from 'class-variance-authority';
-import { ChevronDown, X, Check } from 'lucide-react';
 import { useOnClickOutside } from '@src/hooks/use-click-outside-hook';
+import Icon from '../Icon/Icon';
+import icons from '@src/constants/icons';
 
 export interface MultiSelectOptions {
   value: string;
@@ -156,8 +157,9 @@ const MultiSelect = forwardRef<HTMLSelectElement, MultiSelectProps>(
                   )}
                 >
                   {option?.label}
-                  <X
-                    className='w-4 h-4 ml-1 cursor-pointer'
+                  <Icon
+                    icon={icons.close}
+                    className='ml-1 cursor-pointer'
                     onClick={(e) => {
                       e.stopPropagation();
                       removeOption(optionValue);
@@ -171,8 +173,9 @@ const MultiSelect = forwardRef<HTMLSelectElement, MultiSelectProps>(
               {placeholder || 'Select options'}
             </span>
           )}
-          <ChevronDown
-            className={cn('w-4 h-4 ml-auto transition-transform', {
+          <Icon
+            icon={icons.arrowDown}
+            className={cn('ml-auto transition-transform', {
               'rotate-180': isOpen,
             })}
           />
@@ -204,10 +207,11 @@ const MultiSelect = forwardRef<HTMLSelectElement, MultiSelectProps>(
                 />
                 {option.label}
                 {selectedOptions.includes(option.value) && (
-                  <Check
+                  <Icon
+                    icon={icons.check}
                     className={cn(
                       colorStyles({ textColors: variant }),
-                      'w-4 h-4 ml-auto'
+                      'ml-auto'
                     )}
                   />
                 )}

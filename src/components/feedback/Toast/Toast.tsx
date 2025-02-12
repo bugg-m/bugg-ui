@@ -2,7 +2,8 @@ import React, { useEffect, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { cn } from '@src/utils/core-css-utility';
 import { cva, VariantProps } from 'class-variance-authority';
-import { X } from 'lucide-react';
+import Icon from '@src/components/core/Icon/Icon';
+import icons from '@src/constants/icons';
 
 const toastStyles = cva(
   'flex items-center gap-3 px-4 py-3 rounded-md shadow-lg',
@@ -117,7 +118,7 @@ export const ToastItem: React.FC<ToastItemProps> = ({
           onClick={() => onRemove(id)}
           aria-label='Dismiss'
         >
-          <X className='w-4 h-4' />
+          <Icon icon={icons.close} />
         </button>
       )}
     </div>

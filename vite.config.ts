@@ -3,9 +3,10 @@ import path from 'path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import svgr from 'vite-plugin-svgr';
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), dts({ rollupTypes: true }), tsconfigPaths()],
+  plugins: [react(), dts({ rollupTypes: true }), tsconfigPaths(), svgr()],
   build: {
     lib: {
       entry: path.resolve(__dirname, './src/main.ts'),

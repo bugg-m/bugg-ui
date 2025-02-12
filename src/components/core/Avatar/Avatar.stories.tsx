@@ -38,9 +38,11 @@ export default meta;
 
 type Story = StoryObj<typeof Avatar>;
 
+const src = 'https://avatars.githubusercontent.com/u/75472873?s=96&v=4';
+
 export const Default: Story = {
   args: {
-    src: 'https://avatars.githubusercontent.com/u/75472873?s=96&v=4',
+    src: src,
     alt: 'Avatar',
     size: 'md',
   },
@@ -57,7 +59,7 @@ export const WithInitials: Story = {
 
 export const WithStatus: Story = {
   args: {
-    src: 'https://avatars.githubusercontent.com/u/75472873?s=96&v=4',
+    src: src,
     status: true,
     size: 'md',
     border: 'thin',

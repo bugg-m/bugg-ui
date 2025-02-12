@@ -1,13 +1,8 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import {
-  Calendar,
-  ChevronLeft,
-  ChevronRight,
-  ChevronsLeft,
-  ChevronsRight,
-} from 'lucide-react';
 import { cn } from '@src/utils/core-css-utility';
 import { cva, VariantProps } from 'class-variance-authority';
+import Icon from '../Icon/Icon';
+import icons from '@src/constants/icons';
 
 const calendarButtonStyles = cva(
   'w-8 h-8 rounded-full flex items-center justify-center text-sm transition-all',
@@ -186,7 +181,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         className={cn(datePickerWrapperStyles({ variant }))}
         onClick={() => setIsOpen(!isOpen)}
       >
-        <Calendar size={20} className='text-secondary mr-2' />
+        <Icon icon={icons.calender} className='text-secondary-500 mr-2' />
         <span className='text-text dark:text-text-dark'>
           {selectedDate
             ? Array.isArray(selectedDate)
@@ -198,14 +193,14 @@ export const DatePicker: React.FC<DatePickerProps> = ({
       {isOpen && (
         <div className='absolute top-full mt-2 w-64 bg-background dark:bg-background-dark rounded-lg shadow-lg z-10'>
           <div className='flex justify-between items-center p-2 border-b border-secondary'>
-            <ChevronsLeft
-              size={20}
-              className='text-secondary cursor-pointer'
+            <Icon
+              icon={icons.arrowsLeft}
+              className='text-secondary-500 cursor-pointer'
               onClick={() => changeYear(-1)}
             />
-            <ChevronLeft
-              size={20}
-              className='text-secondary cursor-pointer'
+            <Icon
+              icon={icons.arrowLeft}
+              className='text-secondary-500 cursor-pointer'
               onClick={() => changeMonth(-1)}
             />
             <span className='text-text dark:text-text-dark font-semibold'>
@@ -214,14 +209,14 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                 year: 'numeric',
               })}
             </span>
-            <ChevronRight
-              size={20}
-              className='text-secondary cursor-pointer'
+            <Icon
+              icon={icons.arrowRight}
+              className='text-secondary-500 cursor-pointer'
               onClick={() => changeMonth(1)}
             />
-            <ChevronsRight
-              size={20}
-              className='text-secondary cursor-pointer'
+            <Icon
+              icon={icons.arrowsRight}
+              className='text-secondary-500 cursor-pointer'
               onClick={() => changeYear(1)}
             />
           </div>
