@@ -1,8 +1,8 @@
-import { Toast } from '@src/components/feedback/Toast/Toast';
+import { type IToast } from '@src/components/feedback/Toast/Toast';
 import { useCallback, useState } from 'react';
 
 export const useToast = () => {
-  const [toasts, setToasts] = useState<Toast[]>([]);
+  const [toasts, setToasts] = useState<IToast[]>([]);
 
   const addToast = useCallback(
     ({
@@ -11,7 +11,7 @@ export const useToast = () => {
       size = 'md',
       duration = 3000,
       dismissible = true,
-    }: Omit<Toast, 'id'>) => {
+    }: Omit<IToast, 'id'>) => {
       const id = Math.random().toString(36).substr(2, 9);
       setToasts((prev) => [
         ...prev,

@@ -34,7 +34,7 @@ const toastStyles = cva(
   }
 );
 
-interface IToast {
+export interface IToast {
   id: string;
   message: ReactNode;
   variant?: VariantProps<typeof toastStyles>['variant'];
