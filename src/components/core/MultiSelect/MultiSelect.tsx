@@ -37,16 +37,16 @@ const multiSelectStyles = cva(
         default:
           'bg-white border-primary-500 text-primary-700 focus:ring-primary-500',
         primary:
-          'bg-primary-25 border-primary-300 text-primary-500 focus:ring-primary-500',
+          'bg-primary-50 border-primary-300 text-primary-500 focus:ring-primary-500',
         secondary:
-          'bg-secondary-25 border-secondary-300 text-secondary-500 focus:ring-secondary-500',
+          'bg-secondary-50 border-secondary-300 text-secondary-500 focus:ring-secondary-500',
         error:
-          'bg-error-25 border-error-300 text-error-500 focus:ring-error-500',
+          'bg-error-50 border-error-300 text-error-500 focus:ring-error-500',
         success:
-          'bg-success-25 border-success-300 text-success-500 focus:ring-success-500',
+          'bg-success-50 border-success-300 text-success-500 focus:ring-success-500',
         warning:
-          'bg-warning-25 border-warning-300 text-warning-500 focus:ring-warning-500',
-        info: 'bg-info-25 border-info-300 text-info-500 focus:ring-info-500',
+          'bg-warning-50 border-warning-300 text-warning-500 focus:ring-warning-500',
+        info: 'bg-info-50 border-info-300 text-info-500 focus:ring-info-500',
       },
     },
     defaultVariants: {

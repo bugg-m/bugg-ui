@@ -160,7 +160,7 @@ export const LoadingWithoutText: Story = {
 export const WithLeftIcon: Story = {
   args: {
     ...Default.args,
-    leftIcon: <Icon icon={icons.mail} iconColor={'success'} />,
+    leftIcon: <Icon icon={icons.mail} iconColor={'default'} />,
     children: 'Email',
   },
 };
@@ -168,7 +168,7 @@ export const WithLeftIcon: Story = {
 export const WithRightIcon: Story = {
   args: {
     ...Default.args,
-    rightIcon: <Icon icon={icons.next} />,
+    rightIcon: <Icon icon={icons.next} iconColor={'default'} />,
     children: 'Next',
   },
 };
@@ -177,7 +177,7 @@ export const IconOnly: Story = {
   args: {
     size: 'icon',
     'aria-label': 'Add item',
-    children: <Icon icon={icons.plus} />,
+    children: <Icon icon={icons.plus} iconColor={'default'} />,
   },
 };
 
@@ -194,7 +194,7 @@ export const ComplexButton: Story = {
     size: 'lg',
     children: (
       <>
-        <Icon icon={icons.mail} className='mr-2' />
+        <Icon icon={icons.mail} className='mr-2' iconColor={'default'} />
         <span>Send Newsletter</span>
         <Badge children='91+' variant='notification' />
       </>
@@ -241,7 +241,7 @@ export const AllSizes: Story = {
       <Button size='md'>Medium</Button>
       <Button size='lg'>Large</Button>
       <Button size='icon' aria-label='Add'>
-        <Icon icon={icons.plus} />
+        <Icon icon={icons.plus} iconColor={'default'} />
       </Button>
     </div>
   ),
@@ -269,7 +269,7 @@ export const WithTooltip: Story = {
         aria-label='Add item'
         title='Add a new item to the list'
       >
-        <Icon icon={icons.plus} />
+        <Icon icon={icons.plus} iconColor={'default'} />
       </Button>
     </div>
   ),

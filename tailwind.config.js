@@ -19,26 +19,6 @@ export default {
       },
     },
     extend: {
-      borderWidth: {
-        1: '1px',
-      },
-      boxShadow: {
-        xs: 'var(--shadow-xs)',
-        modal: 'var(--shadow-modal)',
-      },
-      borderRadius: {
-        none: 'var(--radius-none)',
-        xxs: 'var(--radius-xxs)',
-        xs: 'var(--radius-xs)',
-        sm: 'var(--radius-sm)',
-        md: 'var(--radius-md)',
-        lg: 'var(--radius-lg)',
-        xl: 'var(--radius-xl)',
-        '2xl': 'var(--radius-2xl)',
-        '3xl': 'var(--radius-3xl)',
-        '4xl': 'var(--radius-4xl)',
-        full: 'var(--radius-full)',
-      },
       colors: {
         primary: {
           50: 'var(--primary-50)',
@@ -53,7 +33,6 @@ export default {
           900: 'var(--primary-900)',
         },
         secondary: {
-          25: 'var(--secondary-25)',
           50: 'var(--secondary-50)',
           100: 'var(--secondary-100)',
           200: 'var(--secondary-200)',
@@ -64,10 +43,8 @@ export default {
           700: 'var(--secondary-700)',
           800: 'var(--secondary-800)',
           900: 'var(--secondary-900)',
-          950: 'var(--secondary-950)',
         },
         error: {
-          25: 'var(--error-25)',
           50: 'var(--error-50)',
           100: 'var(--error-100)',
           200: 'var(--error-200)',
@@ -78,10 +55,8 @@ export default {
           700: 'var(--error-700)',
           800: 'var(--error-800)',
           900: 'var(--error-900)',
-          950: 'var(--error-950)',
         },
         warning: {
-          25: 'var(--warning-25)',
           50: 'var(--warning-50)',
           100: 'var(--warning-100)',
           200: 'var(--warning-200)',
@@ -92,10 +67,8 @@ export default {
           700: 'var(--warning-700)',
           800: 'var(--warning-800)',
           900: 'var(--warning-900)',
-          950: 'var(--warning-950)',
         },
         success: {
-          25: 'var(--success-25)',
           50: 'var(--success-50)',
           100: 'var(--success-100)',
           200: 'var(--success-200)',
@@ -106,10 +79,8 @@ export default {
           700: 'var(--success-700)',
           800: 'var(--success-800)',
           900: 'var(--success-900)',
-          950: 'var(--success-950)',
         },
         info: {
-          25: 'var(--info-25)',
           50: 'var(--info-50)',
           100: 'var(--info-100)',
           200: 'var(--info-200)',
@@ -120,90 +91,11 @@ export default {
           700: 'var(--info-700)',
           800: 'var(--info-800)',
           900: 'var(--info-900)',
-          950: 'var(--info-950)',
         },
         black: 'var(--black)',
         white: 'var(--white)',
         transparent: 'var(--transparent)',
       },
-      spacing: {
-        none: 'var(--spacing-none)',
-        xxs: 'var(--spacing-xxs)',
-        xs: 'var(--spacing-xs)',
-        sm: 'var(--spacing-sm)',
-        md: 'var(--spacing-md)',
-        lg: 'var(--spacing-lg)',
-        xl: 'var(--spacing-xl)',
-        '2xl': 'var(--spacing-2xl)',
-        '3xl': 'var(--spacing-3xl)',
-        '4xl': 'var(--spacing-4xl)',
-        '5xl': 'var(--spacing-5xl)',
-        '6xl': 'var(--spacing-6xl)',
-        '7xl': 'var(--spacing-7xl)',
-        '8xl': 'var(--spacing-8xl)',
-        '9xl': 'var(--spacing-9xl)',
-        '10xl': 'var(--spacing-10xl)',
-        '11xl': 'var(--spacing-11xl)',
-      },
-      width: {
-        xxs: 'var(--width-xxs)',
-        xs: 'var(--width-xs)',
-        sm: 'var(--width-sm)',
-        md: 'var(--width-md)',
-        lg: 'var(--width-lg)',
-        xl: 'var(--width-xl)',
-        '2xl': 'var(--width-2xl)',
-        '3xl': 'var(--width-3xl)',
-        '4xl': 'var(--width-4xl)',
-        '5xl': 'var(--width-5xl)',
-        '6xl': 'var(--width-6xl)',
-      },
-    },
-    keyframes: {
-      'accordion-down': {
-        from: { height: '0' },
-        to: { height: 'var(--radix-accordion-content-height)' },
-      },
-      'accordion-up': {
-        from: { height: 'var(--radix-accordion-content-height)' },
-        to: { height: '0' },
-      },
-    },
-    animation: {
-      'accordion-down': 'accordion-down 0.2s ease-out',
-      'accordion-up': 'accordion-up 0.2s ease-out',
-    },
-    fontFamily: {
-      sans: ['Inter var', ...defaultTheme.fontFamily.sans],
-    },
-    fontSize: {
-      ...defaultTheme.fontSize,
-      xxs: '0.625rem', // 10px
-    },
-    borderWidth: {
-      DEFAULT: '1px',
-      0: '0',
-      2: '2px',
-      3: '3px',
-      4: '4px',
-      6: '6px',
-      8: '8px',
-    },
-    minHeight: {
-      ...defaultTheme.height,
-    },
-    minWidth: {
-      ...defaultTheme.width,
-    },
-    boxShadow: {
-      ...defaultTheme.boxShadow,
-      boxShadowFilter: 'rgb(204, 204, 204) 1px 1px 1px 1px',
-      boxShadowOnWhiteBg:
-        '0 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
-    },
-    backgroundImage: {
-      headerBottom:
-        'linear-gradient(180deg, rgba(9, 30, 66, 0.13) 0%, rgba(9, 30, 66, 0.13) 25%, rgba(9, 30, 66, 0.08) 25.01%, rgba(9, 30, 66, 0.00) 100%)',
     },
   },
   plugins: [forms, typography, aspectRatio],
