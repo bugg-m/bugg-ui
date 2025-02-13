@@ -6,7 +6,12 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 import svgr from 'vite-plugin-svgr';
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), dts({ rollupTypes: true }), tsconfigPaths(), svgr()],
+  plugins: [
+    react(),
+    dts({ rollupTypes: true, exclude: ['**/*.stories.tsx'] }),
+    tsconfigPaths(),
+    svgr(),
+  ],
   build: {
     lib: {
       entry: path.resolve(__dirname, './src/main.ts'),
