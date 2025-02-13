@@ -1,6 +1,7 @@
+import { Icon } from '@src/components/core/Icon/Icon';
+import icons from '@src/constants/icons';
 import { cn } from '@src/utils/core-css-utility';
 import { cva, VariantProps } from 'class-variance-authority';
-import { ChevronRight } from 'lucide-react';
 import { forwardRef } from 'react';
 
 const breadcrumbStyles = cva('flex items-center justify-start gap-1', {
@@ -52,14 +53,14 @@ type BreadCrumbList = {
   onClick?: React.MouseEventHandler<HTMLDivElement>;
 };
 
-export interface BreadcrumbProps
+interface IBreadcrumbProps
   extends React.HTMLAttributes<HTMLLIElement>,
     VariantProps<typeof breadcrumbStyles> {
   list: BreadCrumbList[];
   separator?: 'line' | 'arrow';
 }
 
-const Breadcrumb = forwardRef<HTMLLIElement, BreadcrumbProps>(
+const Breadcrumb = forwardRef<HTMLLIElement, IBreadcrumbProps>(
   ({ list, variant, separator = 'arrow', className, ...props }, ref) => (
     <ul className='flex items-center justify-start gap-1'>
       {list?.map((current, ind) => (
@@ -75,7 +76,7 @@ const Breadcrumb = forwardRef<HTMLLIElement, BreadcrumbProps>(
           ) : separator === 'line' ? (
             <span>/</span>
           ) : (
-            <ChevronRight size={20} />
+            <Icon icon={icons.arrowRight} />
           )}
         </li>
       ))}

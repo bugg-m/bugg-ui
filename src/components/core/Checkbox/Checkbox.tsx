@@ -29,45 +29,45 @@ const checkboxStyles = cva(
   }
 );
 
-export interface CheckboxProps
+interface ICheckboxProps
   extends React.InputHTMLAttributes<HTMLInputElement>,
     VariantProps<typeof checkboxStyles> {
   label?: string;
   error?: string;
 }
 
-export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ className, variant, checkboxSize, label, error, id, ...props }, ref) => {
-    return (
-      <div className='flex items-start'>
-        <div className='flex items-center h-5'>
-          <input
-            id={id}
-            type='checkbox'
-            ref={ref}
-            className={cn(checkboxStyles({ checkboxSize, variant }), className)}
-            {...props}
-          />
-        </div>
-        {(label || error) && (
-          <div className='ml-3 text-sm'>
-            {label && (
-              <label
-                htmlFor={id}
-                className={cn(
-                  'font-medium text-gray-700',
-                  error && 'text-red-500'
-                )}
-              >
-                {label}
-              </label>
-            )}
-            {error && <p className='mt-1 text-xs text-red-500'>{error}</p>}
-          </div>
-        )}
+const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
+  ({ className, variant, checkboxSize, label, error, id, ...props }, ref) => (
+    <div className='flex items-start'>
+      <div className='flex items-center h-5'>
+        <input
+          id={id}
+          type='checkbox'
+          ref={ref}
+          className={cn(checkboxStyles({ checkboxSize, variant }), className)}
+          {...props}
+        />
       </div>
-    );
-  }
+      {(label || error) && (
+        <div className='ml-3 text-sm'>
+          {label && (
+            <label
+              htmlFor={id}
+              className={cn(
+                'font-medium text-gray-700',
+                error && 'text-red-500'
+              )}
+            >
+              {label}
+            </label>
+          )}
+          {error && <p className='mt-1 text-xs text-red-500'>{error}</p>}
+        </div>
+      )}
+    </div>
+  )
 );
 
 Checkbox.displayName = 'Checkbox';
+
+export { Checkbox };

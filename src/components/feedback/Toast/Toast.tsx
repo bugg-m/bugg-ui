@@ -1,8 +1,9 @@
-import React, { useEffect, ReactNode } from 'react';
+import { useEffect, ReactNode, forwardRef } from 'react';
 import { createPortal } from 'react-dom';
 import { cn } from '@src/utils/core-css-utility';
 import { cva, VariantProps } from 'class-variance-authority';
-import { X } from 'lucide-react';
+import { Icon } from '@src/components/core/Icon/Icon';
+import icons from '@src/constants/icons';
 
 const toastStyles = cva(
   'flex items-center gap-3 px-4 py-3 rounded-md shadow-lg',
@@ -33,7 +34,7 @@ const toastStyles = cva(
   }
 );
 
-export interface Toast {
+export interface IToast {
   id: string;
   message: ReactNode;
   variant?: VariantProps<typeof toastStyles>['variant'];
@@ -42,84 +43,98 @@ export interface Toast {
   dismissible?: boolean;
 }
 
-export interface ToastContainerProps {
-  toasts: Toast[];
+interface IToastContainerProps {
+  toasts: IToast[];
   onRemove: (id: string) => void;
 }
 
-export const ToastContainer: React.FC<ToastContainerProps> = ({
-  toasts,
-  onRemove,
-}) => {
-  return createPortal(
-    <div
-      className='fixed top-5 right-5 z-50 flex flex-col gap-3'
-      role='region'
-      aria-live='polite'
-      aria-atomic='true'
-    >
-      {toasts.map(
-        ({
-          id,
-          message,
-          variant = 'info',
-          size = 'md',
-          duration,
-          dismissible = true,
-        }) => (
-          <ToastItem
-            key={id}
-            id={id}
-            message={message}
-            variant={variant}
-            size={size}
-            onRemove={onRemove}
-            duration={duration}
-            dismissible={dismissible}
-          />
-        )
-      )}
-    </div>,
-    document.body
-  );
-};
+const ToastContainer = forwardRef<HTMLDivElement, IToastContainerProps>(
+  ({ toasts, onRemove }, ref) => {
+    return createPortal(
+      <div
+        ref={ref}
+        className='fixed top-5 right-5 z-50 flex flex-col gap-3'
+        role='region'
+        aria-live='polite'
+        aria-atomic='true'
+      >
+        {toasts.map(
+          ({
+            id,
+            message,
+            variant = 'info',
+            size = 'md',
+            duration,
+            dismissible = true,
+          }) => (
+            <ToastItem
+              key={id}
+              id={id}
+              message={message}
+              variant={variant}
+              size={size}
+              onRemove={onRemove}
+              duration={duration}
+              dismissible={dismissible}
+            />
+          )
+        )}
+      </div>,
+      document.body
+    );
+  }
+);
 
-export interface ToastItemProps extends Omit<Toast, 'duration'> {
+ToastContainer.displayName = 'ToastContainer';
+
+interface IToastItemProps extends Omit<IToast, 'duration'> {
   onRemove: (id: string) => void;
   duration?: number;
 }
 
-export const ToastItem: React.FC<ToastItemProps> = ({
-  id,
-  message,
-  variant = 'info',
-  size = 'md',
-  onRemove,
-  duration = 3000,
-  dismissible = true,
-}) => {
-  useEffect(() => {
-    if (duration) {
-      const timer = setTimeout(() => {
-        onRemove(id);
-      }, duration);
+const ToastItem = forwardRef<HTMLDivElement, IToastItemProps>(
+  (
+    {
+      id,
+      message,
+      variant = 'info',
+      size = 'md',
+      onRemove,
+      duration = 3000,
+      dismissible = true,
+    },
+    ref
+  ) => {
+    useEffect(() => {
+      if (duration) {
+        const timer = setTimeout(() => {
+          onRemove(id);
+        }, duration);
+        return () => clearTimeout(timer);
+      }
+    }, [id, onRemove, duration]);
 
-      return () => clearTimeout(timer);
-    }
-  }, [id, onRemove, duration]);
+    return (
+      <div
+        ref={ref}
+        className={cn(toastStyles({ variant, size }))}
+        role='alert'
+      >
+        <div>{message}</div>
+        {dismissible && (
+          <button
+            className='ml-auto text-secondary-600 hover:text-secondary-800'
+            onClick={() => onRemove(id)}
+            aria-label='Dismiss'
+          >
+            <Icon icon={icons.close} />
+          </button>
+        )}
+      </div>
+    );
+  }
+);
 
-  return (
-    <div className={cn(toastStyles({ variant, size }))} role='alert'>
-      <div>{message}</div>
-      {dismissible && (
-        <button
-          className='ml-auto text-secondary-600 hover:text-secondary-800'
-          onClick={() => onRemove(id)}
-          aria-label='Dismiss'
-        >
-          <X className='w-4 h-4' />
-        </button>
-      )}
-    </div>
-  );
-};
+ToastItem.displayName = 'ToastItem';
+
+export { ToastContainer, ToastItem };

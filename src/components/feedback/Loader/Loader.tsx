@@ -1,4 +1,4 @@
-import React from 'react';
+import { forwardRef } from 'react';
 import { cn } from '@src/utils/core-css-utility';
 import { cva, VariantProps } from 'class-variance-authority';
 
@@ -16,7 +16,7 @@ const loaderStyles = cva('flex space-x-1', {
       success: '[&>div]:bg-success-500',
       warning: '[&>div]:bg-warning-500',
       info: '[&>div]:bg-info-500',
-      white: '[&>div]:bg-white-500',
+      white: '[&>div]:bg-white',
     },
   },
   defaultVariants: {
@@ -35,12 +35,12 @@ const dotStyles = cva('w-2 h-2 rounded-full animate-pulse', {
   },
 });
 
-export interface LoaderProps extends VariantProps<typeof loaderStyles> {
+export interface ILoaderProps extends VariantProps<typeof loaderStyles> {
   className?: string;
 }
 
-export const Loader: React.FC<LoaderProps> = ({ size, color, className }) => {
-  return (
+const Loader = forwardRef<HTMLDivElement, ILoaderProps>(
+  ({ size, color, className }) => (
     <div
       className={cn(loaderStyles({ size, color }), className)}
       role='status'
@@ -51,7 +51,9 @@ export const Loader: React.FC<LoaderProps> = ({ size, color, className }) => {
       <div className={dotStyles({ position: 'third' })}></div>
       <span className='sr-only'>Loading...</span>
     </div>
-  );
-};
+  )
+);
 
 Loader.displayName = 'Loader';
+
+export { Loader };

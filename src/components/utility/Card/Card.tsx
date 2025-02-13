@@ -1,10 +1,10 @@
 import React, { forwardRef } from 'react';
 import { cn } from '@src/utils/core-css-utility';
-import { Loader, LoaderProps } from '@src/main';
+import { Loader, type ILoaderProps } from '@src/main';
 
 type AnchorProps = React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
-export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ICardProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: 'elevated' | 'outlined' | 'filled' | 'flat';
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   color?:
@@ -21,19 +21,16 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   clickable?: boolean;
   fullWidth?: boolean;
   loading?: boolean;
-  loaderSize?: LoaderProps['size'];
-  loaderColor?: LoaderProps['color'];
+  loaderSize?: ILoaderProps['size'];
+  loaderColor?: ILoaderProps['color'];
   disabled?: boolean;
   as?: React.ElementType;
 }
 
-export type CardComponentProps<T extends React.ElementType> = CardProps &
+type ICardComponentProps<T extends React.ElementType> = ICardProps &
   (T extends 'a' ? AnchorProps : {});
 
-export const Card = forwardRef<
-  HTMLDivElement,
-  CardComponentProps<React.ElementType>
->(
+const Card = forwardRef<HTMLDivElement, ICardComponentProps<React.ElementType>>(
   (
     {
       className,
@@ -116,3 +113,5 @@ export const Card = forwardRef<
 );
 
 Card.displayName = 'Card';
+
+export { Card };

@@ -39,9 +39,7 @@ const options = [
   { value: 'bootstrap', label: 'Bootstrap' },
   { value: 'react', label: 'React.js' },
   { value: 'vue', label: 'Vue.js' },
-  { value: 'django2', label: 'Django' },
-  { value: 'django3', label: 'Django' },
-  { value: 'django4', label: 'Django' },
+  { value: 'django', label: 'Django' },
 ];
 
 export const Default: Story = {

@@ -1,21 +1,22 @@
 import React, { forwardRef, useState, useRef } from 'react';
 import { cn } from '@src/utils/core-css-utility';
-import { ChevronDown, Check } from 'lucide-react';
 import { useOnClickOutside } from '@src/hooks/use-click-outside-hook';
 import { cva, VariantProps } from 'class-variance-authority';
+import { Icon } from '../Icon/Icon';
+import icons from '@src/constants/icons';
 
-export interface SingleSelectOptions {
+interface ISingleSelectOptions {
   value: string;
   label: string;
 }
 
-export interface SingleSelectProps
+interface ISingleSelectProps
   extends Omit<
       React.SelectHTMLAttributes<HTMLSelectElement>,
       'size' | 'value' | 'onChange'
     >,
     VariantProps<typeof singleSelectStyles> {
-  options: SingleSelectOptions[];
+  options: ISingleSelectOptions[];
   placeholder?: string;
   error?: string;
   value?: string;
@@ -36,16 +37,16 @@ const singleSelectStyles = cva(
         default:
           'bg-white border-primary-500 text-primary-700 focus:ring-primary-500',
         primary:
-          'bg-primary-25 border-primary-300 text-primary-500 focus:ring-primary-500',
+          'bg-primary-50 border-primary-300 text-primary-500 focus:ring-primary-500',
         secondary:
-          'bg-secondary-25 border-secondary-300 text-secondary-500 focus:ring-secondary-500',
+          'bg-secondary-50 border-secondary-300 text-secondary-500 focus:ring-secondary-500',
         error:
-          'bg-error-25 border-error-300 text-error-500 focus:ring-error-500',
+          'bg-error-50 border-error-300 text-error-500 focus:ring-error-500',
         success:
-          'bg-success-25 border-success-300 text-success-500 focus:ring-success-500',
+          'bg-success-50 border-success-300 text-success-500 focus:ring-success-500',
         warning:
-          'bg-warning-25 border-warning-300 text-warning-500 focus:ring-warning-500',
-        info: 'bg-info-25 border-info-300 text-info-500 focus:ring-info-500',
+          'bg-warning-50 border-warning-300 text-warning-500 focus:ring-warning-500',
+        info: 'bg-info-50 border-info-300 text-info-500 focus:ring-info-500',
       },
     },
     defaultVariants: {
@@ -55,7 +56,7 @@ const singleSelectStyles = cva(
   }
 );
 
-const SingleSelect = forwardRef<HTMLSelectElement, SingleSelectProps>(
+const SingleSelect = forwardRef<HTMLSelectElement, ISingleSelectProps>(
   (
     {
       className,
@@ -100,23 +101,24 @@ const SingleSelect = forwardRef<HTMLSelectElement, SingleSelectProps>(
           aria-expanded={isOpen}
         >
           <span>{selectedLabel || placeholder || 'Select an option'}</span>
-          <ChevronDown
-            className={cn('w-4 h-4 transition-transform', {
+          <Icon
+            icon={icons.arrowDown}
+            className={cn('transition-transform', {
               'rotate-180': isOpen,
             })}
           />
         </button>
         {isOpen && (
           <ul
-            className='absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-auto'
+            className='absolute z-10 w-full mt-1 bg-white border border-secondary-300 rounded-md shadow-lg max-h-60 overflow-auto'
             role='listbox'
           >
             {options.map((option) => (
               <li
                 key={option.value}
                 className={cn(
-                  'p-2 cursor-pointer hover:bg-gray-100 flex items-center',
-                  { 'bg-blue-50': selectedOption === option.value }
+                  'p-2 cursor-pointer hover:bg-secondary-100 flex items-center',
+                  { 'bg-primary-50': selectedOption === option.value }
                 )}
                 onClick={() => handleSelect(option.value)}
                 role='option'
@@ -124,14 +126,17 @@ const SingleSelect = forwardRef<HTMLSelectElement, SingleSelectProps>(
               >
                 {option.label}
                 {selectedOption === option.value && (
-                  <Check className='w-4 h-4 ml-auto text-blue-600' />
+                  <Icon
+                    icon={icons.check}
+                    className='ml-auto text-primary-600'
+                  />
                 )}
               </li>
             ))}
           </ul>
         )}
         {error && (
-          <p className='mt-1 text-sm text-red-500' role='alert'>
+          <p className='mt-1 text-sm text-error-500' role='alert'>
             {error}
           </p>
         )}

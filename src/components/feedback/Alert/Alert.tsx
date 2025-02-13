@@ -1,13 +1,8 @@
 import React, { forwardRef } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '@src/utils/core-css-utility';
-import {
-  CircleAlert,
-  CircleCheckBig,
-  CircleX,
-  TriangleAlert,
-  X,
-} from 'lucide-react';
+import { Icon } from '@src/components/core/Icon/Icon';
+import icons from '@src/constants/icons';
 const alertStyles = cva(
   'flex items-start justify-center p-4 gap-2 rounded-lg',
   {
@@ -64,7 +59,7 @@ const textStyles = cva('', {
   },
 });
 
-interface AlertProps
+interface IAlertProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof alertStyles> {
   title?: string;
@@ -76,16 +71,13 @@ interface AlertProps
 }
 
 const Icons = {
-  success: <CircleCheckBig size={20} />,
-  error: <CircleX size={20} />,
-  info: <CircleAlert size={20} />,
-  warning: <TriangleAlert size={20} />,
+  success: <Icon icon={icons.circleCheck} size='md' />,
+  error: <Icon icon={icons.circleClose} size='md' />,
+  info: <Icon icon={icons.circleAlert} size='md' />,
+  warning: <Icon icon={icons.triangleAlert} size='md' />,
 };
 
-export const Alert: React.FC<AlertProps> = forwardRef<
-  HTMLDivElement,
-  AlertProps
->(
+const Alert = forwardRef<HTMLDivElement, IAlertProps>(
   (
     {
       title,
@@ -139,10 +131,14 @@ export const Alert: React.FC<AlertProps> = forwardRef<
             className={cn(alertButtonStyles({ variant }))}
             aria-label='Dismiss alert'
           >
-            <X size={20} />
+            <Icon icon={icons.close} size='md' />
           </button>
         )}
       </div>
     );
   }
 );
+
+Alert.displayName = 'Alert';
+
+export { Alert };

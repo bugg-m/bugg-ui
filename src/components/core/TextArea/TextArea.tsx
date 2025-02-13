@@ -37,13 +37,13 @@ const textareaStyles = cva(
   }
 );
 
-export interface TextAreaProps
+interface ITextAreaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement>,
     VariantProps<typeof textareaStyles> {
   error?: string;
 }
 
-const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
+const TextArea = forwardRef<HTMLTextAreaElement, ITextAreaProps>(
   ({ variant, colorScheme, className, error, textAreaSize, ...props }, ref) => {
     const labelTextStyles = {
       primary: 'text-primary-400',

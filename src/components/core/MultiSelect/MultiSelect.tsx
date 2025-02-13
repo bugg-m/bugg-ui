@@ -1,21 +1,22 @@
 import React, { forwardRef, useState, useRef } from 'react';
 import { cn } from '@src/utils/core-css-utility';
 import { cva, VariantProps } from 'class-variance-authority';
-import { ChevronDown, X, Check } from 'lucide-react';
 import { useOnClickOutside } from '@src/hooks/use-click-outside-hook';
+import { Icon } from '../Icon/Icon';
+import icons from '@src/constants/icons';
 
-export interface MultiSelectOptions {
+interface IMultiSelectOptions {
   value: string;
   label: string;
 }
 
-export interface MultiSelectProps
+interface IMultiSelectProps
   extends Omit<
       React.SelectHTMLAttributes<HTMLSelectElement>,
       'size' | 'value' | 'onChange'
     >,
     VariantProps<typeof multiSelectStyles> {
-  options: MultiSelectOptions[];
+  options: IMultiSelectOptions[];
   placeholder?: string;
   error?: string;
   value?: string[];
@@ -36,16 +37,16 @@ const multiSelectStyles = cva(
         default:
           'bg-white border-primary-500 text-primary-700 focus:ring-primary-500',
         primary:
-          'bg-primary-25 border-primary-300 text-primary-500 focus:ring-primary-500',
+          'bg-primary-50 border-primary-300 text-primary-500 focus:ring-primary-500',
         secondary:
-          'bg-secondary-25 border-secondary-300 text-secondary-500 focus:ring-secondary-500',
+          'bg-secondary-50 border-secondary-300 text-secondary-500 focus:ring-secondary-500',
         error:
-          'bg-error-25 border-error-300 text-error-500 focus:ring-error-500',
+          'bg-error-50 border-error-300 text-error-500 focus:ring-error-500',
         success:
-          'bg-success-25 border-success-300 text-success-500 focus:ring-success-500',
+          'bg-success-50 border-success-300 text-success-500 focus:ring-success-500',
         warning:
-          'bg-warning-25 border-warning-300 text-warning-500 focus:ring-warning-500',
-        info: 'bg-info-25 border-info-300 text-info-500 focus:ring-info-500',
+          'bg-warning-50 border-warning-300 text-warning-500 focus:ring-warning-500',
+        info: 'bg-info-50 border-info-300 text-info-500 focus:ring-info-500',
       },
     },
     defaultVariants: {
@@ -94,7 +95,7 @@ const colorStyles = cva('', {
   },
 });
 
-const MultiSelect = forwardRef<HTMLSelectElement, MultiSelectProps>(
+const MultiSelect = forwardRef<HTMLSelectElement, IMultiSelectProps>(
   (
     {
       className,
@@ -156,8 +157,9 @@ const MultiSelect = forwardRef<HTMLSelectElement, MultiSelectProps>(
                   )}
                 >
                   {option?.label}
-                  <X
-                    className='w-4 h-4 ml-1 cursor-pointer'
+                  <Icon
+                    icon={icons.close}
+                    className='ml-1 cursor-pointer'
                     onClick={(e) => {
                       e.stopPropagation();
                       removeOption(optionValue);
@@ -171,8 +173,9 @@ const MultiSelect = forwardRef<HTMLSelectElement, MultiSelectProps>(
               {placeholder || 'Select options'}
             </span>
           )}
-          <ChevronDown
-            className={cn('w-4 h-4 ml-auto transition-transform', {
+          <Icon
+            icon={icons.arrowDown}
+            className={cn('ml-auto transition-transform', {
               'rotate-180': isOpen,
             })}
           />
@@ -204,10 +207,11 @@ const MultiSelect = forwardRef<HTMLSelectElement, MultiSelectProps>(
                 />
                 {option.label}
                 {selectedOptions.includes(option.value) && (
-                  <Check
+                  <Icon
+                    icon={icons.check}
                     className={cn(
                       colorStyles({ textColors: variant }),
-                      'w-4 h-4 ml-auto'
+                      'ml-auto'
                     )}
                   />
                 )}

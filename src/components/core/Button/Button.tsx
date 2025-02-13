@@ -64,7 +64,7 @@ const buttonStyles = cva(
   }
 );
 
-export interface ButtonProps
+interface IButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonStyles> {
   isLoading?: boolean;
@@ -82,7 +82,7 @@ export interface ButtonProps
   disabled?: boolean;
 }
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+const Button = forwardRef<HTMLButtonElement, IButtonProps>(
   (
     {
       className,
@@ -92,7 +92,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       loadingText,
       leftIcon,
       rightIcon,
-      children,
+      children = 'Button',
       loaderColor = 'white',
       type = 'button',
       disabled,

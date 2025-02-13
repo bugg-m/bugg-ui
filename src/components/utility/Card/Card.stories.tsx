@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { Card, CardProps } from './Card';
+import { Card, type ICardProps } from './Card';
 
 const meta: Meta<typeof Card> = {
   title: 'Utility/Card',
@@ -54,7 +54,11 @@ export const AllVariants: Story = {
   render: (args) => (
     <div className='flex flex-wrap gap-4'>
       {['elevated', 'outlined', 'filled', 'flat'].map((variant) => (
-        <Card key={variant} {...args} variant={variant as CardProps['variant']}>
+        <Card
+          key={variant}
+          {...args}
+          variant={variant as ICardProps['variant']}
+        >
           {variant} card
         </Card>
       ))}
@@ -66,7 +70,7 @@ export const AllSizes: Story = {
   render: (args) => (
     <div className='flex flex-col gap-4'>
       {['xs', 'sm', 'md', 'lg', 'xl'].map((size) => (
-        <Card key={size} {...args} size={size as CardProps['size']}>
+        <Card key={size} {...args} size={size as ICardProps['size']}>
           {size} card
         </Card>
       ))}
@@ -88,7 +92,7 @@ export const AllColors: Story = {
         'dark',
         'neutral',
       ].map((color) => (
-        <Card key={color} {...args} color={color as CardProps['color']}>
+        <Card key={color} {...args} color={color as ICardProps['color']}>
           {color} card
         </Card>
       ))}

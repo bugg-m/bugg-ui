@@ -1,7 +1,8 @@
 import React, { forwardRef, useState, useEffect, useMemo } from 'react';
 import { cn } from '@src/utils/core-css-utility';
 import { VariantProps, cva } from 'class-variance-authority';
-import { Eye, EyeOff } from 'lucide-react';
+import icons from '@src/constants/icons';
+import { Icon } from '../Icon/Icon';
 
 const inputStyles = cva(
   'w-full rounded-md transition-all duration-200 outline-none focus:ring-0 disabled:opacity-50 peer block appearance-none bg-transparent text-sm focus:outline-none disabled:cursor-not-allowed',
@@ -38,7 +39,7 @@ const inputStyles = cva(
   }
 );
 
-export interface InputProps
+interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement>,
     VariantProps<typeof inputStyles> {
   error?: string;
@@ -76,7 +77,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           onClick={() => setShowPassword((prev) => !prev)}
           aria-label={showPassword ? 'Hide password' : 'Show password'}
         >
-          {showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
+          {showPassword ? (
+            <Icon icon={icons.eye} />
+          ) : (
+            <Icon icon={icons.eyeOff} />
+          )}
         </button>
       );
     }, [type, showPassword]);
@@ -111,7 +116,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
                 colorScheme
                   ? labelTextStyles[colorScheme]
                   : 'text-secondary-500',
-                'mb-1 peer-focus-within:bg-white font-medium origin-[0] peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 absolute left-1 top-2 z-10 -translate-y-4 scale-75 transform cursor-text select-none px-2 text-xs duration-300'
+                'mb-1 bg-white font-medium origin-[0] peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 absolute left-1 top-2 z-10 -translate-y-4 scale-75 transform cursor-text select-none px-2 text-xs duration-300'
               )}
               htmlFor={props.id}
             >
