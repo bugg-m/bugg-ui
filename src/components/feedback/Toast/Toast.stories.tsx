@@ -2,7 +2,6 @@ import { useToastContext } from '@/contexts/toast-context';
 import { ToastProvider } from '@/providers/toast-provider';
 import { Meta, StoryObj } from '@storybook/react';
 
-// **Meta configuration**
 const meta: Meta = {
   title: 'Experimental/Toast',
   tags: ['autodocs'],
@@ -83,7 +82,6 @@ const ToastExample = () => {
   );
 };
 
-// **Toast Stories**
 export const Default: Story = {
   render: () => (
     <ToastProvider>
