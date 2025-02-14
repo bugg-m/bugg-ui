@@ -1,4 +1,4 @@
-import { type IToast } from '@src/components/feedback/Toast/Toast';
+import { type IToast } from '@/components/feedback/Toast/Toast';
 import { useCallback, useState } from 'react';
 
 export const useToast = () => {

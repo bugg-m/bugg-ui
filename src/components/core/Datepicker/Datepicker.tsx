@@ -5,10 +5,10 @@ import React, {
   useEffect,
   forwardRef,
 } from 'react';
-import { cn } from '@src/utils/core-css-utility';
+import { cn } from '@/utils/core-css-utility';
 import { cva, VariantProps } from 'class-variance-authority';
 import { Icon } from '../Icon/Icon';
-import icons from '@src/constants/icons';
+import icons from '@/constants/icons';
 
 const calendarButtonStyles = cva(
   'w-8 h-8 rounded-full flex items-center justify-center text-sm transition-all',

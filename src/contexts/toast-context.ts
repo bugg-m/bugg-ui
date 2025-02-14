@@ -1,4 +1,4 @@
-import { useToast } from '@src/hooks/use-toast-hook';
+import { useToast } from '@/hooks/use-toast-hook';
 import { createContext, useContext } from 'react';
 
 export const ToastContext = createContext<

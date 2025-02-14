@@ -1,6 +1,6 @@
-import { ToastContainer } from '@src/components/feedback/Toast/Toast';
-import { ToastContext } from '@src/contexts/toast-context';
-import { useToast } from '@src/hooks/use-toast-hook';
+import { ToastContainer } from '@/components/feedback/Toast/Toast';
+import { ToastContext } from '@/contexts/toast-context';
+import { useToast } from '@/hooks/use-toast-hook';
 
 export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({
   children,

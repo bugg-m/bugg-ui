@@ -1,9 +1,9 @@
 import { useEffect, ReactNode, forwardRef } from 'react';
 import { createPortal } from 'react-dom';
-import { cn } from '@src/utils/core-css-utility';
+import { cn } from '@/utils/core-css-utility';
 import { cva, VariantProps } from 'class-variance-authority';
-import { Icon } from '@src/components/core/Icon/Icon';
-import icons from '@src/constants/icons';
+import { Icon } from '@/components/core/Icon/Icon';
+import icons from '@/constants/icons';
 
 const toastStyles = cva(
   'flex items-center gap-3 px-4 py-3 rounded-md shadow-lg',

@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { VariantProps, cva } from 'class-variance-authority';
-import { cn } from '@src/utils/core-css-utility';
+import { cn } from '@/utils/core-css-utility';
 
 const textStyles = cva('', {
   variants: {

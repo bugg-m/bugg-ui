@@ -1,4 +1,4 @@
-import { cn } from '@src/utils/core-css-utility';
+import { cn } from '@/utils/core-css-utility';
 import { cva, VariantProps } from 'class-variance-authority';
 import { forwardRef } from 'react';
 import { HTMLAttributes } from 'react';
@@ -32,7 +32,9 @@ const badgeStyles = cva(
         lg: 'px-4 py-1.5 text-base',
       },
     },
-    compoundVariants: [{ size: 'sm', className: 'rounded' }],
+    compoundVariants: [
+      { variant: 'primary', size: 'sm', className: 'rounded' },
+    ],
   }
 );
 

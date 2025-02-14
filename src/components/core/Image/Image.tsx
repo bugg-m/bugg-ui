@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
-import { cn } from '@src/utils/core-css-utility';
+import { cn } from '@/utils/core-css-utility';
 
 interface ImageProps
   extends React.ImgHTMLAttributes<HTMLImageElement>,

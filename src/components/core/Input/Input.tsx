@@ -1,7 +1,7 @@
 import React, { forwardRef, useState, useEffect, useMemo } from 'react';
-import { cn } from '@src/utils/core-css-utility';
+import { cn } from '@/utils/core-css-utility';
 import { VariantProps, cva } from 'class-variance-authority';
-import icons from '@src/constants/icons';
+import icons from '@/constants/icons';
 import { Icon } from '../Icon/Icon';
 
 const inputStyles = cva(

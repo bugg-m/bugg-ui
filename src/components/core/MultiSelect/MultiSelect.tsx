@@ -1,9 +1,9 @@
 import React, { forwardRef, useState, useRef } from 'react';
-import { cn } from '@src/utils/core-css-utility';
+import { cn } from '@/utils/core-css-utility';
 import { cva, VariantProps } from 'class-variance-authority';
-import { useOnClickOutside } from '@src/hooks/use-click-outside-hook';
+import { useOnClickOutside } from '@/hooks/use-click-outside-hook';
 import { Icon } from '../Icon/Icon';
-import icons from '@src/constants/icons';
+import icons from '@/constants/icons';
 
 interface IMultiSelectOptions {
   value: string;

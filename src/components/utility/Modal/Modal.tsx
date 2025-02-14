@@ -1,6 +1,6 @@
 import React, { forwardRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { cn } from '@src/utils/core-css-utility';
+import { cn } from '@/utils/core-css-utility';
 
 interface IModalProps {
   isOpen: boolean;

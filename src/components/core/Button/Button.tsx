@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { VariantProps, cva } from 'class-variance-authority';
-import { cn } from '@src/utils/core-css-utility';
 import { Loader } from '../../feedback/Loader/Loader';
+import { cn } from '@/utils/core-css-utility';
 
 const buttonStyles = cva(
   'inline-flex items-center justify-center rounded-md text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none select-none whitespace-nowrap shadow-button relative',

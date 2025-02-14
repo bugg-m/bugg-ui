@@ -1,6 +1,6 @@
 import React from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
-import { cn } from '@src/utils/core-css-utility';
+import { cn } from '@/utils/core-css-utility';
 
 interface IconProps
   extends React.SVGProps<SVGSVGElement>,

@@ -1,6 +1,6 @@
 {
   "name": "@bugg-m/bugg-ui",
-  "version": "2.1.4",
+  "version": "2.2.0",
   "publishConfig": {
     "access": "public"
   },
@@ -81,8 +81,8 @@
     "vite-tsconfig-paths": "^4.3.2"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "keywords": [
     "design system",

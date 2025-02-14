@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
-import { cn } from '@src/utils/core-css-utility';
-import { Icon } from '@src/components/core/Icon/Icon';
-import icons from '@src/constants/icons';
+import { cn } from '@/utils/core-css-utility';
+import { Icon } from '@/components/core/Icon/Icon';
+import icons from '@/constants/icons';
 const alertStyles = cva(
   'flex items-start justify-center p-4 gap-2 rounded-lg',
   {

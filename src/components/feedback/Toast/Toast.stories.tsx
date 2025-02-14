@@ -1,5 +1,5 @@
-import { useToastContext } from '@src/contexts/toast-context';
-import { ToastProvider } from '@src/providers/toast-provider';
+import { useToastContext } from '@/contexts/toast-context';
+import { ToastProvider } from '@/providers/toast-provider';
 import { Meta, StoryObj } from '@storybook/react';
 
 // **Meta configuration**
