@@ -10,7 +10,7 @@ export default defineConfig({
     react(),
     dts({ rollupTypes: true, exclude: ['**/*.stories.tsx'] }),
     tsconfigPaths(),
-    svgr(),
+    svgr({ include: /\.svg$/ }),
   ],
   build: {
     lib: {

@@ -1,10 +1,9 @@
 import { cn } from '@/utils/core-css-utility';
 import { cva, VariantProps } from 'class-variance-authority';
-import { forwardRef } from 'react';
-import { HTMLAttributes } from 'react';
+import React, { forwardRef } from 'react';
 
 const badgeStyles = cva(
-  'inline-flex items-center justify-center rounded-full text-xs font-medium',
+  'inline-flex items-center justify-center rounded-full font-medium',
   {
     variants: {
       variant: {
@@ -24,7 +23,7 @@ const badgeStyles = cva(
         warning:
           'bg-warning-500 text-white hover:bg-warning-600 focus-visible:ring-warning-400',
         notification:
-          'absolute top-0 right-0 leading-none !text-[8px] text-white transform translate-x-1/2 -translate-y-1/2 bg-error-500 size-5',
+          'absolute top-0 right-0 leading-none !text-[8px] text-white transform translate-x-1/2 -translate-y-1/2 bg-error-500',
       },
       size: {
         sm: 'px-2 py-0.5 text-xs',
@@ -32,25 +31,29 @@ const badgeStyles = cva(
         lg: 'px-4 py-1.5 text-base',
       },
     },
+    defaultVariants: {
+      variant: 'primary',
+      size: 'md',
+    },
     compoundVariants: [
       { variant: 'primary', size: 'sm', className: 'rounded' },
     ],
   }
 );
 
-interface IBadgeProps
-  extends HTMLAttributes<HTMLDivElement>,
+export interface IBadgeProps
+  extends React.HTMLAttributes<HTMLSpanElement>,
     VariantProps<typeof badgeStyles> {}
 
-const Badge = forwardRef<HTMLDivElement, IBadgeProps>(
+const Badge = forwardRef<HTMLSpanElement, IBadgeProps>(
   ({ className, variant, children = 'Badge', size, ...props }, ref) => (
-    <div
+    <span
       className={cn(badgeStyles({ variant, size }), className)}
       ref={ref}
       {...props}
     >
       {children}
-    </div>
+    </span>
   )
 );
 

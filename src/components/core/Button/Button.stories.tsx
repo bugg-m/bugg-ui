@@ -11,16 +11,30 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     variant: {
       control: 'select',
+      options: ['solid', 'outline', 'ghost', 'link'],
+    },
+    colorScheme: {
+      control: 'select',
+      options: ['primary', 'secondary', 'error', 'success', 'warning', 'info'],
+    },
+    tone: {
+      control: 'select',
       options: [
-        'primary',
-        'secondary',
-        'outline',
-        'error',
-        'ghost',
-        'link',
-        'success',
-        'warning',
+        '50',
+        '100',
+        '200',
+        '300',
+        '400',
+        '500',
+        '600',
+        '700',
+        '800',
+        '900',
       ],
+    },
+    rounded: {
+      control: 'select',
+      options: ['sm', 'md', 'lg', 'xl', 'full'],
     },
     size: {
       control: 'select',
@@ -28,9 +42,7 @@ const meta: Meta<typeof Button> = {
     },
     isLoading: { control: 'boolean' },
     loadingText: { control: 'text' },
-    disabled: {
-      control: 'boolean',
-    },
+    disabled: { control: 'boolean' },
     onClick: { action: 'clicked' },
     leftIcon: { control: 'boolean' },
     rightIcon: { control: 'boolean' },
@@ -43,85 +55,7 @@ type Story = StoryObj<typeof Button>;
 export const Default: Story = {
   args: {
     children: 'Button',
-  },
-};
-
-export const Primary: Story = {
-  args: {
-    ...Default.args,
-    variant: 'primary',
-  },
-};
-
-export const Secondary: Story = {
-  args: {
-    ...Default.args,
-    variant: 'secondary',
-  },
-};
-
-export const Outline: Story = {
-  args: {
-    ...Default.args,
-    variant: 'outline',
-  },
-};
-
-export const Destructive: Story = {
-  args: {
-    ...Default.args,
-    variant: 'error',
-  },
-};
-
-export const Ghost: Story = {
-  args: {
-    ...Default.args,
-    variant: 'ghost',
-  },
-};
-
-export const Link: Story = {
-  args: {
-    ...Default.args,
-    variant: 'link',
-  },
-};
-
-export const Success: Story = {
-  args: {
-    ...Default.args,
-    variant: 'success',
-    children: 'Success',
-  },
-};
-
-export const Warning: Story = {
-  args: {
-    ...Default.args,
-    variant: 'warning',
-    children: 'Warning',
-  },
-};
-
-export const Small: Story = {
-  args: {
-    ...Default.args,
-    size: 'sm',
-  },
-};
-
-export const Medium: Story = {
-  args: {
-    ...Default.args,
-    size: 'md',
-  },
-};
-
-export const Large: Story = {
-  args: {
-    ...Default.args,
-    size: 'lg',
+    tone: '500',
   },
 };
 
@@ -132,52 +66,21 @@ export const Disabled: Story = {
   },
 };
 
-export const Loading: Story = {
-  args: {
-    ...Default.args,
-    isLoading: true,
-    loaderColor: 'white',
-  },
-};
-
-export const LoadingWithText: Story = {
-  args: {
-    ...Default.args,
-    isLoading: true,
-    loadingText: 'Processing...',
-    loaderColor: 'white',
-  },
-};
-
-export const LoadingWithoutText: Story = {
-  args: {
-    ...Default.args,
-    isLoading: true,
-    loaderColor: 'white',
-  },
-};
-
-export const WithLeftIcon: Story = {
-  args: {
-    ...Default.args,
-    leftIcon: <Icon icon={icons.mail} iconColor={'default'} />,
-    children: 'Email',
-  },
-};
-
-export const WithRightIcon: Story = {
-  args: {
-    ...Default.args,
-    rightIcon: <Icon icon={icons.next} iconColor={'default'} />,
-    children: 'Next',
-  },
-};
-
-export const IconOnly: Story = {
-  args: {
-    size: 'icon',
-    'aria-label': 'Add item',
-    children: <Icon icon={icons.plus} iconColor={'default'} />,
+export const WithIcon: Story = {
+  render: () => {
+    return (
+      <div className='flex items-center space-x-4'>
+        <Button leftIcon={<Icon icon={icons.mail} iconColor='default' />}>
+          Email
+        </Button>
+        <Button rightIcon={<Icon icon={icons.next} iconColor='default' />}>
+          Next
+        </Button>
+        <Button size='icon' aria-label='Add'>
+          <Icon icon={icons.plus} iconColor='default' />
+        </Button>
+      </div>
+    );
   },
 };
 
@@ -194,7 +97,7 @@ export const ComplexButton: Story = {
     size: 'lg',
     children: (
       <>
-        <Icon icon={icons.mail} className='mr-2' iconColor={'default'} />
+        <Icon icon={icons.mail} className='mr-2' iconColor='primary' />
         <span>Send Newsletter</span>
         <Badge children='91+' variant='notification' />
       </>
@@ -209,10 +112,13 @@ export const ButtonGroup: Story = {
       <Button variant='outline' className='rounded-r-none'>
         Cancel
       </Button>
-      <Button variant='primary' className='rounded-none border-l-0 border-r-0'>
+      <Button
+        colorScheme='primary'
+        className='rounded-none border-l-0 border-r-0'
+      >
         Submit
       </Button>
-      <Button variant='error' className='rounded-l-none'>
+      <Button colorScheme='error' className='rounded-l-none'>
         Delete
       </Button>
     </div>
@@ -222,14 +128,14 @@ export const ButtonGroup: Story = {
 export const AllVariants: Story = {
   render: () => (
     <div className='flex flex-wrap gap-4'>
-      <Button variant='primary'>Primary</Button>
-      <Button variant='secondary'>Secondary</Button>
+      <Button colorScheme='primary'>Primary</Button>
+      <Button colorScheme='secondary'>Secondary</Button>
       <Button variant='outline'>Outline</Button>
-      <Button variant='error'>Destructive</Button>
+      <Button colorScheme='error'>Destructive</Button>
       <Button variant='ghost'>Ghost</Button>
       <Button variant='link'>Link</Button>
-      <Button variant='success'>Success</Button>
-      <Button variant='warning'>Warning</Button>
+      <Button colorScheme='success'>Success</Button>
+      <Button colorScheme='warning'>Warning</Button>
     </div>
   ),
 };
@@ -241,7 +147,7 @@ export const AllSizes: Story = {
       <Button size='md'>Medium</Button>
       <Button size='lg'>Large</Button>
       <Button size='icon' aria-label='Add'>
-        <Icon icon={icons.plus} iconColor={'default'} />
+        <Icon icon={icons.plus} iconColor='default' />
       </Button>
     </div>
   ),
@@ -265,11 +171,11 @@ export const WithTooltip: Story = {
   render: () => (
     <div className='flex items-center justify-center h-32'>
       <Button
-        variant='primary'
+        colorScheme='primary'
         aria-label='Add item'
         title='Add a new item to the list'
       >
-        <Icon icon={icons.plus} iconColor={'default'} />
+        <Icon icon={icons.plus} iconColor='default' />
       </Button>
     </div>
   ),
