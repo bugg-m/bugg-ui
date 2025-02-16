@@ -4,7 +4,7 @@ import { Loader } from '../../feedback/Loader/Loader';
 import { cn } from '@/utils/core-css-utility';
 
 const buttonStyles = cva(
-  'inline-flex items-center justify-center rounded-md text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none select-none whitespace-nowrap shadow-button relative',
+  'inline-flex items-center rounded justify-center text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none select-none whitespace-nowrap shadow-button relative',
   {
     variants: {
       variant: {
@@ -12,6 +12,13 @@ const buttonStyles = cva(
         outline: 'bg-transparent border',
         ghost: 'bg-transparent',
         link: 'bg-transparent underline-offset-4',
+      },
+      rounded: {
+        sm: 'rounded-sm',
+        md: 'rounded-md',
+        lg: 'rounded-lg',
+        xl: 'rounded-xl',
+        full: 'rounded-full',
       },
       colorScheme: {
         primary: '',
@@ -108,6 +115,7 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(
       className,
       variant,
       size,
+      rounded,
       isLoading,
       loadingText,
       leftIcon,
@@ -138,6 +146,7 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(
             size,
             colorScheme,
             tone,
+            rounded,
             fullWidth: props.fullWidth,
           }),
           computedColorClasses,

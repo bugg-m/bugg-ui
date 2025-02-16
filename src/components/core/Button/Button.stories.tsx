@@ -32,6 +32,10 @@ const meta: Meta<typeof Button> = {
         '900',
       ],
     },
+    rounded: {
+      control: 'select',
+      options: ['sm', 'md', 'lg', 'xl', 'full'],
+    },
     size: {
       control: 'select',
       options: ['sm', 'md', 'lg', 'icon'],
@@ -55,88 +59,6 @@ export const Default: Story = {
   },
 };
 
-export const Primary: Story = {
-  args: {
-    ...Default.args,
-    variant: 'solid',
-    colorScheme: 'primary',
-  },
-};
-
-export const Secondary: Story = {
-  args: {
-    ...Default.args,
-    variant: 'solid',
-    colorScheme: 'secondary',
-  },
-};
-
-export const Outline: Story = {
-  args: {
-    ...Default.args,
-    variant: 'outline',
-  },
-};
-
-export const Destructive: Story = {
-  args: {
-    ...Default.args,
-    variant: 'solid',
-    colorScheme: 'error',
-  },
-};
-
-export const Ghost: Story = {
-  args: {
-    ...Default.args,
-    variant: 'ghost',
-  },
-};
-
-export const Link: Story = {
-  args: {
-    ...Default.args,
-    variant: 'link',
-  },
-};
-
-export const Success: Story = {
-  args: {
-    ...Default.args,
-    colorScheme: 'success',
-    children: 'Success',
-  },
-};
-
-export const Warning: Story = {
-  args: {
-    ...Default.args,
-    colorScheme: 'warning',
-    children: 'Warning',
-  },
-};
-
-export const Small: Story = {
-  args: {
-    ...Default.args,
-    size: 'sm',
-  },
-};
-
-export const Medium: Story = {
-  args: {
-    ...Default.args,
-    size: 'md',
-  },
-};
-
-export const Large: Story = {
-  args: {
-    ...Default.args,
-    size: 'lg',
-  },
-};
-
 export const Disabled: Story = {
   args: {
     ...Default.args,
@@ -144,52 +66,21 @@ export const Disabled: Story = {
   },
 };
 
-export const Loading: Story = {
-  args: {
-    ...Default.args,
-    isLoading: true,
-    loaderColor: 'white',
-  },
-};
-
-export const LoadingWithText: Story = {
-  args: {
-    ...Default.args,
-    isLoading: true,
-    loadingText: 'Processing...',
-    loaderColor: 'white',
-  },
-};
-
-export const LoadingWithoutText: Story = {
-  args: {
-    ...Default.args,
-    isLoading: true,
-    loaderColor: 'white',
-  },
-};
-
-export const WithLeftIcon: Story = {
-  args: {
-    ...Default.args,
-    leftIcon: <Icon icon={icons.mail} iconColor='default' />,
-    children: 'Email',
-  },
-};
-
-export const WithRightIcon: Story = {
-  args: {
-    ...Default.args,
-    rightIcon: <Icon icon={icons.next} iconColor='default' />,
-    children: 'Next',
-  },
-};
-
-export const IconOnly: Story = {
-  args: {
-    size: 'icon',
-    'aria-label': 'Add item',
-    children: <Icon icon={icons.plus} iconColor='default' />,
+export const WithIcon: Story = {
+  render: () => {
+    return (
+      <div className='flex items-center space-x-4'>
+        <Button leftIcon={<Icon icon={icons.mail} iconColor='default' />}>
+          Email
+        </Button>
+        <Button rightIcon={<Icon icon={icons.next} iconColor='default' />}>
+          Next
+        </Button>
+        <Button size='icon' aria-label='Add'>
+          <Icon icon={icons.plus} iconColor='default' />
+        </Button>
+      </div>
+    );
   },
 };
 

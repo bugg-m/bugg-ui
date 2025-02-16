@@ -20,9 +20,9 @@ const inputStyles = cva(
       variant: {
         outlined: 'border px-3 py-2 rounded-md bg-transparent',
         filled:
-          'px-3 py-2 bg-secondary-50 focus:bg-secondary-100 border-b border-t-0 border-l-0 border-r-0 rounded-t-md',
+          'px-3 py-2 bg-secondary-50 focus:bg-secondary-100 border-b-2 border-t-0 border-l-0 border-r-0 rounded-t-md',
         standard:
-          'px-3 py-2 bg-transparent border-b border-t-0 border-l-0 border-r-0 rounded-none',
+          'px-3 py-2 bg-transparent border-b-2 border-t-0 border-l-0 border-r-0 rounded-none',
       },
       inputSize: {
         sm: 'text-sm',
