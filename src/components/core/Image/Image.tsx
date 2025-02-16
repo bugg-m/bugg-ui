@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useState } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '@/utils/core-css-utility';
 
@@ -7,6 +7,7 @@ interface ImageProps
     VariantProps<typeof imageStyles> {
   src: string;
   alt: string;
+  fallbackSrc?: string;
 }
 
 const imageStyles = cva('object-cover', {
@@ -41,12 +42,34 @@ const imageStyles = cva('object-cover', {
 });
 
 const Image = forwardRef<HTMLImageElement, ImageProps>(
-  ({ src, alt, className, size, shape, backgroundColor, ...props }, ref) => {
+  (
+    {
+      src,
+      alt,
+      fallbackSrc,
+      className,
+      size,
+      shape,
+      backgroundColor,
+      ...props
+    },
+    ref
+  ) => {
+    const [imgSrc, setImgSrc] = useState(src);
+
+    const handleError = () => {
+      if (fallbackSrc) {
+        setImgSrc(fallbackSrc);
+      }
+    };
+
     return (
       <img
         ref={ref}
-        src={src}
+        src={imgSrc}
         alt={alt}
+        loading='lazy'
+        onError={handleError}
         className={cn(imageStyles({ size, shape, backgroundColor }), className)}
         {...props}
       />
