@@ -6,6 +6,12 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 export default {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   darkMode: ['class', '[data-mode="dark"]'],
+  safelist: [
+    {
+      pattern:
+        /^(bg|text|border|hover:bg|focus-visible:ring)-(primary|secondary|error|success|warning|info)-(50|100|200|300|400|500|600|700|800|900)$/,
+    },
+  ],
   theme: {
     screens: {
       df: '0px',

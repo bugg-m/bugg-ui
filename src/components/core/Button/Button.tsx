@@ -8,21 +8,18 @@ const buttonStyles = cva(
   {
     variants: {
       variant: {
-        primary:
-          'bg-primary-500 text-white hover:bg-primary-600 focus-visible:ring-primary-400',
-        secondary:
-          'bg-secondary-500 text-white hover:bg-secondary-600 focus-visible:ring-secondary-400',
-        outline:
-          'border border-secondary-500 bg-white text-secondary-700 hover:bg-secondary-100 focus-visible:ring-secondary-500',
-        error:
-          'bg-error-500 text-white hover:bg-error-600 focus-visible:ring-error-400',
-        ghost:
-          'text-secondary-700 hover:bg-secondary-100 focus-visible:ring-secondary-500',
-        link: 'text-primary-500 underline-offset-4 hover:underline focus-visible:ring-primary-400',
-        success:
-          'bg-success-500 text-white hover:bg-success-600 focus-visible:ring-success-400',
-        warning:
-          'bg-warning-500 text-white hover:bg-warning-600 focus-visible:ring-warning-400',
+        solid: '',
+        outline: 'bg-transparent border',
+        ghost: 'bg-transparent',
+        link: 'bg-transparent underline-offset-4',
+      },
+      colorScheme: {
+        primary: '',
+        secondary: '',
+        error: '',
+        success: '',
+        warning: '',
+        info: '',
       },
       size: {
         sm: 'h-8 px-3 py-1 text-xs',
@@ -33,33 +30,24 @@ const buttonStyles = cva(
       fullWidth: {
         true: 'w-full',
       },
+      tone: {
+        '50': '',
+        '100': '',
+        '200': '',
+        '300': '',
+        '400': '',
+        '500': '',
+        '600': '',
+        '700': '',
+        '800': '',
+        '900': '',
+      },
     },
-    compoundVariants: [
-      {
-        variant: 'outline',
-        className: 'hover:bg-secondary-100 hover:text-secondary-700',
-      },
-      {
-        variant: ['ghost', 'link'],
-        className: 'shadow-none hover:bg-transparent',
-      },
-      {
-        size: 'sm',
-        className: 'rounded',
-      },
-      {
-        size: 'lg',
-        className: 'rounded-lg',
-      },
-      {
-        variant: 'primary',
-        size: 'icon',
-        className: 'bg-primary-500 text-white hover:bg-primary-600 p-0',
-      },
-    ],
     defaultVariants: {
-      variant: 'primary',
+      variant: 'solid',
+      colorScheme: 'primary',
       size: 'md',
+      tone: '500',
     },
   }
 );
@@ -82,6 +70,38 @@ interface IButtonProps
   disabled?: boolean;
 }
 
+const computeTone = (
+  tone: number,
+  adjustment: number,
+  min: number,
+  max: number
+) => {
+  const newTone = tone + adjustment;
+  if (newTone < min) return min;
+  if (newTone > max) return max;
+  return newTone;
+};
+
+const getVariantColorClasses = (
+  variant: string,
+  colorScheme: string,
+  tone: string
+) => {
+  const toneNum = parseInt(tone, 10);
+  if (variant === 'solid') {
+    const hoverTone = computeTone(toneNum, 100, 50, 900);
+    const ringTone = computeTone(toneNum, -100, 50, 900);
+    return `bg-${colorScheme}-${tone} text-white hover:bg-${colorScheme}-${hoverTone} focus-visible:ring-${colorScheme}-${ringTone}`;
+  } else if (variant === 'outline') {
+    return `border-${colorScheme}-${tone} text-${colorScheme}-${tone} hover:bg-${colorScheme}-50 focus-visible:ring-${colorScheme}-${tone}`;
+  } else if (variant === 'ghost') {
+    return `text-${colorScheme}-${tone} hover:bg-${colorScheme}-50 focus-visible:ring-${colorScheme}-${tone}`;
+  } else if (variant === 'link') {
+    return `text-${colorScheme}-${tone} hover:underline`;
+  }
+  return '';
+};
+
 const Button = forwardRef<HTMLButtonElement, IButtonProps>(
   (
     {
@@ -96,16 +116,31 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(
       loaderColor = 'white',
       type = 'button',
       disabled,
+      colorScheme,
+      tone,
       ...props
     },
     ref
   ) => {
+    const computedColorClasses = getVariantColorClasses(
+      variant || 'solid',
+      colorScheme || 'primary',
+      tone || '500'
+    );
+
     const loaderSize = size === 'sm' ? 'sm' : size === 'lg' ? 'lg' : 'md';
 
     return (
       <button
         className={cn(
-          buttonStyles({ variant, size }),
+          buttonStyles({
+            variant,
+            size,
+            colorScheme,
+            tone,
+            fullWidth: props.fullWidth,
+          }),
+          computedColorClasses,
           isLoading
             ? 'cursor-wait'
             : disabled
