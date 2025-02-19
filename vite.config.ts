@@ -4,15 +4,17 @@ import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import svgr from 'vite-plugin-svgr';
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
+    svgr({ include: /\.svg$/ }),
     dts({ rollupTypes: true, exclude: ['**/*.stories.tsx'] }),
     tsconfigPaths(),
-    svgr({ include: /\.svg$/ }),
   ],
   build: {
+    sourcemap: false,
     lib: {
       entry: path.resolve(__dirname, './src/main.ts'),
       name: 'BuggUi',

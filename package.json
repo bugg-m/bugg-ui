@@ -1,6 +1,6 @@
 {
   "name": "@bugg-m/bugg-ui",
-  "version": "2.2.1",
+  "version": "2.2.5",
   "publishConfig": {
     "access": "public"
   },
@@ -18,8 +18,10 @@
   },
   "exports": {
     ".": {
+      "types": "./dist/bugg-ui.d.ts",
+      "require": "./dist/bugg-ui-umd.cjs",
       "import": "./dist/bugg-ui.js",
-      "require": "./dist/bugg-ui-umd.cjs"
+      "default": "./dist/bugg-ui.js"
     },
     "./style.css": "./dist/style.css"
   },
@@ -34,7 +36,14 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "build-all": "yarn build && yarn build-storybook",
-    "prepublishOnly": "yarn build"
+    "prepublishOnly": "yarn build",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "class-variance-authority": "^0.7.0",
@@ -70,6 +79,8 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "eslint-plugin-storybook": "^0.11.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
     "postcss": "^8.4.38",
     "prettier": "^3.3.2",
     "storybook": "^8.5.5",
