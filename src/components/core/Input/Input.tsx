@@ -3,6 +3,7 @@ import { cn } from '@/utils/core-css-utility';
 import { VariantProps, cva } from 'class-variance-authority';
 import icons from '@/constants/icons';
 import { Icon } from '../Icon/Icon';
+import { Button } from '@/main';
 
 const labelTextStyles: Record<string, string> = {
   primary: 'text-primary-400 peer-focus:text-primary-600',
@@ -86,7 +87,9 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     const passwordToggleButton = useMemo(() => {
       if (type !== 'password') return null;
       return (
-        <button
+        <Button
+          size='icon'
+          variant='ghost'
           type='button'
           className='absolute inset-y-0 right-0 flex items-center pr-3'
           onClick={() => setShowPassword((prev) => !prev)}
@@ -98,7 +101,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           ) : (
             <Icon icon={icons.eyeOff} />
           )}
-        </button>
+        </Button>
       );
     }, [type, showPassword, disabled]);
 

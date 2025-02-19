@@ -95,27 +95,25 @@ const Text = forwardRef<HTMLElement, ITextProps>(
       ...props
     },
     ref
-  ) => {
-    return (
-      <Component
-        ref={ref}
-        className={cn(
-          textStyles({
-            textColors,
-            size,
-            weight,
-            align,
-            transform,
-            italic,
-            underline,
-            lineClamp,
-          }),
-          className
-        )}
-        {...props}
-      />
-    );
-  }
+  ) => (
+    <Component
+      ref={ref}
+      className={cn(
+        textStyles({
+          textColors,
+          size,
+          weight,
+          align,
+          transform,
+          italic,
+          underline,
+          lineClamp,
+        }),
+        className
+      )}
+      {...props}
+    />
+  )
 );
 
 Text.displayName = 'Text';

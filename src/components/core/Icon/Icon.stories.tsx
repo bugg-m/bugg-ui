@@ -20,13 +20,22 @@ const meta: Meta<typeof Icon> = {
         'success',
         'warning',
         'error',
+        'info',
       ],
     },
     backgroundColor: {
       control: 'select',
-      options: ['none', 'primary', 'secondary', 'success', 'warning', 'error'],
+      options: [
+        'none',
+        'primary',
+        'secondary',
+        'success',
+        'warning',
+        'error',
+        'info',
+      ],
     },
-    shape: {
+    rounded: {
       control: 'select',
       options: ['none', 'sm', 'md', 'lg', 'full'],
     },
@@ -36,10 +45,9 @@ const meta: Meta<typeof Icon> = {
   },
   args: {
     icon: icons.circleClose,
-    size: 'md',
     iconColor: 'primary',
     backgroundColor: 'none',
-    shape: 'none',
+    rounded: 'none',
   },
 };
 
@@ -55,16 +63,16 @@ export const Default: Story = {
 export const Colored: Story = {
   args: {
     icon: icons.circleClose,
-    iconColor: 'primary',
+    iconColor: 'success',
     backgroundColor: 'none',
-    shape: 'full',
+    rounded: 'full',
   },
 };
 
 export const LargeIcon: Story = {
   args: {
     icon: icons.circleClose,
-    size: 'xl',
+    size: 'lg',
     iconColor: 'success',
   },
 };
@@ -73,9 +81,8 @@ export const Interactive: Story = {
   render: (args) => <Icon {...args} />,
   args: {
     icon: icons.circleClose,
-    size: 'md',
-    iconColor: 'secondary',
-    backgroundColor: 'secondary',
-    shape: 'full',
+    iconColor: 'success',
+    backgroundColor: 'success',
+    rounded: 'full',
   },
 };

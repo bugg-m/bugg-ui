@@ -67,7 +67,7 @@ const Image = forwardRef<HTMLImageElement, ImageProps>(
       <img
         ref={ref}
         src={imgSrc}
-        alt={alt}
+        alt={alt.replace(' ', '-')}
         loading='lazy'
         onError={handleError}
         className={cn(imageStyles({ size, shape, backgroundColor }), className)}

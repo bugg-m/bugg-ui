@@ -3,61 +3,52 @@ import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '@/utils/core-css-utility';
 import { Icon } from '@/components/core/Icon/Icon';
 import icons from '@/constants/icons';
-const alertStyles = cva(
-  'flex items-start justify-center p-4 gap-2 rounded-lg',
-  {
-    variants: {
-      variant: {
-        primary: 'bg-primary-50 text-primary-800',
-        info: 'bg-info-50 text-info-800',
-        success: 'bg-success-50 text-success-800',
-        warning: 'bg-warning-50 text-warning-800',
-        error: 'bg-error-50 text-error-800',
-        secondary: 'bg-secondary-50 text-secondary-800',
-      },
-      size: {
-        sm: 'text-sm',
-        md: 'text-base',
-        lg: 'text-lg',
-      },
-    },
-    defaultVariants: {
-      variant: 'info',
-      size: 'md',
-    },
-  }
-);
+import { Button } from '@/main';
 
-const alertButtonStyles = cva(
-  'ms-auto -mx-1.5 -my-1.5 rounded-full p-1.5 inline-flex items-center justify-center h-8 w-8 focus:outline-none',
-  {
-    variants: {
-      variant: {
-        primary: 'bg-primary-50 text-primary-500 hover:bg-primary-200 ',
-        secondary: 'bg-secondary-50 text-secondary-500 hover:bg-secondary-200 ',
-        warning: 'bg-warning-50 text-warning-500 hover:bg-warning-200 ',
-        success: 'bg-success-50 text-success-500 hover:bg-success-200 ',
-        error: 'bg-error-50 text-error-500 hover:bg-error-200 ',
-        info: 'bg-info-50 text-info-500 hover:bg-info-200 ',
-      },
-    },
-  }
-);
-
-const textStyles = cva('', {
+const alertStyles = cva('flex items-start justify-center p-4 rounded-lg', {
   variants: {
-    titleText: {
+    variant: {
+      solid: '',
+      outline: 'bg-transparent border',
+      filled: 'bg-transparent',
+    },
+    colorScheme: {
+      primary: '',
+      secondary: '',
+      error: '',
+      success: '',
+      warning: '',
+      info: '',
+    },
+    size: {
       sm: 'text-sm',
       md: 'text-base',
       lg: 'text-lg',
     },
-    subtitleText: {
-      sm: 'text-xs',
-      md: 'text-sm',
-      lg: 'text-base',
-    },
+  },
+  defaultVariants: {
+    variant: 'filled',
+    colorScheme: 'primary',
+    size: 'md',
   },
 });
+
+const titleText = {
+  sm: 'text-sm',
+  md: 'text-base',
+  lg: 'text-lg',
+};
+const subtitleText = {
+  sm: 'text-xs',
+  md: 'text-sm',
+  lg: 'text-base',
+};
+
+const iconSize = {
+  sm: 'w-6 h-6 mr-1',
+  md: 'w-7 h-7 mr-1.5',
+  lg: 'w-8 h-8 mr-2',
+};
 
 interface IAlertProps
   extends React.HTMLAttributes<HTMLDivElement>,
@@ -71,10 +62,21 @@ interface IAlertProps
 }
 
 const Icons = {
-  success: <Icon icon={icons.circleCheck} size='md' />,
-  error: <Icon icon={icons.circleClose} size='md' />,
-  info: <Icon icon={icons.circleAlert} size='md' />,
-  warning: <Icon icon={icons.triangleAlert} size='md' />,
+  success: icons.circleCheck,
+  error: icons.circleClose,
+  info: icons.circleAlert,
+  warning: icons.triangleAlert,
+};
+
+const getVariantColorClasses = (variant: string, colorScheme: string) => {
+  if (variant === 'filled') {
+    return `bg-${colorScheme}-500 text-white`;
+  } else if (variant === 'outline') {
+    return `border-${colorScheme}-400 text-${colorScheme}-700`;
+  } else if (variant === 'solid') {
+    return `bg-${colorScheme}-50 text-${colorScheme}-700`;
+  }
+  return '';
 };
 
 const Alert = forwardRef<HTMLDivElement, IAlertProps>(
@@ -86,38 +88,43 @@ const Alert = forwardRef<HTMLDivElement, IAlertProps>(
       dismissible = false,
       onDismiss,
       listItems,
+      colorScheme,
       variant,
-      size,
+      size = 'md',
       ...props
     },
     ref
   ) => {
+    const computedColorClasses = getVariantColorClasses(
+      variant || 'solid',
+      colorScheme || 'primary'
+    );
+    const textSize = size ?? 'md';
     return (
-      <div className={cn(alertStyles({ variant, size }))} ref={ref} {...props}>
+      <div
+        className={cn(alertStyles({ variant, size }), computedColorClasses)}
+        ref={ref}
+        {...props}
+      >
         {icon && (
-          <span className='mt-0.5' role='icon'>
-            {Icons[icon]}
-          </span>
+          <Icon
+            icon={Icons[icon]}
+            iconColor={icon}
+            className={`${iconSize[textSize]}`}
+          />
         )}
         <div className='flex-1'>
           {title && (
-            <h3 className={cn(textStyles({ titleText: size }), 'font-medium')}>
-              {title}
-            </h3>
+            <h3 className={`${titleText[textSize]} font-medium`}>{title}</h3>
           )}
           {subtitle && (
-            <p
-              className={cn(textStyles({ subtitleText: size }), 'font-normal')}
-            >
+            <p className={`${subtitleText[textSize]} font-normal`}>
               {subtitle}
             </p>
           )}
           {listItems && (
             <ul
-              className={cn(
-                textStyles({ subtitleText: size }),
-                'font-normal list-disc pl-5 mt-0.5'
-              )}
+              className={`${subtitleText[textSize]} font-normal list-disc pl-5 mt-0.5`}
             >
               {listItems.map((item, index) => (
                 <li key={index}>{item}</li>
@@ -126,13 +133,14 @@ const Alert = forwardRef<HTMLDivElement, IAlertProps>(
           )}
         </div>
         {dismissible && (
-          <button
+          <Button
+            variant='link'
+            size='icon'
             onClick={onDismiss}
-            className={cn(alertButtonStyles({ variant }))}
             aria-label='Dismiss alert'
           >
-            <Icon icon={icons.close} size='md' />
-          </button>
+            <Icon icon={icons.close} size='md' iconColor={colorScheme} />
+          </Button>
         )}
       </div>
     );

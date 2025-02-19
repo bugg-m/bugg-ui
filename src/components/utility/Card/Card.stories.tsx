@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { Card, type ICardProps } from './Card';
+import { Button } from '@/main';
 
 const meta: Meta<typeof Card> = {
   title: 'Utility/Card',
@@ -154,9 +155,7 @@ export const ComplexContent: Story = {
       <p className='mb-4'>
         This is some content inside the card. It can be as complex as needed.
       </p>
-      <button className='bg-blue-500 text-white px-4 py-2 rounded'>
-        Action
-      </button>
+      <Button colorScheme='primary'>Action</Button>
     </Card>
   ),
 };

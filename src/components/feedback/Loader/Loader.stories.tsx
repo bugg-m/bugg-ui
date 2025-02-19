@@ -100,12 +100,3 @@ export const AllSizes: Story = {
     </div>
   ),
 };
-
-export const InButton: Story = {
-  render: () => (
-    <button className='px-4 py-2 bg-blue-500 text-white rounded flex items-center space-x-2'>
-      <span>Loading</span>
-      <Loader size='sm' color='white' />
-    </button>
-  ),
-};

@@ -4,6 +4,7 @@ import { cn } from '@/utils/core-css-utility';
 import { cva, VariantProps } from 'class-variance-authority';
 import { Icon } from '@/components/core/Icon/Icon';
 import icons from '@/constants/icons';
+import { Button } from '@/main';
 
 const toastStyles = cva(
   'flex items-center gap-3 px-4 py-3 rounded-md shadow-lg',
@@ -120,15 +121,16 @@ const ToastItem = forwardRef<HTMLDivElement, IToastItemProps>(
         className={cn(toastStyles({ variant, size }))}
         role='alert'
       >
-        <div>{message}</div>
+        <p>{message}</p>
         {dismissible && (
-          <button
-            className='ml-auto text-secondary-600 hover:text-secondary-800'
+          <Button
+            variant='link'
+            className='ml-auto'
             onClick={() => onRemove(id)}
             aria-label='Dismiss'
           >
-            <Icon icon={icons.close} />
-          </button>
+            <Icon icon={icons.close} iconColor={variant} />
+          </Button>
         )}
       </div>
     );
