@@ -102,7 +102,7 @@ const SingleSelect = forwardRef<HTMLSelectElement, ISingleSelectProps>(
         >
           <span>{selectedLabel || placeholder || 'Select an option'}</span>
           <Icon
-            icon={icons.arrowDown}
+            src={icons.arrowDown}
             className={cn('transition-transform', {
               'rotate-180': isOpen,
             })}
@@ -127,7 +127,7 @@ const SingleSelect = forwardRef<HTMLSelectElement, ISingleSelectProps>(
                 {option.label}
                 {selectedOption === option.value && (
                   <Icon
-                    icon={icons.check}
+                    src={icons.check}
                     className='ml-auto text-primary-600'
                   />
                 )}

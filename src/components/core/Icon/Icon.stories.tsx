@@ -39,12 +39,12 @@ const meta: Meta<typeof Icon> = {
       control: 'select',
       options: ['none', 'sm', 'md', 'lg', 'full'],
     },
-    icon: {
+    src: {
       control: 'text',
     },
   },
   args: {
-    icon: icons.circleClose,
+    src: icons.circleClose,
     iconColor: 'primary',
     backgroundColor: 'none',
     rounded: 'none',
@@ -56,13 +56,13 @@ type Story = StoryObj<typeof Icon>;
 
 export const Default: Story = {
   args: {
-    icon: icons.circleClose,
+    src: icons.circleClose,
   },
 };
 
 export const Colored: Story = {
   args: {
-    icon: icons.circleClose,
+    src: icons.circleClose,
     iconColor: 'success',
     backgroundColor: 'none',
     rounded: 'full',
@@ -71,7 +71,7 @@ export const Colored: Story = {
 
 export const LargeIcon: Story = {
   args: {
-    icon: icons.circleClose,
+    src: icons.circleClose,
     size: 'lg',
     iconColor: 'success',
   },
@@ -80,7 +80,7 @@ export const LargeIcon: Story = {
 export const Interactive: Story = {
   render: (args) => <Icon {...args} />,
   args: {
-    icon: icons.circleClose,
+    src: icons.circleClose,
     iconColor: 'success',
     backgroundColor: 'success',
     rounded: 'full',

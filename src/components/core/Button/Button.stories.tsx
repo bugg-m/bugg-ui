@@ -70,14 +70,14 @@ export const WithIcon: Story = {
   render: () => {
     return (
       <div className='flex items-center space-x-4'>
-        <Button leftIcon={<Icon icon={icons.mail} iconColor='default' />}>
+        <Button leftIcon={<Icon src={icons.mail} iconColor='default' />}>
           Email
         </Button>
-        <Button rightIcon={<Icon icon={icons.next} iconColor='default' />}>
+        <Button rightIcon={<Icon src={icons.next} iconColor='default' />}>
           Next
         </Button>
         <Button size='icon' aria-label='Add'>
-          <Icon icon={icons.plus} iconColor='default' />
+          <Icon src={icons.plus} iconColor='default' />
         </Button>
       </div>
     );
@@ -97,7 +97,7 @@ export const ComplexButton: Story = {
     size: 'lg',
     children: (
       <>
-        <Icon icon={icons.mail} className='mr-2' iconColor='primary' />
+        <Icon src={icons.mail} className='mr-2' iconColor='primary' />
         <span>Send Newsletter</span>
         <Badge children='91+' variant='notification' />
       </>
@@ -147,7 +147,7 @@ export const AllSizes: Story = {
       <Button size='md'>Medium</Button>
       <Button size='lg'>Large</Button>
       <Button size='icon' aria-label='Add'>
-        <Icon icon={icons.plus} iconColor='default' />
+        <Icon src={icons.plus} iconColor='default' />
       </Button>
     </div>
   ),
@@ -175,7 +175,7 @@ export const WithTooltip: Story = {
         aria-label='Add item'
         title='Add a new item to the list'
       >
-        <Icon icon={icons.plus} iconColor='default' />
+        <Icon src={icons.plus} iconColor='default' />
       </Button>
     </div>
   ),

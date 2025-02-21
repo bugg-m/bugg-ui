@@ -97,9 +97,9 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           disabled={disabled}
         >
           {showPassword ? (
-            <Icon icon={icons.eye} />
+            <Icon src={icons.eye} />
           ) : (
-            <Icon icon={icons.eyeOff} />
+            <Icon src={icons.eyeOff} />
           )}
         </Button>
       );

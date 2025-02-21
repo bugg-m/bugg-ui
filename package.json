@@ -46,9 +46,10 @@
     ]
   },
   "dependencies": {
+    "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "tailwind-merge": "^2.3.0",
-    "class-variance-authority": "^0.7.0"
+    "react-inlinesvg": "^4.2.0",
+    "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.4",
@@ -88,7 +89,6 @@
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
     "vite-plugin-dts": "^3.9.1",
-    "vite-plugin-svgr": "^4.3.0",
     "vite-tsconfig-paths": "^4.3.2"
   },
   "peerDependencies": {

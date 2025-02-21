@@ -221,7 +221,7 @@ const DatePicker = forwardRef<HTMLDivElement, IDatePickerProps>(
           className={cn(datePickerWrapperStyles({ variant }))}
           onClick={() => setIsOpen(!isOpen)}
         >
-          <Icon icon={icons.calender} className='text-secondary-500 mr-2' />
+          <Icon src={icons.calender} className='text-secondary-500 mr-2' />
           <span className='text-text dark:text-text-dark'>
             {selectedDate
               ? Array.isArray(selectedDate)
@@ -234,12 +234,12 @@ const DatePicker = forwardRef<HTMLDivElement, IDatePickerProps>(
           <div className='absolute top-full mt-2 w-64 bg-background dark:bg-background-dark rounded-lg shadow-lg z-10'>
             <div className='flex justify-between items-center p-2 border-b border-secondary'>
               <Icon
-                icon={icons.arrowsLeft}
+                src={icons.arrowsLeft}
                 className='text-secondary-500 cursor-pointer'
                 onClick={() => changeYear(-1)}
               />
               <Icon
-                icon={icons.arrowLeft}
+                src={icons.arrowLeft}
                 className='text-secondary-500 cursor-pointer'
                 onClick={() => changeMonth(-1)}
               />
@@ -250,12 +250,12 @@ const DatePicker = forwardRef<HTMLDivElement, IDatePickerProps>(
                 })}
               </span>
               <Icon
-                icon={icons.arrowRight}
+                src={icons.arrowRight}
                 className='text-secondary-500 cursor-pointer'
                 onClick={() => changeMonth(1)}
               />
               <Icon
-                icon={icons.arrowsRight}
+                src={icons.arrowsRight}
                 className='text-secondary-500 cursor-pointer'
                 onClick={() => changeYear(1)}
               />

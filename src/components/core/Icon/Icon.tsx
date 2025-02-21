@@ -1,14 +1,15 @@
 import React from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '@/utils/core-css-utility';
+import SVG, { Props } from 'react-inlinesvg';
 
-interface IconProps
-  extends React.SVGProps<SVGSVGElement>,
-    VariantProps<typeof iconStyles> {
-  icon: React.FC<React.SVGProps<SVGSVGElement>>;
+type CombinedSVGProps = Omit<Props, 'src'> & React.SVGProps<SVGSVGElement>;
+
+interface IconProps extends CombinedSVGProps, VariantProps<typeof iconStyles> {
+  src: React.FC<React.SVGProps<SVGSVGElement>> | string;
 }
 
-const iconStyles = cva('stroke-current fill-none  p-1', {
+const iconStyles = cva('stroke-current fill-none p-1', {
   variants: {
     rounded: {
       none: '',
@@ -46,32 +47,29 @@ const iconStyles = cva('stroke-current fill-none  p-1', {
     size: 'sm',
     iconColor: 'secondary',
     backgroundColor: 'none',
-    rounded: 'full',
+    rounded: 'none',
   },
 });
 
 const Icon = React.forwardRef<SVGSVGElement, IconProps>(
   (
-    {
-      icon: SvgIcon,
-      size,
-      className,
-      iconColor,
-      rounded,
-      backgroundColor,
-      ...props
-    },
+    { src, size, className, iconColor, rounded, backgroundColor, ...props },
     ref
-  ) => (
-    <SvgIcon
-      className={cn(
-        iconStyles({ iconColor, size, rounded, backgroundColor }),
-        className
-      )}
-      ref={ref}
-      {...props}
-    />
-  )
+  ) => {
+    const combinedClassName = cn(
+      iconStyles({ iconColor, size, rounded, backgroundColor }),
+      className
+    );
+
+    if (typeof src === 'string') {
+      return (
+        <SVG src={src as string} className={combinedClassName} {...props} />
+      );
+    } else {
+      const SvgIcon = src as React.FC<React.SVGProps<SVGSVGElement>>;
+      return <SvgIcon className={combinedClassName} ref={ref} {...props} />;
+    }
+  }
 );
 
 Icon.displayName = 'Icon';

@@ -3,13 +3,11 @@ import path from 'path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import svgr from 'vite-plugin-svgr';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    svgr({ include: /\.svg$/ }),
     dts({ rollupTypes: true, exclude: ['**/*.stories.tsx'] }),
     tsconfigPaths(),
   ],

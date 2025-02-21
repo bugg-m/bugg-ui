@@ -108,7 +108,7 @@ const Alert = forwardRef<HTMLDivElement, IAlertProps>(
       >
         {icon && (
           <Icon
-            icon={Icons[icon]}
+            src={Icons[icon]}
             iconColor={icon}
             className={`${iconSize[textSize]}`}
           />
@@ -139,7 +139,7 @@ const Alert = forwardRef<HTMLDivElement, IAlertProps>(
             onClick={onDismiss}
             aria-label='Dismiss alert'
           >
-            <Icon icon={icons.close} size='md' iconColor={colorScheme} />
+            <Icon src={icons.close} size='md' iconColor={colorScheme} />
           </Button>
         )}
       </div>

@@ -1,7 +1,6 @@
 import type { StorybookConfig } from '@storybook/react-vite';
 import path from 'path';
 import tsConfigPaths from 'vite-tsconfig-paths';
-import svgr from 'vite-plugin-svgr';
 
 const dir = import.meta.dirname ?? __dirname;
 
@@ -26,7 +25,6 @@ const config: StorybookConfig = {
         projects: [path.resolve(path.dirname(dir), 'tsconfig.json')],
       })
     );
-    config.plugins?.push(svgr());
     return config;
   },
 };

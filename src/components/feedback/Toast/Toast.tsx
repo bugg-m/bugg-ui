@@ -129,7 +129,7 @@ const ToastItem = forwardRef<HTMLDivElement, IToastItemProps>(
             onClick={() => onRemove(id)}
             aria-label='Dismiss'
           >
-            <Icon icon={icons.close} iconColor={variant} />
+            <Icon src={icons.close} iconColor={variant} />
           </Button>
         )}
       </div>

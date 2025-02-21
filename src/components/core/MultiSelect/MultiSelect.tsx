@@ -158,7 +158,7 @@ const MultiSelect = forwardRef<HTMLSelectElement, IMultiSelectProps>(
                 >
                   {option?.label}
                   <Icon
-                    icon={icons.close}
+                    src={icons.close}
                     className='ml-1 cursor-pointer'
                     onClick={(e) => {
                       e.stopPropagation();
@@ -174,7 +174,7 @@ const MultiSelect = forwardRef<HTMLSelectElement, IMultiSelectProps>(
             </span>
           )}
           <Icon
-            icon={icons.arrowDown}
+            src={icons.arrowDown}
             className={cn('ml-auto transition-transform', {
               'rotate-180': isOpen,
             })}
@@ -208,7 +208,7 @@ const MultiSelect = forwardRef<HTMLSelectElement, IMultiSelectProps>(
                 {option.label}
                 {selectedOptions.includes(option.value) && (
                   <Icon
-                    icon={icons.check}
+                    src={icons.check}
                     className={cn(
                       colorStyles({ textColors: variant }),
                       'ml-auto'
