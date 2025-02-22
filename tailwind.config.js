@@ -4,14 +4,8 @@ import aspectRatio from '@tailwindcss/aspect-ratio';
 import defaultTheme from 'tailwindcss/defaultTheme';
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./src/components/**/*.{js,ts,jsx,tsx}'],
+  content: ['./src/components/**/*.{ts,tsx}'],
   darkMode: ['class', '[data-mode="dark"]'],
-  safelist: [
-    {
-      pattern:
-        /^(bg|text|border|hover:bg|focus-visible:ring)-(primary|secondary|error|success|warning|info)-(50|100|200|300|400|500|600|700|800|900)$/,
-    },
-  ],
   theme: {
     screens: {
       df: '0px',

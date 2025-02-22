@@ -14,7 +14,7 @@ const meta: Meta<typeof Image> = {
       control: 'select',
       options: ['none', 'primary', 'secondary', 'success', 'warning', 'error'],
     },
-    shape: {
+    rounded: {
       control: 'select',
       options: ['none', 'sm', 'md', 'lg', 'full'],
     },
@@ -29,7 +29,7 @@ const meta: Meta<typeof Image> = {
     src: 'https://avatars.githubusercontent.com/u/75472873?s=96&v=4',
     alt: 'github avatar',
     size: 'md',
-    shape: 'none',
+    rounded: 'none',
     backgroundColor: 'none',
   },
 };
@@ -51,7 +51,7 @@ export const Rounded: Story = {
     src,
     alt: 'github avatar',
     backgroundColor: 'none',
-    shape: 'full',
+    rounded: 'full',
   },
 };
 
@@ -78,6 +78,6 @@ export const Custom: Story = {
     alt: 'github avatar',
     size: 'md',
     backgroundColor: 'secondary',
-    shape: 'full',
+    rounded: 'full',
   },
 };

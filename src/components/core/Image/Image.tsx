@@ -10,7 +10,7 @@ interface ImageProps
   fallbackSrc?: string;
 }
 
-const imageStyles = cva('object-cover', {
+const imageStyles = cva('object-contain', {
   variants: {
     size: {
       sm: 'w-8 h-8',
@@ -18,7 +18,7 @@ const imageStyles = cva('object-cover', {
       lg: 'w-16 h-16',
       xl: 'w-20 h-20',
     },
-    shape: {
+    rounded: {
       none: '',
       sm: 'rounded-sm',
       md: 'rounded-md',
@@ -36,7 +36,7 @@ const imageStyles = cva('object-cover', {
   },
   defaultVariants: {
     size: 'md',
-    shape: 'none',
+    rounded: 'none',
     backgroundColor: 'none',
   },
 });
@@ -49,7 +49,7 @@ const Image = forwardRef<HTMLImageElement, ImageProps>(
       fallbackSrc,
       className,
       size,
-      shape,
+      rounded,
       backgroundColor,
       ...props
     },
@@ -70,7 +70,10 @@ const Image = forwardRef<HTMLImageElement, ImageProps>(
         alt={alt.replace(' ', '-')}
         loading='lazy'
         onError={handleError}
-        className={cn(imageStyles({ size, shape, backgroundColor }), className)}
+        className={cn(
+          imageStyles({ size, rounded, backgroundColor }),
+          className
+        )}
         {...props}
       />
     );
