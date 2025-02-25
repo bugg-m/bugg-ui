@@ -73,7 +73,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, ITextAreaProps>(
                 colorScheme
                   ? labelTextStyles[colorScheme]
                   : 'text-secondary-500',
-                'mb-1 peer-focus-within:bg-white font-medium origin-[0] peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 absolute left-1 top-2 z-10 -translate-y-4 scale-75 transform cursor-text select-none px-2 text-xs duration-300'
+                'mb-1 peer-focus-within:bg-white font-medium origin-[0] peer-placeholder-shown:top-1/4 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 absolute left-1 top-2 z-10 -translate-y-4 scale-75 transform cursor-text select-none px-2 text-xs duration-300'
               )}
               htmlFor={props.id}
             >

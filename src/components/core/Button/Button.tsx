@@ -100,9 +100,9 @@ const getVariantColorClasses = (
     const ringTone = computeTone(toneNum, -100, 50, 900);
     return `bg-${colorScheme}-${tone} text-white hover:bg-${colorScheme}-${hoverTone} focus-visible:ring-${colorScheme}-${ringTone}`;
   } else if (variant === 'outline') {
-    return `border-${colorScheme}-${tone} text-${colorScheme}-${tone} hover:bg-${colorScheme}-50 focus-visible:ring-${colorScheme}-${tone}`;
+    return `border-${colorScheme}-${tone} text-${colorScheme}-${tone} hover:bg-${colorScheme}-100 focus-visible:ring-${colorScheme}-${tone}`;
   } else if (variant === 'ghost') {
-    return `text-${colorScheme}-${tone} hover:bg-${colorScheme}-50 focus-visible:ring-${colorScheme}-${tone}`;
+    return `text-${colorScheme}-${tone} hover:bg-${colorScheme}-100 focus-visible:ring-${colorScheme}-${tone}`;
   } else if (variant === 'link') {
     return `text-${colorScheme}-${tone} hover:underline`;
   }

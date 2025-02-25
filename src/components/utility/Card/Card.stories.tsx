@@ -1,6 +1,5 @@
-import { Meta, StoryObj } from '@storybook/react';
-import { Card, type ICardProps } from './Card';
-import { Button } from '@/main';
+import type { Meta, StoryObj } from '@storybook/react';
+import { Card } from './Card';
 
 const meta: Meta<typeof Card> = {
   title: 'Utility/Card',
@@ -11,182 +10,100 @@ const meta: Meta<typeof Card> = {
       control: 'select',
       options: ['elevated', 'outlined', 'filled', 'flat'],
     },
-    size: {
+    size: { control: 'select', options: ['xs', 'sm', 'md', 'lg', 'xl'] },
+    colorScheme: {
       control: 'select',
-      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+      options: ['primary', 'secondary', 'error', 'success', 'info', 'warning'],
     },
-    color: {
+    tone: {
       control: 'select',
       options: [
-        'primary',
-        'secondary',
-        'success',
-        'warning',
-        'error',
-        'info',
-        'light',
-        'dark',
-        'neutral',
+        '50',
+        '100',
+        '200',
+        '300',
+        '400',
+        '500',
+        '600',
+        '700',
+        '800',
+        '900',
       ],
     },
     hoverable: { control: 'boolean' },
     clickable: { control: 'boolean' },
     fullWidth: { control: 'boolean' },
-    loading: { control: 'boolean' },
     disabled: { control: 'boolean' },
-    as: { control: 'text' },
+    loading: { control: 'boolean' },
+  },
+  args: {
+    children: 'This is a Card component',
   },
 };
 
 export default meta;
-
 type Story = StoryObj<typeof Card>;
 
 export const Default: Story = {
   args: {
-    children: 'This is a card',
     variant: 'elevated',
     size: 'md',
-    color: 'neutral',
+    colorScheme: 'primary',
+    tone: '500',
+    hoverable: false,
+    clickable: false,
   },
 };
 
-export const AllVariants: Story = {
-  render: (args) => (
-    <div className='flex flex-wrap gap-4'>
-      {['elevated', 'outlined', 'filled', 'flat'].map((variant) => (
-        <Card
-          key={variant}
-          {...args}
-          variant={variant as ICardProps['variant']}
-        >
-          {variant} card
-        </Card>
-      ))}
-    </div>
-  ),
-};
-
-export const AllSizes: Story = {
-  render: (args) => (
-    <div className='flex flex-col gap-4'>
-      {['xs', 'sm', 'md', 'lg', 'xl'].map((size) => (
-        <Card key={size} {...args} size={size as ICardProps['size']}>
-          {size} card
-        </Card>
-      ))}
-    </div>
-  ),
-};
-
-export const AllColors: Story = {
-  render: (args) => (
-    <div className='flex flex-wrap gap-4'>
-      {[
-        'primary',
-        'secondary',
-        'success',
-        'warning',
-        'error',
-        'info',
-        'light',
-        'dark',
-        'neutral',
-      ].map((color) => (
-        <Card key={color} {...args} color={color as ICardProps['color']}>
-          {color} card
-        </Card>
-      ))}
-    </div>
-  ),
-};
-
-export const Hoverable: Story = {
+export const Outlined: Story = {
   args: {
-    ...Default.args,
+    variant: 'outlined',
+    size: 'md',
+    colorScheme: 'secondary',
+    tone: '400',
     hoverable: true,
-  },
-};
-
-export const Clickable: Story = {
-  args: {
-    ...Default.args,
     clickable: true,
-    children: 'Click me!',
   },
 };
 
-export const FullWidth: Story = {
+export const Filled: Story = {
   args: {
-    ...Default.args,
+    variant: 'filled',
+    size: 'lg',
+    colorScheme: 'success',
+    tone: '600',
+    hoverable: true,
+    clickable: true,
+  },
+};
+
+export const Flat: Story = {
+  args: {
+    variant: 'flat',
+    size: 'sm',
+    colorScheme: 'error',
+    tone: '500',
+  },
+};
+
+export const WithFullWidth: Story = {
+  args: {
     fullWidth: true,
-    children: 'This card takes full width',
+    children: 'This card stretches full width.',
   },
 };
 
 export const Loading: Story = {
   args: {
-    ...Default.args,
     loading: true,
+    children: 'Loading card...',
   },
 };
 
-export const Disabled: Story = {
+export const Interactive: Story = {
   args: {
-    ...Default.args,
-    disabled: true,
-  },
-};
-
-export const AsLink: Story = {
-  args: {
-    ...Default.args,
-    as: 'a',
-    href: '#',
     clickable: true,
-    children: 'This card is a link',
+    hoverable: true,
+    children: 'Click or hover me!',
   },
-};
-
-export const ComplexContent: Story = {
-  render: (args) => (
-    <Card {...args}>
-      <h3 className='font-bold mb-2'>Card Title</h3>
-      <p className='mb-4'>
-        This is some content inside the card. It can be as complex as needed.
-      </p>
-      <Button colorScheme='primary'>Action</Button>
-    </Card>
-  ),
-};
-
-export const GridLayout: Story = {
-  render: (args) => (
-    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-      {[1, 2, 3, 4, 5, 6].map((item) => (
-        <Card key={item} {...args} hoverable clickable>
-          Card {item}
-        </Card>
-      ))}
-    </div>
-  ),
-};
-
-export const InteractiveDemo: Story = {
-  render: (args) => (
-    <div className='space-y-4'>
-      <Card {...args} hoverable clickable>
-        Hoverable and Clickable
-      </Card>
-      <Card {...args} loading>
-        Loading State
-      </Card>
-      <Card {...args} disabled>
-        Disabled State
-      </Card>
-      <Card {...args} as='button' onClick={() => alert('Card clicked!')}>
-        As Button
-      </Card>
-    </div>
-  ),
 };

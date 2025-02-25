@@ -10,9 +10,13 @@ const meta: Meta<typeof Text> = {
       control: 'select',
       options: ['span', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
     },
-    textColors: {
+    textColor: {
       control: 'select',
       options: ['primary', 'secondary', 'error', 'success', 'warning', 'info'],
+    },
+    tone: {
+      control: 'select',
+      options: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900],
     },
     size: {
       control: 'select',
@@ -54,16 +58,20 @@ const meta: Meta<typeof Text> = {
       control: 'select',
       options: ['uppercase', 'lowercase', 'capitalize', 'normalcase'],
     },
-    italic: {
-      control: 'boolean',
-    },
-    underline: {
-      control: 'boolean',
-    },
+    italic: { control: 'boolean' },
+    underline: { control: 'boolean' },
     lineClamp: {
       control: 'select',
       options: [1, 2, 3, 4, 5, 6],
     },
+  },
+  args: {
+    children: 'This is a default text',
+    textColor: 'primary',
+    tone: 500,
+    size: 'md',
+    weight: 'normal',
+    align: 'left',
   },
 };
 
@@ -72,7 +80,7 @@ type Story = StoryObj<typeof Text>;
 
 export const Default: Story = {
   args: {
-    children: 'This is a default text',
+    children: 'This is a default text.',
   },
 };
 
@@ -95,16 +103,17 @@ export const Paragraph: Story = {
 
 export const Emphasized: Story = {
   args: {
-    textColors: 'primary',
+    textColor: 'primary',
+    tone: 700,
     weight: 'semibold',
-    children: 'This is emphasized text',
+    children: 'This is emphasized text with a darker tone.',
   },
 };
 
 export const Transformed: Story = {
   args: {
     transform: 'uppercase',
-    children: 'This text is uppercase',
+    children: 'This text is uppercase.',
   },
 };
 
@@ -112,7 +121,7 @@ export const ItalicAndUnderlined: Story = {
   args: {
     italic: true,
     underline: true,
-    children: 'This text is italic and underlined',
+    children: 'This text is italic and underlined.',
   },
 };
 
@@ -141,8 +150,7 @@ export const AllVariants: Story = {
       <Text as='p' lineClamp={3}>
         This is a long paragraph that demonstrates line clamping. It will be
         truncated after three lines. Lorem ipsum dolor sit amet, consectetur
-        adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua.
+        adipiscing elit.
       </Text>
     </div>
   ),
