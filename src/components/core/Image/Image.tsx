@@ -17,6 +17,7 @@ const imageStyles = cva('object-contain', {
       md: 'w-12 h-12',
       lg: 'w-16 h-16',
       xl: 'w-20 h-20',
+      full: 'w-full h-full',
     },
     rounded: {
       none: '',

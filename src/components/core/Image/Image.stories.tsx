@@ -8,7 +8,7 @@ const meta: Meta<typeof Image> = {
   argTypes: {
     size: {
       control: 'select',
-      options: ['sm', 'md', 'lg', 'xl'],
+      options: ['sm', 'md', 'lg', 'xl', 'full'],
     },
     backgroundColor: {
       control: 'select',
@@ -68,6 +68,13 @@ export const LargeImage: Story = {
     src,
     alt: 'github avatar',
     size: 'xl',
+  },
+};
+export const FullImage: Story = {
+  args: {
+    src,
+    alt: 'github avatar',
+    size: 'full',
   },
 };
 
