@@ -1,102 +1,149 @@
 import React, { forwardRef } from 'react';
+import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '@/utils/core-css-utility';
 import { Loader, type ILoaderProps } from '@/main';
 
-type AnchorProps = React.AnchorHTMLAttributes<HTMLAnchorElement>;
-
-export interface ICardProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: 'elevated' | 'outlined' | 'filled' | 'flat';
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  color?:
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'warning'
-    | 'error'
-    | 'info'
-    | 'light'
-    | 'dark'
-    | 'neutral';
-  hoverable?: boolean;
-  clickable?: boolean;
-  fullWidth?: boolean;
+export interface ICardProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof cardStyles> {
   loading?: boolean;
   loaderSize?: ILoaderProps['size'];
   loaderColor?: ILoaderProps['color'];
-  disabled?: boolean;
   as?: React.ElementType;
+  clickable?: boolean;
+  hoverable?: boolean;
+  fullWidth?: boolean;
 }
 
-type ICardComponentProps<T extends React.ElementType> = ICardProps &
-  (T extends 'a' ? AnchorProps : {});
+type ICardComponentProps<T extends React.ElementType> = ICardProps & {
+  as?: T;
+};
+
+const cardStyles = cva('rounded-lg transition-all duration-200', {
+  variants: {
+    size: {
+      xs: 'p-2 text-xs',
+      sm: 'p-3 text-sm',
+      md: 'p-4 text-base',
+      lg: 'p-6 text-lg',
+      xl: 'p-8 text-xl',
+    },
+    variant: {
+      elevated: 'shadow-md',
+      outlined: 'border',
+      filled: 'border',
+      flat: 'border-0 shadow-none',
+    },
+    colorScheme: {
+      primary: '',
+      secondary: '',
+      error: '',
+      success: '',
+      info: '',
+      warning: '',
+    },
+    tone: {
+      '50': '',
+      '100': '',
+      '200': '',
+      '300': '',
+      '400': '',
+      '500': '',
+      '600': '',
+      '700': '',
+      '800': '',
+      '900': '',
+    },
+    hoverable: {
+      true: 'hover:shadow-xl hover:-translate-y-1',
+      false: '',
+    },
+    clickable: {
+      true: 'cursor-pointer active:scale-95',
+      false: '',
+    },
+    fullWidth: {
+      true: 'w-full',
+      false: '',
+    },
+    disabled: {
+      true: 'opacity-50 cursor-not-allowed',
+      false: '',
+    },
+  },
+  defaultVariants: {
+    size: 'md',
+    variant: 'elevated',
+    colorScheme: 'primary',
+    tone: '500',
+    hoverable: false,
+    clickable: false,
+    fullWidth: false,
+    disabled: false,
+  },
+});
+
+const getColorClasses = (
+  variant: string,
+  color: string,
+  tone: string
+): string => {
+  if (variant === 'filled') {
+    return `bg-${color}-${tone} text-white border-${color}-${tone}`;
+  }
+  if (variant === 'outlined') {
+    return `bg-white text-${color}-${tone} border-${color}-${tone} hover:bg-${color}-${tone}`;
+  }
+  if (variant === 'flat') {
+    return `bg-transparent text-${color}-${tone}`;
+  }
+  return `bg-white text-${color}-${tone}`;
+};
 
 const Card = forwardRef<HTMLDivElement, ICardComponentProps<React.ElementType>>(
   (
     {
-      className,
-      variant = 'elevated',
-      size = 'md',
-      color = 'neutral',
-      hoverable = false,
-      clickable = false,
-      fullWidth = false,
-      loading = false,
+      as: Component = 'div',
+      variant,
+      size,
+      colorScheme,
+      tone,
+      hoverable,
+      clickable,
+      fullWidth,
+      disabled,
+      loading,
       loaderSize = 'md',
       loaderColor,
-      disabled = false,
-      as: Component = 'div',
+      className,
       children,
       ...props
     },
     ref
   ) => {
-    const cardClasses = cn(
-      'rounded-lg transition-all duration-200',
-      {
-        // Size classes
-        'p-2 text-xs': size === 'xs',
-        'p-3 text-sm': size === 'sm',
-        'p-4 text-base': size === 'md',
-        'p-6 text-lg': size === 'lg',
-        'p-8 text-xl': size === 'xl',
-
-        // Variant classes
-        'shadow-md': variant === 'elevated',
-        border: variant === 'outlined',
-        'bg-opacity-10': variant === 'filled',
-        'border-none': variant === 'flat',
-
-        // Color classes
-        'bg-blue-100 border-blue-200 text-blue-800': color === 'primary',
-        'bg-purple-100 border-purple-200 text-purple-800':
-          color === 'secondary',
-        'bg-green-100 border-green-200 text-green-800': color === 'success',
-        'bg-yellow-100 border-yellow-200 text-yellow-800': color === 'warning',
-        'bg-red-100 border-red-200 text-red-800': color === 'error',
-        'bg-cyan-100 border-cyan-200 text-cyan-800': color === 'info',
-        'bg-gray-50 border-gray-200 text-gray-800': color === 'light',
-        'bg-gray-800 border-gray-700 text-gray-100': color === 'dark',
-        'bg-gray-100 border-gray-200 text-gray-800': color === 'neutral',
-
-        // Hover effect
-        'hover:shadow-lg hover:-translate-y-1': hoverable && !disabled,
-
-        // Clickable effect
-        'cursor-pointer active:scale-95': clickable && !disabled,
-
-        // Full width
-        'w-full': fullWidth,
-
-        // Disabled state
-        'opacity-50 cursor-not-allowed': disabled,
-      },
-      className
+    const dynamicColorClasses = getColorClasses(
+      variant || 'elevated',
+      colorScheme || 'primary',
+      tone || '500'
     );
 
     return (
       <Component
         ref={ref}
-        className={cardClasses}
+        className={cn(
+          cardStyles({
+            variant,
+            size,
+            colorScheme,
+            tone,
+            hoverable,
+            clickable,
+            fullWidth,
+            disabled,
+          }),
+          dynamicColorClasses,
+          className
+        )}
         {...(clickable && !disabled ? { role: 'button', tabIndex: 0 } : {})}
         {...props}
       >

@@ -74,7 +74,7 @@ const Breadcrumb = forwardRef<HTMLLIElement, IBreadcrumbProps>(
           {list.length === ind + 1 ? (
             ''
           ) : separator === 'line' ? (
-            <span>/</span>
+            <Icon src={icons.slash} />
           ) : (
             <Icon src={icons.arrowRight} />
           )}

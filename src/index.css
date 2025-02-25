@@ -143,3 +143,35 @@
     --info-900: #382b98;
   }
 }
+
+@layer base {
+  .carousel-container {
+    @apply w-full h-screen overflow-hidden relative flex items-center justify-center;
+    perspective: 65rem;
+  }
+  .carousel-slider {
+    @apply w-48 h-52;
+    transform-style: preserve-3d;
+  }
+  .carousel-item {
+    @apply absolute inset-0;
+  }
+  .carousel-item > * {
+    transition: transform 500ms;
+  }
+  .carousel-item:hover > * {
+    transform: translateY(-50px) scale(1.2) !important;
+    transition-duration: 500ms;
+  }
+}
+
+@layer utilities {
+  @keyframes autoRun {
+    0% {
+      transform: rotateX(-10deg) rotateY(0deg);
+    }
+    100% {
+      transform: rotateX(-10deg) rotateY(360deg);
+    }
+  }
+}

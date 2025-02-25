@@ -1,16 +1,29 @@
 import React, { forwardRef } from 'react';
-import { VariantProps, cva } from 'class-variance-authority';
+import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '@/utils/core-css-utility';
 
 const textStyles = cva('', {
   variants: {
-    textColors: {
-      primary: 'text-primary-500',
-      secondary: 'text-secondary-500',
-      error: 'text-error-500',
-      success: 'text-success-500',
-      warning: 'text-warning-500',
-      info: 'text-info-500',
+    textColor: {
+      white: '',
+      primary: '',
+      secondary: '',
+      error: '',
+      success: '',
+      warning: '',
+      info: '',
+    },
+    tone: {
+      50: '',
+      100: '',
+      200: '',
+      300: '',
+      400: '',
+      500: '',
+      600: '',
+      700: '',
+      800: '',
+      900: '',
     },
     size: {
       xs: 'text-xs',
@@ -67,7 +80,8 @@ const textStyles = cva('', {
   },
   defaultVariants: {
     size: 'md',
-    textColors: 'primary',
+    textColor: 'secondary',
+    tone: 700,
     weight: 'normal',
     align: 'left',
   },
@@ -83,7 +97,8 @@ const Text = forwardRef<HTMLElement, ITextProps>(
   (
     {
       as: Component = 'span',
-      textColors,
+      textColor = 'primary',
+      tone = 700,
       size,
       weight,
       align,
@@ -95,25 +110,29 @@ const Text = forwardRef<HTMLElement, ITextProps>(
       ...props
     },
     ref
-  ) => (
-    <Component
-      ref={ref}
-      className={cn(
-        textStyles({
-          textColors,
-          size,
-          weight,
-          align,
-          transform,
-          italic,
-          underline,
-          lineClamp,
-        }),
-        className
-      )}
-      {...props}
-    />
-  )
+  ) => {
+    const dynamicColor = textColor ? `text-${textColor}-${tone}` : 'text-white';
+
+    return (
+      <Component
+        ref={ref}
+        className={cn(
+          textStyles({
+            size,
+            weight,
+            align,
+            transform,
+            italic,
+            underline,
+            lineClamp,
+          }),
+          dynamicColor,
+          className
+        )}
+        {...props}
+      />
+    );
+  }
 );
 
 Text.displayName = 'Text';
