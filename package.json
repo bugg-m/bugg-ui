@@ -1,6 +1,6 @@
 {
   "name": "@bugg-m/bugg-ui",
-  "version": "2.3.0",
+  "version": "2.3.3",
   "publishConfig": {
     "access": "public"
   },
