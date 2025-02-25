@@ -54,4 +54,6 @@ const Carousel: React.FC<ICarouselProps> = ({
   );
 };
 
-export default Carousel;
+Carousel.displayName = 'Carousel';
+
+export { Carousel };
