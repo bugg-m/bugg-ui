@@ -146,32 +146,40 @@
 
 @layer base {
   .carousel-container {
-    @apply w-full h-screen overflow-hidden relative flex items-center justify-center;
+    @apply w-full h-screen overflow-hidden relative flex flex-col items-center justify-start;
     perspective: 65rem;
   }
+  .header {
+    @apply inline-block text-2xl md:text-3xl font-bold text-neutral-600 text-center tracking-tight leading-snug transition-all hover:scale-90 duration-300 hover:text-neutral-700;
+  }
   .carousel-slider {
-    @apply w-48 h-52;
+    @apply min-w-48 min-h-56 mt-40;
     transform-style: preserve-3d;
+    animation: autoRun var(--duration) linear infinite;
+  }
+  .carousel-slider:hover {
+    animation-play-state: paused;
   }
   .carousel-item {
     @apply absolute inset-0;
   }
   .carousel-item > * {
     transition: transform 500ms;
+    -webkit-box-reflect: below 2px
+      linear-gradient(transparent, transparent, rgba(4, 4, 4, 0.267));
   }
   .carousel-item:hover > * {
-    transform: translateY(-50px) scale(1.2) !important;
-    transition-duration: 500ms;
+    transform: translateY(-20px) scale(1.1) !important;
   }
 }
 
 @layer utilities {
   @keyframes autoRun {
     0% {
-      transform: rotateX(-10deg) rotateY(0deg);
+      transform: rotateY(0deg);
     }
     100% {
-      transform: rotateX(-10deg) rotateY(360deg);
+      transform: rotateY(360deg);
     }
   }
 }

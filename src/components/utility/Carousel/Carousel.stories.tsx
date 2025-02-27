@@ -19,9 +19,14 @@ const meta: Meta<typeof Carousel> = {
       control: 'text',
       description: 'TranslateZ distance for slides',
     },
+    title: {
+      control: 'text',
+      description: 'Title for Carousel',
+    },
     carouselContainerStyles: { control: 'text' },
     carouselSliderStyles: { control: 'text' },
     carouselItemStyles: { control: 'text' },
+    headerStyles: { control: 'text' },
   },
   args: {
     animationDuration: 20,
@@ -48,7 +53,7 @@ type Story = StoryObj<typeof Carousel>;
 
 export const Default: Story = {
   render: () => (
-    <Carousel>
+    <Carousel title='Image Carousel'>
       {images.map((images, ind) => (
         <Image src={images} key={ind} alt='image' className='w-full h-full' />
       ))}
@@ -58,7 +63,7 @@ export const Default: Story = {
 
 export const WithCards: Story = {
   render: () => (
-    <Carousel>
+    <Carousel title='Card Carousel'>
       <Card
         variant='filled'
         className='w-full h-full flex items-center justify-center'

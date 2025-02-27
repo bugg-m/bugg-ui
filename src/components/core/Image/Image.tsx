@@ -46,7 +46,7 @@ const Image = forwardRef<HTMLImageElement, ImageProps>(
   (
     {
       src,
-      alt,
+      alt = 'image',
       fallbackSrc,
       className,
       size,

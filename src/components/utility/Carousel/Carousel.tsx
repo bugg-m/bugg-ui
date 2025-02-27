@@ -9,6 +9,8 @@ export interface ICarouselProps {
   carouselContainerStyles?: string;
   carouselSliderStyles?: string;
   carouselItemStyles?: string;
+  headerStyles?: string;
+  title?: string;
 }
 
 const Carousel: React.FC<ICarouselProps> = ({
@@ -19,6 +21,8 @@ const Carousel: React.FC<ICarouselProps> = ({
   carouselContainerStyles,
   carouselSliderStyles,
   carouselItemStyles,
+  headerStyles,
+  title,
 }) => {
   const items = React.Children.toArray(children);
   const quantity = items.length;
@@ -28,11 +32,14 @@ const Carousel: React.FC<ICarouselProps> = ({
       className={cn('carousel-container', carouselContainerStyles)}
       style={{ perspective }}
     >
+      {title && <span className={cn('header', headerStyles)}>{title}</span>}
       <div
         className={cn('carousel-slider', carouselSliderStyles)}
-        style={{
-          animation: `autoRun ${animationDuration}s linear infinite`,
-        }}
+        style={
+          {
+            '--duration': `${animationDuration}s`,
+          } as React.CSSProperties
+        }
       >
         {items.map((child, index) => (
           <div

@@ -1,12 +1,17 @@
-<div align="center">  
-  <h1>🐞 Bugg-ui</h1>  
-  <p>Currently in active development, with an expected release date in 2026, an UI component library for React</p>
-  <p>Built with TypeScript and Tailwind CSS, designed for rapid development and scalability.</p>  
-  <p>This UI component library was initially crafted for personal use. It serves as a foundational tool for my diverse projects.</p>
-  <p>However, it is freely available for anyone looking to integrate it into their own work and benefit from its features.</p>
+<div align="center">
+  <h1>🐞 Bugg-ui</h1>
+  <p>
+    Currently in active development,
+    <strong>Bugg-ui</strong> is a UI component library for React built with
+    TypeScript and Tailwind CSS—designed for rapid development and scalability.
+  </p>
+  <p>
+    Originally created for personal use, it has become a foundational toolkit
+    for various projects. Now, it's freely available to anyone looking to
+    integrate it into their workflow.
+  </p>
 
 [![npm version](https://badge.fury.io/js/%40bugg-m%2Fbugg-ui.svg)](https://badge.fury.io/js/%40bugg-m%2Fbugg-ui) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![React](https://img.shields.io/badge/React-17%2B-blue)](https://reactjs.org/) [![TypeScript](https://img.shields.io/badge/TypeScript-4.5%2B-blue)](https://www.typescriptlang.org/) [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.0%2B-blue)](https://tailwindcss.com/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.0%2B-blue)](https://tailwindcss.com/)
 
 </div>
 
