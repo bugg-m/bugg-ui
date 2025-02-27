@@ -10,7 +10,7 @@ interface ImageProps
   fallbackSrc?: string;
 }
 
-const imageStyles = cva('object-contain', {
+const imageStyles = cva('object-cover', {
   variants: {
     size: {
       sm: 'w-8 h-8',

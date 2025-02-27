@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { Image } from './Image';
+import { imgSrc1 } from '@/constants/images';
 
 const meta: Meta<typeof Image> = {
   title: 'Core/Image',
@@ -26,7 +27,7 @@ const meta: Meta<typeof Image> = {
     },
   },
   args: {
-    src: 'https://avatars.githubusercontent.com/u/75472873?s=96&v=4',
+    src: imgSrc1,
     alt: 'github avatar',
     size: 'md',
     rounded: 'none',
@@ -34,21 +35,19 @@ const meta: Meta<typeof Image> = {
   },
 };
 
-const src = 'https://avatars.githubusercontent.com/u/75472873?s=96&v=4';
-
 export default meta;
 type Story = StoryObj<typeof Image>;
 
 export const Default: Story = {
   args: {
-    src,
+    src: imgSrc1,
     alt: 'github avatar',
   },
 };
 
 export const Rounded: Story = {
   args: {
-    src,
+    src: imgSrc1,
     alt: 'github avatar',
     backgroundColor: 'none',
     rounded: 'full',
@@ -58,21 +57,21 @@ export const Rounded: Story = {
 export const WithBackground: Story = {
   args: {
     backgroundColor: 'primary',
-    src,
+    src: imgSrc1,
     alt: 'github avatar',
   },
 };
 
 export const LargeImage: Story = {
   args: {
-    src,
+    src: imgSrc1,
     alt: 'github avatar',
     size: 'xl',
   },
 };
 export const FullImage: Story = {
   args: {
-    src,
+    src: imgSrc1,
     alt: 'github avatar',
     size: 'full',
   },
@@ -81,7 +80,7 @@ export const FullImage: Story = {
 export const Custom: Story = {
   render: (args) => <Image {...args} />,
   args: {
-    src,
+    src: imgSrc1,
     alt: 'github avatar',
     size: 'md',
     backgroundColor: 'secondary',

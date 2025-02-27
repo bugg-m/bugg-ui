@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Avatar } from './Avatar';
+import { imgSrc1 } from '@/constants/images';
 
 const meta: Meta<typeof Avatar> = {
   title: 'Core/Avatar',
@@ -38,11 +39,9 @@ export default meta;
 
 type Story = StoryObj<typeof Avatar>;
 
-const src = 'https://avatars.githubusercontent.com/u/75472873?s=96&v=4';
-
 export const Default: Story = {
   args: {
-    src: src,
+    src: imgSrc1,
     alt: 'Avatar',
     size: 'md',
   },
@@ -59,10 +58,11 @@ export const WithInitials: Story = {
 
 export const WithStatus: Story = {
   args: {
-    src: src,
+    src: imgSrc1,
     status: true,
     size: 'md',
     border: 'thin',
+    shape: 'circle',
     borderColor: 'primary',
   },
 };
