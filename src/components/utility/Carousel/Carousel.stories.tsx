@@ -62,7 +62,13 @@ export const Default: Story = {
   render: () => (
     <Carousel title='Image Carousel'>
       {images.map((image, ind) => (
-        <Image src={image} key={ind} alt='image' className='w-full h-full' />
+        <Image
+          src={image}
+          key={ind}
+          alt='image'
+          size='full'
+          className='object-contain'
+        />
       ))}
     </Carousel>
   ),

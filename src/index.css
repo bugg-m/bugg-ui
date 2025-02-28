@@ -146,7 +146,7 @@
 
 @layer base {
   .carousel-container {
-    @apply w-full h-screen overflow-hidden relative flex flex-col items-center justify-start;
+    @apply w-full h-screen overflow-hidden m-auto relative flex flex-col items-center justify-start;
     perspective: 65rem;
   }
   .header {
