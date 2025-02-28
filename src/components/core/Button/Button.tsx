@@ -4,7 +4,7 @@ import { Loader } from '../../feedback/Loader/Loader';
 import { cn } from '@/utils/core-css-utility';
 
 const buttonStyles = cva(
-  'inline-flex items-center rounded justify-center text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none select-none whitespace-nowrap shadow-button relative',
+  'inline-flex items-center rounded justify-center text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 select-none whitespace-nowrap shadow-button relative',
   {
     variants: {
       variant: {
@@ -29,9 +29,10 @@ const buttonStyles = cva(
         info: '',
       },
       size: {
-        sm: 'h-8 px-3 py-1 text-xs',
-        md: 'h-10 px-4 py-2 text-sm',
-        lg: 'h-12 px-6 py-3 text-base',
+        xs: 'px-1 py-0.5 text-xxs',
+        sm: 'px-3 py-1 text-xs',
+        md: 'px-4 py-2 text-sm',
+        lg: 'px-6 py-3 text-base',
         icon: 'p-0.5',
       },
       fullWidth: {
@@ -100,9 +101,9 @@ const getVariantColorClasses = (
     const ringTone = computeTone(toneNum, -100, 50, 900);
     return `bg-${colorScheme}-${tone} text-white hover:bg-${colorScheme}-${hoverTone} focus-visible:ring-${colorScheme}-${ringTone}`;
   } else if (variant === 'outline') {
-    return `border-${colorScheme}-${tone} text-${colorScheme}-${tone} hover:bg-${colorScheme}-100 focus-visible:ring-${colorScheme}-${tone}`;
+    return `border-${colorScheme}-${tone} text-${colorScheme}-${tone} hover:bg-${colorScheme}-50 focus-visible:ring-${colorScheme}-${tone} hover:text-${colorScheme}-700`;
   } else if (variant === 'ghost') {
-    return `text-${colorScheme}-${tone} hover:bg-${colorScheme}-100 focus-visible:ring-${colorScheme}-${tone}`;
+    return `text-${colorScheme}-${tone} hover:bg-${colorScheme}-50 focus-visible:ring-${colorScheme}-${tone}`;
   } else if (variant === 'link') {
     return `text-${colorScheme}-${tone} hover:underline`;
   }

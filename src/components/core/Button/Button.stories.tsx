@@ -38,7 +38,7 @@ const meta: Meta<typeof Button> = {
     },
     size: {
       control: 'select',
-      options: ['sm', 'md', 'lg', 'icon'],
+      options: ['xs', 'sm', 'md', 'lg', 'icon'],
     },
     isLoading: { control: 'boolean' },
     loadingText: { control: 'text' },

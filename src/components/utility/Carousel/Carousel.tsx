@@ -32,7 +32,9 @@ const Carousel: React.FC<ICarouselProps> = ({
       className={cn('carousel-container', carouselContainerStyles)}
       style={{ perspective }}
     >
-      {title && <span className={cn('header', headerStyles)}>{title}</span>}
+      {title && (
+        <span className={cn('carousel-header', headerStyles)}>{title}</span>
+      )}
       <div
         className={cn('carousel-slider', carouselSliderStyles)}
         style={
