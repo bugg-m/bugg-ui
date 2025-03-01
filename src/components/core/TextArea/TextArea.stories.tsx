@@ -6,17 +6,26 @@ const meta: Meta<typeof TextArea> = {
   component: TextArea,
   tags: ['autodocs'],
   argTypes: {
+    error: { control: 'text', description: 'Error message for the textarea' },
+    disabled: { control: 'boolean', description: 'Disable the textarea' },
     variant: {
       control: 'select',
-      options: ['solid', 'outline', 'ghost'],
+      options: ['outlined', 'filled', 'standard'],
+      description: 'Variant style of the textarea (MUI-like)',
     },
     textAreaSize: {
       control: 'select',
       options: ['sm', 'md', 'lg'],
+      description: 'Size of the textarea',
     },
     colorScheme: {
       control: 'select',
-      options: ['primary', 'secondary', 'error', 'success', 'warning'],
+      options: ['primary', 'secondary', 'success', 'warning', 'info', 'error'],
+      description: 'Color scheme of the textarea',
+    },
+    placeholder: {
+      control: 'text',
+      description: 'Floating label text',
     },
   },
 };
@@ -30,47 +39,106 @@ export const Default: Story = {
   },
 };
 
-export const WithLabel: Story = {
+export const Outlined: Story = {
   args: {
-    placeholder: 'Write message',
+    variant: 'outlined',
+    placeholder: 'Outlined textarea',
   },
 };
 
-export const Outline: Story = {
+export const Filled: Story = {
   args: {
-    variant: 'outline',
-    placeholder: 'Outline textarea',
+    variant: 'filled',
+    placeholder: 'Filled textarea',
   },
 };
 
-export const Ghost: Story = {
+export const Standard: Story = {
   args: {
-    variant: 'ghost',
-    placeholder: 'Ghost textarea',
+    variant: 'standard',
+    placeholder: 'Standard textarea',
   },
 };
 
-export const Small: Story = {
+export const WithError: Story = {
   args: {
-    textAreaSize: 'sm',
-    placeholder: 'Small textarea',
+    placeholder: 'Email address',
+    error: 'Invalid email address',
   },
 };
 
-export const Large: Story = {
+export const Disabled: Story = {
   args: {
-    textAreaSize: 'lg',
-    placeholder: 'Large textarea',
+    placeholder: 'Disabled field',
+    disabled: true,
   },
+};
+
+export const Sizes: Story = {
+  render: () => (
+    <div className='flex flex-col space-y-4'>
+      <TextArea
+        variant='outlined'
+        textAreaSize='sm'
+        placeholder='Small textarea'
+      />
+      <TextArea
+        variant='outlined'
+        textAreaSize='md'
+        placeholder='Medium textarea'
+      />
+      <TextArea
+        variant='outlined'
+        textAreaSize='lg'
+        placeholder='Large textarea'
+      />
+    </div>
+  ),
 };
 
 export const ColorSchemes: Story = {
   render: () => (
-    <div className='space-y-2'>
-      <TextArea placeholder='Primary (default)' />
-      <TextArea colorScheme='secondary' placeholder='Secondary' />
-      <TextArea colorScheme='success' placeholder='Success' />
-      <TextArea colorScheme='warning' placeholder='Warning' />
+    <div className='grid grid-cols-2 gap-4'>
+      <TextArea placeholder='Primary' colorScheme='primary' />
+      <TextArea placeholder='Secondary' colorScheme='secondary' />
+      <TextArea placeholder='Success' colorScheme='success' />
+      <TextArea placeholder='Warning' colorScheme='warning' />
+      <TextArea placeholder='Info' colorScheme='info' />
+      <TextArea placeholder='Error' colorScheme='error' />
+    </div>
+  ),
+};
+
+export const AllVariantsWithError: Story = {
+  render: () => (
+    <div className='space-y-8'>
+      <div>
+        <h2 className='text-lg font-semibold mb-2'>Outlined (Error)</h2>
+        <TextArea
+          variant='outlined'
+          colorScheme='error'
+          placeholder='Outlined textarea'
+          error='Incorrect entry.'
+        />
+      </div>
+      <div>
+        <h2 className='text-lg font-semibold mb-2'>Filled (Error)</h2>
+        <TextArea
+          variant='filled'
+          colorScheme='error'
+          placeholder='Filled textarea'
+          error='Incorrect entry.'
+        />
+      </div>
+      <div>
+        <h2 className='text-lg font-semibold mb-2'>Standard (Error)</h2>
+        <TextArea
+          variant='standard'
+          colorScheme='error'
+          placeholder='Standard textarea'
+          error='Incorrect entry.'
+        />
+      </div>
     </div>
   ),
 };

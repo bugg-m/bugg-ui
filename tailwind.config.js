@@ -92,8 +92,10 @@ export default {
         transparent: 'var(--transparent)',
       },
       fontSize: {
-        xxxs: '0.25rem',
-        xxs: '0.5rem',
+        '5xs': '0.25rem',
+        '4xs': '0.3rem',
+        '3xs': '0.35rem',
+        '2xs': '0.5rem',
       },
     },
   },

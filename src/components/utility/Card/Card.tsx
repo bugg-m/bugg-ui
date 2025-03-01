@@ -22,11 +22,11 @@ type ICardComponentProps<T extends React.ElementType> = ICardProps & {
 const cardStyles = cva('rounded-lg transition-all duration-200', {
   variants: {
     size: {
-      xs: 'p-2 text-xs',
-      sm: 'p-3 text-sm',
-      md: 'p-4 text-base',
-      lg: 'p-6 text-lg',
-      xl: 'p-8 text-xl',
+      xs: 'p-1.5 text-xs',
+      sm: 'p-2 text-sm',
+      md: 'p-3 text-lg',
+      lg: 'p-4 text-xl',
+      xl: 'p-5 text-2xl',
     },
     variant: {
       elevated: 'shadow-md',
@@ -43,16 +43,16 @@ const cardStyles = cva('rounded-lg transition-all duration-200', {
       warning: '',
     },
     tone: {
-      '50': '',
-      '100': '',
-      '200': '',
-      '300': '',
-      '400': '',
-      '500': '',
-      '600': '',
-      '700': '',
-      '800': '',
-      '900': '',
+      50: '',
+      100: '',
+      200: '',
+      300: '',
+      400: '',
+      500: '',
+      600: '',
+      700: '',
+      800: '',
+      900: '',
     },
     hoverable: {
       true: 'hover:shadow-xl hover:-translate-y-1',
@@ -75,7 +75,7 @@ const cardStyles = cva('rounded-lg transition-all duration-200', {
     size: 'md',
     variant: 'elevated',
     colorScheme: 'primary',
-    tone: '500',
+    tone: 500,
     hoverable: false,
     clickable: false,
     fullWidth: false,
@@ -86,10 +86,10 @@ const cardStyles = cva('rounded-lg transition-all duration-200', {
 const getColorClasses = (
   variant: string,
   color: string,
-  tone: string
+  tone: number
 ): string => {
   if (variant === 'filled') {
-    return `bg-${color}-${tone} text-white border-${color}-${tone}`;
+    return `bg-${color}-${tone} ${tone < 500 ? 'text-neutral-800' : 'text-neutral-50'} border-${color}-${tone}`;
   }
   if (variant === 'outlined') {
     return `bg-white text-${color}-${tone} border-${color}-${tone} hover:bg-${color}-${tone}`;
@@ -124,7 +124,7 @@ const Card = forwardRef<HTMLDivElement, ICardComponentProps<React.ElementType>>(
     const dynamicColorClasses = getColorClasses(
       variant || 'elevated',
       colorScheme || 'primary',
-      tone || '500'
+      tone || 500
     );
 
     return (

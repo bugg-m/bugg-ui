@@ -29,7 +29,7 @@ const buttonStyles = cva(
         info: '',
       },
       size: {
-        xs: 'px-1 py-0.5 text-xxs',
+        xs: 'px-1 py-0.5 text-2xs',
         sm: 'px-3 py-1 text-xs',
         md: 'px-4 py-2 text-sm',
         lg: 'px-6 py-3 text-base',
@@ -39,23 +39,23 @@ const buttonStyles = cva(
         true: 'w-full',
       },
       tone: {
-        '50': '',
-        '100': '',
-        '200': '',
-        '300': '',
-        '400': '',
-        '500': '',
-        '600': '',
-        '700': '',
-        '800': '',
-        '900': '',
+        50: '',
+        100: '',
+        200: '',
+        300: '',
+        400: '',
+        500: '',
+        600: '',
+        700: '',
+        800: '',
+        900: '',
       },
     },
     defaultVariants: {
       variant: 'solid',
       colorScheme: 'primary',
       size: 'md',
-      tone: '500',
+      tone: 500,
     },
   }
 );
@@ -93,12 +93,11 @@ const computeTone = (
 const getVariantColorClasses = (
   variant: string,
   colorScheme: string,
-  tone: string
+  tone: number
 ) => {
-  const toneNum = parseInt(tone, 10);
   if (variant === 'solid') {
-    const hoverTone = computeTone(toneNum, 100, 50, 900);
-    const ringTone = computeTone(toneNum, -100, 50, 900);
+    const hoverTone = computeTone(tone, 100, 50, 900);
+    const ringTone = computeTone(tone, -100, 50, 900);
     return `bg-${colorScheme}-${tone} text-white hover:bg-${colorScheme}-${hoverTone} focus-visible:ring-${colorScheme}-${ringTone}`;
   } else if (variant === 'outline') {
     return `border-${colorScheme}-${tone} text-${colorScheme}-${tone} hover:bg-${colorScheme}-50 focus-visible:ring-${colorScheme}-${tone} hover:text-${colorScheme}-700`;
@@ -134,7 +133,7 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(
     const computedColorClasses = getVariantColorClasses(
       variant || 'solid',
       colorScheme || 'primary',
-      tone || '500'
+      tone || 500
     );
 
     const loaderSize = size === 'sm' ? 'sm' : size === 'lg' ? 'lg' : 'md';
