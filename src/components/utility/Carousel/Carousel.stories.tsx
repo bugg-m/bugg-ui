@@ -30,6 +30,9 @@ const meta: Meta<typeof Carousel> = {
       control: 'text',
       description: 'Title for Carousel',
     },
+    isLoading: {
+      control: 'boolean',
+    },
     carouselContainerStyles: { control: 'text' },
     carouselSliderStyles: { control: 'text' },
     carouselItemStyles: { control: 'text' },

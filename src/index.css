@@ -150,7 +150,7 @@
     perspective: 65rem;
   }
   .carousel-header {
-    @apply inline-block text-2xl md:text-3xl font-bold text-neutral-600 text-center tracking-tight leading-snug transition-all hover:scale-90 duration-300 hover:text-neutral-700;
+    @apply inline-block text-2xl md:text-3xl font-bold text-neutral-600 text-center transition-all hover:scale-90 duration-300 hover:text-neutral-700;
   }
   .carousel-slider {
     @apply min-w-48 min-h-56 mt-32;
