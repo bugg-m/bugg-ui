@@ -165,6 +165,8 @@
   }
   .carousel-item > * {
     transition: transform 500ms;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
     -webkit-box-reflect: below 2px
       linear-gradient(transparent, transparent, rgba(4, 4, 4, 0.267));
   }
