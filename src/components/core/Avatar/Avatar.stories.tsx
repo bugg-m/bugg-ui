@@ -13,7 +13,7 @@ const meta: Meta<typeof Avatar> = {
     },
     size: {
       control: { type: 'select' },
-      options: ['sm', 'md', 'lg', 'xl'],
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
     },
     border: {
       control: { type: 'select' },

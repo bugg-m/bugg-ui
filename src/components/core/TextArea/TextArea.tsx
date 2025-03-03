@@ -44,7 +44,7 @@ const textareaStyles = cva(
     defaultVariants: {
       variant: 'outlined',
       textAreaSize: 'md',
-      colorScheme: 'primary',
+      colorScheme: 'secondary',
     },
   }
 );

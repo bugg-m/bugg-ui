@@ -47,7 +47,7 @@ const inputStyles = cva(
     defaultVariants: {
       variant: 'outlined',
       inputSize: 'md',
-      colorScheme: 'primary',
+      colorScheme: 'secondary',
     },
   }
 );
