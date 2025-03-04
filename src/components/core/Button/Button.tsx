@@ -64,6 +64,7 @@ interface IButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonStyles> {
   isLoading?: boolean;
+  hideBackground?: boolean;
   loadingText?: string;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
@@ -102,7 +103,7 @@ const getVariantColorClasses = (
   } else if (variant === 'outline') {
     return `border-${colorScheme}-${tone} text-${colorScheme}-${tone} hover:bg-${colorScheme}-50 focus-visible:ring-${colorScheme}-${tone} hover:text-${colorScheme}-700`;
   } else if (variant === 'ghost') {
-    return `text-${colorScheme}-${tone} hover:bg-${colorScheme}-50 focus-visible:ring-${colorScheme}-${tone}`;
+    return `text-${colorScheme}-${tone} hover:bg-${colorScheme}-100 focus-visible:ring-${colorScheme}-${tone}`;
   } else if (variant === 'link') {
     return `text-${colorScheme}-${tone} hover:underline`;
   }
@@ -117,6 +118,7 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(
       size,
       rounded,
       isLoading,
+      hideBackground = false,
       loadingText,
       leftIcon,
       rightIcon,
@@ -155,6 +157,7 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(
             : disabled
               ? 'cursor-not-allowed opacity-50'
               : '',
+          hideBackground && variant === 'ghost' ? 'hover:bg-transparent' : '',
           className
         )}
         ref={ref}

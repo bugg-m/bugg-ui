@@ -90,7 +90,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         <Button
           size='icon'
           variant='ghost'
-          type='button'
+          hideBackground
           className='absolute inset-y-0 right-0 flex items-center pr-3'
           onClick={() => setShowPassword((prev) => !prev)}
           aria-label={showPassword ? 'Hide password' : 'Show password'}
@@ -109,9 +109,19 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 
     const size = inputSize || 'md';
     const labelFloatingClass =
-      size === 'sm' ? 'text-xs' : size === 'lg' ? 'text-base' : 'text-sm';
+      size === 'sm'
+        ? 'peer-focus:text-xs'
+        : size === 'lg'
+          ? 'peer-focus:text-base'
+          : 'peer-focus:text-sm';
 
-    const labelBgClass = variant === 'filled' ? 'bg-transparent' : ' bg-white';
+    const labelBgClass =
+      variant === 'filled' ? 'bg-transparent' : 'peer-focus:bg-white';
+
+    const labelTranslate =
+      variant === 'filled'
+        ? 'peer-focus:-translate-y-2'
+        : 'peer-focus:-translate-y-4';
 
     return (
       <div className='flex flex-col w-full'>
@@ -127,6 +137,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
                 colorScheme: effectiveColorScheme,
               }),
               error && 'border-error-500 focus:border-error-600',
+              variant === 'filled' && 'pt-5',
               className
             )}
             {...props}
@@ -138,9 +149,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
               htmlFor={props.id}
               className={cn(
                 'absolute left-1 top-2 mb-1 bg-white font-medium origin-[0] z-10 -translate-y-4 scale-75 transform cursor-text select-none px-2 text-xs duration-300',
-                'peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:' +
-                  labelFloatingClass,
+                'peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:scale-75 peer-focus:px-2',
                 disabled && 'opacity-50 cursor-not-allowed',
+                labelTranslate,
+                labelFloatingClass,
                 labelBgClass,
                 labelTextStyles[effectiveColorScheme]
               )}
@@ -149,7 +161,6 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             </label>
           )}
         </div>
-
         {error && <p className='mt-1 ml-1 text-xs text-error-600'>{error}</p>}
       </div>
     );

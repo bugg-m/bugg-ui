@@ -29,6 +29,7 @@ const meta: Meta<typeof Button> = {
       control: 'select',
       options: ['xs', 'sm', 'md', 'lg', 'icon'],
     },
+    hideBackground: { control: 'boolean' },
     isLoading: { control: 'boolean' },
     loadingText: { control: 'text' },
     disabled: { control: 'boolean' },
