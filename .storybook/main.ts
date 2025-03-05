@@ -13,11 +13,14 @@ const config: StorybookConfig = {
     '@storybook/addon-interactions',
     '@storybook/addon-themes',
   ],
+
   framework: {
     name: '@storybook/react-vite',
     options: {},
   },
-  docs: {},
+
+  docs: { autodocs: 'tag' },
+  staticDirs: ['../public'],
   viteFinal: async (config) => {
     config.plugins?.push(
       tsConfigPaths({
@@ -25,6 +28,13 @@ const config: StorybookConfig = {
       })
     );
     return config;
+  },
+  managerHead: (head) => `
+    ${head}
+    <link rel="icon" type="image/png" href="/bugg.png" sizes="192x192" />
+  `,
+  typescript: {
+    reactDocgen: 'react-docgen-typescript',
   },
 };
 export default config;
