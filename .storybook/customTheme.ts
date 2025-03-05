@@ -2,12 +2,10 @@ import { create } from '@storybook/theming';
 
 const customTheme = create({
   base: 'light',
-  // Typography
   fontBase: '"Open Sans", sans-serif',
   fontCode: 'monospace',
-
   brandTitle: 'Bugg-UI',
-  brandUrl: 'https://bugg-portfolio.netlify.app',
+  brandUrl: 'https://github.com/bugg-m/bugg-ui',
   brandImage: '/bugg-logo.png',
   brandTarget: '_self',
 });
