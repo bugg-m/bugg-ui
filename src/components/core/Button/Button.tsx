@@ -172,10 +172,10 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(
             {loadingText && <span className='ml-2'>{loadingText}</span>}
           </span>
         ) : (
-          <span className='flex items-center justify-center'>
-            {leftIcon && <span className='mr-2'>{leftIcon}</span>}
+          <span className='flex items-center justify-center gap-2'>
+            {leftIcon && <span>{leftIcon}</span>}
             {children}
-            {rightIcon && <span className='ml-2'>{rightIcon}</span>}
+            {rightIcon && <span>{rightIcon}</span>}
           </span>
         )}
       </button>

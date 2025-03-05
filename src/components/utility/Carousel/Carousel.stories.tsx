@@ -124,3 +124,8 @@ export const WithCards: Story = {
     </Carousel>
   ),
 };
+export const WithLoading: Story = {
+  render: () => (
+    <Carousel title='Card Carousel' children={undefined}></Carousel>
+  ),
+};

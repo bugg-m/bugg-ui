@@ -43,7 +43,7 @@ const Carousel = forwardRef<HTMLDivElement, ICarouselProps>(
           <span className={cn('carousel-header', headerStyles)}>{title}</span>
         )}
 
-        {isLoading ? (
+        {isLoading || quantity <= 0 ? (
           <Loader size='lg' className='absolute top-1/2 left-1/2' />
         ) : (
           <div
