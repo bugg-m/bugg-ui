@@ -40,11 +40,13 @@ export interface ILoaderProps extends VariantProps<typeof loaderStyles> {
 }
 
 const Loader = forwardRef<HTMLDivElement, ILoaderProps>(
-  ({ size, color, className }) => (
+  ({ size, color, className, ...props }, ref) => (
     <div
       className={cn(loaderStyles({ size, color }), className)}
       role='status'
       aria-label='Loading'
+      ref={ref}
+      {...props}
     >
       <div className={dotStyles({ position: 'first' })}></div>
       <div className={dotStyles({ position: 'second' })}></div>

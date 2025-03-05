@@ -10,7 +10,7 @@ interface ImageProps
   fallbackSrc?: string;
 }
 
-const imageStyles = cva('object-contain', {
+const imageStyles = cva('object-cover', {
   variants: {
     size: {
       sm: 'w-8 h-8',
@@ -46,7 +46,7 @@ const Image = forwardRef<HTMLImageElement, ImageProps>(
   (
     {
       src,
-      alt,
+      alt = 'image',
       fallbackSrc,
       className,
       size,

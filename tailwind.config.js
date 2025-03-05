@@ -1,7 +1,7 @@
 import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
 import aspectRatio from '@tailwindcss/aspect-ratio';
-import defaultTheme from 'tailwindcss/defaultTheme';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./src/components/**/*.{ts,tsx}'],
@@ -13,17 +13,6 @@ export default {
     },
   ],
   theme: {
-    screens: {
-      df: '0px',
-      ...defaultTheme.screens,
-    },
-    container: {
-      center: true,
-      padding: '2rem',
-      screens: {
-        '2xl': '1400px',
-      },
-    },
     extend: {
       colors: {
         primary: {
@@ -101,6 +90,12 @@ export default {
         black: 'var(--black)',
         white: 'var(--white)',
         transparent: 'var(--transparent)',
+      },
+      fontSize: {
+        '5xs': '0.25rem',
+        '4xs': '0.3rem',
+        '3xs': '0.35rem',
+        '2xs': '0.5rem',
       },
     },
   },

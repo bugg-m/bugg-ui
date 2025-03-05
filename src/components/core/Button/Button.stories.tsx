@@ -19,18 +19,7 @@ const meta: Meta<typeof Button> = {
     },
     tone: {
       control: 'select',
-      options: [
-        '50',
-        '100',
-        '200',
-        '300',
-        '400',
-        '500',
-        '600',
-        '700',
-        '800',
-        '900',
-      ],
+      options: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900],
     },
     rounded: {
       control: 'select',
@@ -38,8 +27,9 @@ const meta: Meta<typeof Button> = {
     },
     size: {
       control: 'select',
-      options: ['sm', 'md', 'lg', 'icon'],
+      options: ['xs', 'sm', 'md', 'lg', 'icon'],
     },
+    hideBackground: { control: 'boolean' },
     isLoading: { control: 'boolean' },
     loadingText: { control: 'text' },
     disabled: { control: 'boolean' },
@@ -55,7 +45,7 @@ type Story = StoryObj<typeof Button>;
 export const Default: Story = {
   args: {
     children: 'Button',
-    tone: '500',
+    tone: 500,
   },
 };
 

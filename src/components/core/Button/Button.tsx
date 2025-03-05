@@ -4,7 +4,7 @@ import { Loader } from '../../feedback/Loader/Loader';
 import { cn } from '@/utils/core-css-utility';
 
 const buttonStyles = cva(
-  'inline-flex items-center rounded justify-center text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none select-none whitespace-nowrap shadow-button relative',
+  'inline-flex items-center rounded justify-center text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 select-none whitespace-nowrap shadow-button relative',
   {
     variants: {
       variant: {
@@ -29,32 +29,33 @@ const buttonStyles = cva(
         info: '',
       },
       size: {
-        sm: 'h-8 px-3 py-1 text-xs',
-        md: 'h-10 px-4 py-2 text-sm',
-        lg: 'h-12 px-6 py-3 text-base',
+        xs: 'px-1 py-0.5 text-2xs',
+        sm: 'px-3 py-1 text-xs',
+        md: 'px-4 py-2 text-sm',
+        lg: 'px-6 py-3 text-base',
         icon: 'p-0.5',
       },
       fullWidth: {
         true: 'w-full',
       },
       tone: {
-        '50': '',
-        '100': '',
-        '200': '',
-        '300': '',
-        '400': '',
-        '500': '',
-        '600': '',
-        '700': '',
-        '800': '',
-        '900': '',
+        50: '',
+        100: '',
+        200: '',
+        300: '',
+        400: '',
+        500: '',
+        600: '',
+        700: '',
+        800: '',
+        900: '',
       },
     },
     defaultVariants: {
       variant: 'solid',
       colorScheme: 'primary',
       size: 'md',
-      tone: '500',
+      tone: 500,
     },
   }
 );
@@ -63,6 +64,7 @@ interface IButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonStyles> {
   isLoading?: boolean;
+  hideBackground?: boolean;
   loadingText?: string;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
@@ -92,15 +94,14 @@ const computeTone = (
 const getVariantColorClasses = (
   variant: string,
   colorScheme: string,
-  tone: string
+  tone: number
 ) => {
-  const toneNum = parseInt(tone, 10);
   if (variant === 'solid') {
-    const hoverTone = computeTone(toneNum, 100, 50, 900);
-    const ringTone = computeTone(toneNum, -100, 50, 900);
+    const hoverTone = computeTone(tone, 100, 50, 900);
+    const ringTone = computeTone(tone, -100, 50, 900);
     return `bg-${colorScheme}-${tone} text-white hover:bg-${colorScheme}-${hoverTone} focus-visible:ring-${colorScheme}-${ringTone}`;
   } else if (variant === 'outline') {
-    return `border-${colorScheme}-${tone} text-${colorScheme}-${tone} hover:bg-${colorScheme}-100 focus-visible:ring-${colorScheme}-${tone}`;
+    return `border-${colorScheme}-${tone} text-${colorScheme}-${tone} hover:bg-${colorScheme}-50 focus-visible:ring-${colorScheme}-${tone} hover:text-${colorScheme}-700`;
   } else if (variant === 'ghost') {
     return `text-${colorScheme}-${tone} hover:bg-${colorScheme}-100 focus-visible:ring-${colorScheme}-${tone}`;
   } else if (variant === 'link') {
@@ -117,6 +118,7 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(
       size,
       rounded,
       isLoading,
+      hideBackground = false,
       loadingText,
       leftIcon,
       rightIcon,
@@ -133,7 +135,7 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(
     const computedColorClasses = getVariantColorClasses(
       variant || 'solid',
       colorScheme || 'primary',
-      tone || '500'
+      tone || 500
     );
 
     const loaderSize = size === 'sm' ? 'sm' : size === 'lg' ? 'lg' : 'md';
@@ -155,6 +157,7 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(
             : disabled
               ? 'cursor-not-allowed opacity-50'
               : '',
+          hideBackground && variant === 'ghost' ? 'hover:bg-transparent' : '',
           className
         )}
         ref={ref}
@@ -169,10 +172,10 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(
             {loadingText && <span className='ml-2'>{loadingText}</span>}
           </span>
         ) : (
-          <span className='flex items-center justify-center'>
-            {leftIcon && <span className='mr-2'>{leftIcon}</span>}
+          <span className='flex items-center justify-center gap-2'>
+            {leftIcon && <span>{leftIcon}</span>}
             {children}
-            {rightIcon && <span className='ml-2'>{rightIcon}</span>}
+            {rightIcon && <span>{rightIcon}</span>}
           </span>
         )}
       </button>

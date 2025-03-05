@@ -7,6 +7,7 @@ type CombinedSVGProps = Omit<Props, 'src'> & React.SVGProps<SVGSVGElement>;
 
 interface IconProps extends CombinedSVGProps, VariantProps<typeof iconStyles> {
   src: React.FC<React.SVGProps<SVGSVGElement>> | string;
+  className?: string;
 }
 
 const iconStyles = cva('stroke-current fill-none p-1', {
@@ -63,11 +64,23 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(
 
     if (typeof src === 'string') {
       return (
-        <SVG src={src as string} className={combinedClassName} {...props} />
+        <SVG
+          cacheRequests={true}
+          src={src as string}
+          className={combinedClassName}
+          {...props}
+        />
       );
     } else {
       const SvgIcon = src as React.FC<React.SVGProps<SVGSVGElement>>;
-      return <SvgIcon className={combinedClassName} ref={ref} {...props} />;
+      return (
+        <SvgIcon
+          cacheRequests={true}
+          className={combinedClassName}
+          ref={ref}
+          {...props}
+        />
+      );
     }
   }
 );

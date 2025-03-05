@@ -1,6 +1,7 @@
 import { withThemeByClassName } from '@storybook/addon-themes';
 import type { Preview } from '@storybook/react';
 import '../src/index.css';
+import customTheme from './customTheme';
 
 const preview: Preview = {
   parameters: {
@@ -10,7 +11,12 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    docs: {
+      theme: customTheme,
+    },
   },
+
+  tags: ['autodocs'],
 };
 
 export default preview;
