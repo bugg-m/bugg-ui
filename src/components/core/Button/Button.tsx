@@ -167,9 +167,11 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(
         {...props}
       >
         {isLoading ? (
-          <span className='flex items-center justify-center'>
+          <span
+            className={`flex items-center justify-center gap-2 p-1 ${loadingText ? '' : 'm-1'}`}
+          >
             <Loader size={loaderSize} color={loaderColor} />
-            {loadingText && <span className='ml-2'>{loadingText}</span>}
+            {loadingText && <span>{loadingText}</span>}
           </span>
         ) : (
           <span className='flex items-center justify-center gap-2'>
