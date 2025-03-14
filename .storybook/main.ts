@@ -32,7 +32,7 @@ const config: StorybookConfig = {
   managerHead: (head) => `
     ${head}
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    <link rel="icon" type="image/png" href="./bugg.png" sizes="192x192" />
+   <title>Bugg-Ui</title>  
   `,
   typescript: {
     reactDocgen: 'react-docgen-typescript',

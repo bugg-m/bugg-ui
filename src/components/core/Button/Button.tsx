@@ -4,7 +4,7 @@ import { Loader } from '../../feedback/Loader/Loader';
 import { cn } from '@/utils/core-css-utility';
 
 const buttonStyles = cva(
-  'inline-flex items-center rounded justify-center text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 select-none whitespace-nowrap shadow-button relative',
+  'inline-flex items-center rounded justify-center text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 select-none whitespace-nowrap relative',
   {
     variants: {
       variant: {
@@ -34,9 +34,6 @@ const buttonStyles = cva(
         md: 'px-4 py-2 text-sm',
         lg: 'px-6 py-3 text-base',
         icon: 'p-0.5',
-      },
-      fullWidth: {
-        true: 'w-full',
       },
       tone: {
         50: '',
@@ -77,6 +74,10 @@ interface IButtonProps
     | 'white';
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
+  href?: string;
+  target?: string;
+  rel?: string;
+  as?: React.ElementType;
 }
 
 const computeTone = (
@@ -110,7 +111,7 @@ const getVariantColorClasses = (
   return '';
 };
 
-const Button = forwardRef<HTMLButtonElement, IButtonProps>(
+const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, IButtonProps>(
   (
     {
       className,
@@ -128,6 +129,10 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(
       disabled,
       colorScheme,
       tone,
+      href,
+      target,
+      rel,
+      as: Component,
       ...props
     },
     ref
@@ -140,32 +145,24 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(
 
     const loaderSize = size === 'sm' ? 'sm' : size === 'lg' ? 'lg' : 'md';
 
-    return (
-      <button
-        className={cn(
-          buttonStyles({
-            variant,
-            size,
-            colorScheme,
-            tone,
-            rounded,
-            fullWidth: props.fullWidth,
-          }),
-          computedColorClasses,
-          isLoading
-            ? 'cursor-wait'
-            : disabled
-              ? 'cursor-not-allowed opacity-50'
-              : '',
-          hideBackground && variant === 'ghost' ? 'hover:bg-transparent' : '',
-          className
-        )}
-        ref={ref}
-        disabled={isLoading || disabled}
-        aria-busy={isLoading}
-        type={type}
-        {...props}
-      >
+    // Determine if this should be a link
+    const isLink = !!href || variant === 'link';
+
+    // Determine which component to render
+    const ButtonComponent = Component || (isLink ? 'a' : 'button');
+
+    // Set appropriate props based on component type
+    const buttonProps = {
+      ...(ButtonComponent === 'button' && { type }),
+      ...(ButtonComponent === 'a' && {
+        href,
+        target,
+        rel: rel || (target === '_blank' ? 'noopener noreferrer' : undefined),
+      }),
+    };
+
+    const content = (
+      <>
         {isLoading ? (
           <span
             className={`flex items-center justify-center gap-2 p-1 ${loadingText ? '' : 'm-1'}`}
@@ -180,7 +177,36 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(
             {rightIcon && <span>{rightIcon}</span>}
           </span>
         )}
-      </button>
+      </>
+    );
+
+    return (
+      <ButtonComponent
+        className={cn(
+          buttonStyles({
+            variant,
+            size,
+            colorScheme,
+            tone,
+            rounded,
+          }),
+          computedColorClasses,
+          {
+            'cursor-wait': isLoading,
+            'cursor-not-allowed opacity-50': disabled && !isLoading,
+            'hover:underline': variant === 'link',
+          },
+          hideBackground && variant === 'ghost' ? 'hover:bg-transparent' : '',
+          className
+        )}
+        ref={ref}
+        disabled={isLoading || disabled}
+        aria-busy={isLoading}
+        {...buttonProps}
+        {...props}
+      >
+        {content}
+      </ButtonComponent>
     );
   }
 );

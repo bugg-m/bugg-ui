@@ -123,7 +123,9 @@ export const AllVariants: Story = {
       <Button variant='outline'>Outline</Button>
       <Button colorScheme='error'>Destructive</Button>
       <Button variant='ghost'>Ghost</Button>
-      <Button variant='link'>Link</Button>
+      <Button variant='link' href='https://example.com' target='_blank'>
+        Link
+      </Button>
       <Button colorScheme='success'>Success</Button>
       <Button colorScheme='warning'>Warning</Button>
     </div>
