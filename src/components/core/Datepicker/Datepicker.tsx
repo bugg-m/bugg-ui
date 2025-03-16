@@ -8,7 +8,13 @@ import React, {
 import { cn } from '@/utils/core-css-utility';
 import { cva, VariantProps } from 'class-variance-authority';
 import { Icon } from '../Icon/Icon';
-import icons from '@/constants/icons';
+import {
+  calender,
+  arrowLeft,
+  arrowRight,
+  arrowsLeft,
+  arrowsRight,
+} from '@/constants/icons';
 
 const calendarButtonStyles = cva(
   'w-8 h-8 rounded-full flex items-center justify-center text-sm transition-all',
@@ -221,7 +227,7 @@ const DatePicker = forwardRef<HTMLDivElement, IDatePickerProps>(
           className={cn(datePickerWrapperStyles({ variant }))}
           onClick={() => setIsOpen(!isOpen)}
         >
-          <Icon src={icons.calender} className='text-secondary-500 mr-2' />
+          <Icon src={calender} className='text-secondary-500 mr-2' />
           <span className='text-text dark:text-text-dark'>
             {selectedDate
               ? Array.isArray(selectedDate)
@@ -234,12 +240,12 @@ const DatePicker = forwardRef<HTMLDivElement, IDatePickerProps>(
           <div className='absolute top-full mt-2 w-64 bg-background dark:bg-background-dark rounded-lg shadow-lg z-10'>
             <div className='flex justify-between items-center p-2 border-b border-secondary'>
               <Icon
-                src={icons.arrowsLeft}
+                src={arrowsLeft}
                 className='text-secondary-500 cursor-pointer'
                 onClick={() => changeYear(-1)}
               />
               <Icon
-                src={icons.arrowLeft}
+                src={arrowLeft}
                 className='text-secondary-500 cursor-pointer'
                 onClick={() => changeMonth(-1)}
               />
@@ -250,12 +256,12 @@ const DatePicker = forwardRef<HTMLDivElement, IDatePickerProps>(
                 })}
               </span>
               <Icon
-                src={icons.arrowRight}
+                src={arrowRight}
                 className='text-secondary-500 cursor-pointer'
                 onClick={() => changeMonth(1)}
               />
               <Icon
-                src={icons.arrowsRight}
+                src={arrowsRight}
                 className='text-secondary-500 cursor-pointer'
                 onClick={() => changeYear(1)}
               />

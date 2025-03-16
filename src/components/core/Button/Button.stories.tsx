@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from './Button';
 import { Badge } from '../Badge/Badge';
 import { Icon } from '../Icon/Icon';
-import icons from '@/constants/icons';
+import { plus, mail, next } from '@/constants/icons';
 
 const meta: Meta<typeof Button> = {
   title: 'Core/Button',
@@ -60,14 +60,14 @@ export const WithIcon: Story = {
   render: () => {
     return (
       <div className='flex items-center space-x-4'>
-        <Button leftIcon={<Icon src={icons.mail} iconColor='default' />}>
+        <Button leftIcon={<Icon src={mail} iconColor='default' />}>
           Email
         </Button>
-        <Button rightIcon={<Icon src={icons.next} iconColor='default' />}>
+        <Button rightIcon={<Icon src={next} iconColor='default' />}>
           Next
         </Button>
         <Button size='icon' aria-label='Add'>
-          <Icon src={icons.plus} iconColor='default' />
+          <Icon src={plus} iconColor='default' />
         </Button>
       </div>
     );
@@ -87,7 +87,7 @@ export const ComplexButton: Story = {
     size: 'lg',
     children: (
       <>
-        <Icon src={icons.mail} className='mr-2' iconColor='primary' />
+        <Icon src={mail} className='mr-2' iconColor='primary' />
         <span>Send Newsletter</span>
         <Badge children='91+' variant='notification' />
       </>
@@ -139,7 +139,7 @@ export const AllSizes: Story = {
       <Button size='md'>Medium</Button>
       <Button size='lg'>Large</Button>
       <Button size='icon' aria-label='Add'>
-        <Icon src={icons.plus} iconColor='default' />
+        <Icon src={plus} iconColor='default' />
       </Button>
     </div>
   ),
@@ -167,7 +167,7 @@ export const WithTooltip: Story = {
         aria-label='Add item'
         title='Add a new item to the list'
       >
-        <Icon src={icons.plus} iconColor='default' />
+        <Icon src={plus} iconColor='default' />
       </Button>
     </div>
   ),

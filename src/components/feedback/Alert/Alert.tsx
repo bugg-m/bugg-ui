@@ -2,7 +2,13 @@ import React, { forwardRef } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '@/utils/core-css-utility';
 import { Icon } from '@/components/core/Icon/Icon';
-import icons from '@/constants/icons';
+import {
+  close,
+  circleAlert,
+  circleCheck,
+  circleClose,
+  triangleAlert,
+} from '@/constants/icons';
 import { Button } from '@/main';
 
 const alertStyles = cva('flex items-start justify-center p-4 rounded-lg', {
@@ -62,10 +68,10 @@ interface IAlertProps
 }
 
 const Icons = {
-  success: icons.circleCheck,
-  error: icons.circleClose,
-  info: icons.circleAlert,
-  warning: icons.triangleAlert,
+  success: circleCheck,
+  error: circleClose,
+  info: circleAlert,
+  warning: triangleAlert,
 };
 
 const getVariantColorClasses = (variant: string, colorScheme: string) => {
@@ -139,7 +145,7 @@ const Alert = forwardRef<HTMLDivElement, IAlertProps>(
             onClick={onDismiss}
             aria-label='Dismiss alert'
           >
-            <Icon src={icons.close} size='md' iconColor={colorScheme} />
+            <Icon src={close} size='md' iconColor={colorScheme} />
           </Button>
         )}
       </div>

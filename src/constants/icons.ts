@@ -19,7 +19,7 @@ import eyeOff from '@/assets/eye-off.svg';
 import triangleAlert from '@/assets/triangle-alert.svg';
 import slash from '@/assets/slash.svg';
 
-export default {
+export {
   plus,
   slash,
   close,

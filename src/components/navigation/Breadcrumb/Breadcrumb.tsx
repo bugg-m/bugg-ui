@@ -1,5 +1,5 @@
 import { Icon } from '@/components/core/Icon/Icon';
-import icons from '@/constants/icons';
+import { slash, arrowRight } from '@/constants/icons';
 import { cn } from '@/utils/core-css-utility';
 import { cva, VariantProps } from 'class-variance-authority';
 import { forwardRef } from 'react';
@@ -74,9 +74,9 @@ const Breadcrumb = forwardRef<HTMLLIElement, IBreadcrumbProps>(
           {list.length === ind + 1 ? (
             ''
           ) : separator === 'line' ? (
-            <Icon src={icons.slash} />
+            <Icon src={slash} />
           ) : (
-            <Icon src={icons.arrowRight} />
+            <Icon src={arrowRight} />
           )}
         </li>
       ))}

@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, ElementType, Ref } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '@/utils/core-css-utility';
 
@@ -87,16 +87,25 @@ const textStyles = cva('', {
   },
 });
 
-interface ITextProps
-  extends React.HTMLAttributes<HTMLElement>,
-    VariantProps<typeof textStyles> {
-  as?: React.ElementType;
-}
+type AsProp<T extends ElementType> = {
+  as?: T;
+};
 
-const Text = forwardRef<HTMLElement, ITextProps>(
-  (
+type PropsToOmit<T extends ElementType, P> = keyof (AsProp<T> & P);
+
+export type PolymorphicComponentProps<
+  T extends ElementType,
+  Props = {},
+> = React.PropsWithChildren<Props & AsProp<T>> &
+  Omit<React.ComponentPropsWithoutRef<T>, PropsToOmit<T, Props>>;
+
+export type TextProps<T extends ElementType = 'span'> =
+  PolymorphicComponentProps<T, VariantProps<typeof textStyles>>;
+
+const Text = forwardRef(
+  <T extends ElementType = 'span'>(
     {
-      as: Component = 'span',
+      as,
       textColor = 'primary',
       tone = 700,
       size,
@@ -108,9 +117,10 @@ const Text = forwardRef<HTMLElement, ITextProps>(
       lineClamp,
       className,
       ...props
-    },
-    ref
+    }: TextProps<T>,
+    ref: Ref<HTMLElement>
   ) => {
+    const Component = as || 'span';
     const dynamicColor = textColor ? `text-${textColor}-${tone}` : 'text-white';
 
     return (

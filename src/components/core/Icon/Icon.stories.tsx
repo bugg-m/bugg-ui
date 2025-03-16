@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { Icon } from './Icon';
-import icons from '@/constants/icons';
+import { circleClose } from '@/constants/icons';
 
 const meta: Meta<typeof Icon> = {
   title: 'Core/Icon',
@@ -44,7 +44,7 @@ const meta: Meta<typeof Icon> = {
     },
   },
   args: {
-    src: icons.circleClose,
+    src: circleClose,
     iconColor: 'primary',
     backgroundColor: 'none',
     rounded: 'none',
@@ -56,13 +56,13 @@ type Story = StoryObj<typeof Icon>;
 
 export const Default: Story = {
   args: {
-    src: icons.circleClose,
+    src: circleClose,
   },
 };
 
 export const Colored: Story = {
   args: {
-    src: icons.circleClose,
+    src: circleClose,
     iconColor: 'success',
     backgroundColor: 'none',
     rounded: 'full',
@@ -71,7 +71,7 @@ export const Colored: Story = {
 
 export const LargeIcon: Story = {
   args: {
-    src: icons.circleClose,
+    src: circleClose,
     size: 'lg',
     iconColor: 'success',
   },
@@ -80,7 +80,7 @@ export const LargeIcon: Story = {
 export const Interactive: Story = {
   render: (args) => <Icon {...args} />,
   args: {
-    src: icons.circleClose,
+    src: circleClose,
     iconColor: 'success',
     backgroundColor: 'success',
     rounded: 'full',

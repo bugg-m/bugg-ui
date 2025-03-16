@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { cn } from '@/utils/core-css-utility';
 import { cva, VariantProps } from 'class-variance-authority';
 import { Icon } from '@/components/core/Icon/Icon';
-import icons from '@/constants/icons';
+import { close } from '@/constants/icons';
 import { Button } from '@/main';
 
 const toastStyles = cva(
@@ -129,7 +129,7 @@ const ToastItem = forwardRef<HTMLDivElement, IToastItemProps>(
             onClick={() => onRemove(id)}
             aria-label='Dismiss'
           >
-            <Icon src={icons.close} iconColor={variant} />
+            <Icon src={close} iconColor={variant} />
           </Button>
         )}
       </div>

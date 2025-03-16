@@ -3,7 +3,7 @@ import { cn } from '@/utils/core-css-utility';
 import { cva, VariantProps } from 'class-variance-authority';
 import { useOnClickOutside } from '@/hooks/use-click-outside-hook';
 import { Icon } from '../Icon/Icon';
-import icons from '@/constants/icons';
+import { arrowDown, check, close } from '@/constants/icons';
 
 interface IMultiSelectOptions {
   value: string;
@@ -158,7 +158,7 @@ const MultiSelect = forwardRef<HTMLSelectElement, IMultiSelectProps>(
                 >
                   {option?.label}
                   <Icon
-                    src={icons.close}
+                    src={close}
                     className='ml-1 cursor-pointer'
                     onClick={(e) => {
                       e.stopPropagation();
@@ -174,7 +174,7 @@ const MultiSelect = forwardRef<HTMLSelectElement, IMultiSelectProps>(
             </span>
           )}
           <Icon
-            src={icons.arrowDown}
+            src={arrowDown}
             className={cn('ml-auto transition-transform', {
               'rotate-180': isOpen,
             })}
@@ -208,7 +208,7 @@ const MultiSelect = forwardRef<HTMLSelectElement, IMultiSelectProps>(
                 {option.label}
                 {selectedOptions.includes(option.value) && (
                   <Icon
-                    src={icons.check}
+                    src={check}
                     className={cn(
                       colorStyles({ textColors: variant }),
                       'ml-auto'
