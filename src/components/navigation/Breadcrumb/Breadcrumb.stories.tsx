@@ -45,6 +45,11 @@ const meta: Meta<typeof Breadcrumbs> = {
       options: ['line', 'arrow', 'custom'],
       description: 'Type of separator between breadcrumb items',
     },
+    customSeparator: {
+      control: 'text',
+      description:
+        'Custom separator between breadcrumb items, must be a react node',
+    },
     maxItems: {
       control: 'number',
       description:
@@ -104,112 +109,151 @@ export const Default: Story = {
   },
 };
 
+export const SizeVariants: Story = {
+  render: () => (
+    <div className='space-y-4'>
+      <div>
+        <h3 className='text-sm font-semibold mb-2'>Small</h3>
+        <Breadcrumbs
+          items={basicItems}
+          variant='default'
+          size='sm'
+          separator='arrow'
+        />
+      </div>
+      <div>
+        <h3 className='text-sm font-semibold mb-2'>Medium (Default)</h3>
+        <Breadcrumbs
+          items={basicItems}
+          variant='default'
+          size='md'
+          separator='arrow'
+        />
+      </div>
+      <div>
+        <h3 className='text-sm font-semibold mb-2'>Large</h3>
+        <Breadcrumbs
+          items={basicItems}
+          variant='default'
+          size='lg'
+          separator='arrow'
+        />
+      </div>
+    </div>
+  ),
+};
+
+export const ColorVariants: Story = {
+  render: () => (
+    <div className='space-y-4'>
+      <div>
+        <h3 className='text-sm font-semibold mb-2'>Default</h3>
+        <Breadcrumbs
+          items={basicItems}
+          variant='default'
+          size='md'
+          separator='arrow'
+        />
+      </div>
+      <div>
+        <h3 className='text-sm font-semibold mb-2'>Primary</h3>
+        <Breadcrumbs
+          items={basicItems}
+          variant='primary'
+          size='md'
+          separator='arrow'
+        />
+      </div>
+      <div>
+        <h3 className='text-sm font-semibold mb-2'>Secondary</h3>
+        <Breadcrumbs
+          items={basicItems}
+          variant='secondary'
+          size='md'
+          separator='arrow'
+        />
+      </div>
+      <div>
+        <h3 className='text-sm font-semibold mb-2'>Error</h3>
+        <Breadcrumbs
+          items={basicItems}
+          variant='error'
+          size='md'
+          separator='arrow'
+        />
+      </div>
+      <div>
+        <h3 className='text-sm font-semibold mb-2'>Success</h3>
+        <Breadcrumbs
+          items={basicItems}
+          variant='success'
+          size='md'
+          separator='arrow'
+        />
+      </div>
+      <div>
+        <h3 className='text-sm font-semibold mb-2'>Warning</h3>
+        <Breadcrumbs
+          items={basicItems}
+          variant='warning'
+          size='md'
+          separator='arrow'
+        />
+      </div>
+      <div>
+        <h3 className='text-sm font-semibold mb-2'>Info</h3>
+        <Breadcrumbs
+          items={basicItems}
+          variant='info'
+          size='md'
+          separator='arrow'
+        />
+      </div>
+    </div>
+  ),
+};
+
+export const SeparatorVariants: Story = {
+  render: () => (
+    <div className='space-y-4'>
+      <div>
+        <h3 className='text-sm font-semibold mb-2'>Arrow Separator</h3>
+        <Breadcrumbs
+          items={basicItems}
+          variant='default'
+          size='md'
+          separator='arrow'
+        />
+      </div>
+      <div>
+        <h3 className='text-sm font-semibold mb-2'>Line Separator</h3>
+        <Breadcrumbs
+          items={basicItems}
+          variant='default'
+          size='md'
+          separator='line'
+        />
+      </div>
+      <div>
+        <h3 className='text-sm font-semibold mb-2'>Custom Separator</h3>
+        <Breadcrumbs
+          items={basicItems}
+          variant='default'
+          size='md'
+          separator='custom'
+          customSeparator={<span>•</span>}
+        />
+      </div>
+    </div>
+  ),
+};
+
 export const WithIcons: Story = {
   args: {
     items: iconItems,
     variant: 'primary',
     size: 'md',
     separator: 'arrow',
-  },
-};
-
-export const Small: Story = {
-  args: {
-    items: basicItems,
-    variant: 'default',
-    size: 'sm',
-    separator: 'arrow',
-  },
-};
-
-export const Large: Story = {
-  args: {
-    items: basicItems,
-    variant: 'default',
-    size: 'lg',
-    separator: 'arrow',
-  },
-};
-
-export const PrimaryVariant: Story = {
-  args: {
-    items: basicItems,
-    variant: 'primary',
-    size: 'md',
-    separator: 'arrow',
-  },
-};
-
-export const SecondaryVariant: Story = {
-  args: {
-    items: basicItems,
-    variant: 'secondary',
-    size: 'md',
-    separator: 'arrow',
-  },
-};
-
-export const ErrorVariant: Story = {
-  args: {
-    items: basicItems,
-    variant: 'error',
-    size: 'md',
-    separator: 'arrow',
-  },
-};
-
-export const SuccessVariant: Story = {
-  args: {
-    items: basicItems,
-    variant: 'success',
-    size: 'md',
-    separator: 'arrow',
-  },
-};
-
-export const WarningVariant: Story = {
-  args: {
-    items: basicItems,
-    variant: 'warning',
-    size: 'md',
-    separator: 'arrow',
-  },
-};
-
-export const InfoVariant: Story = {
-  args: {
-    items: basicItems,
-    variant: 'info',
-    size: 'md',
-    separator: 'arrow',
-  },
-};
-
-export const LineSeparator: Story = {
-  args: {
-    items: basicItems,
-    variant: 'default',
-    size: 'md',
-    separator: 'line',
-  },
-};
-
-export const ArrowSeparator: Story = {
-  args: {
-    items: basicItems,
-    variant: 'default',
-    size: 'md',
-    separator: 'arrow',
-  },
-};
-
-export const CustomSeparator: Story = {
-  args: {
-    items: basicItems,
-    variant: 'default',
-    size: 'md',
-    separator: 'custom',
-    customSeparator: <span>•</span>,
   },
 };
 
@@ -223,16 +267,41 @@ export const WithHomeIcon: Story = {
   },
 };
 
-export const WithCollapsedItems: Story = {
-  args: {
-    items: longItems,
-    variant: 'default',
-    size: 'md',
-    separator: 'arrow',
-    maxItems: 6,
-    itemsBeforeCollapse: 2,
-    itemsAfterCollapse: 2,
-  },
+export const CollapsedItems: Story = {
+  render: () => (
+    <div className='space-y-6'>
+      <div>
+        <h3 className='text-sm font-semibold mb-2'>Collapsed Breadcrumbs</h3>
+        <p className='text-xs text-gray-500 mb-2'>
+          Click the ellipsis to expand
+        </p>
+        <Breadcrumbs
+          items={longItems}
+          variant='default'
+          size='md'
+          separator='arrow'
+          maxItems={6}
+          itemsBeforeCollapse={2}
+          itemsAfterCollapse={2}
+        />
+      </div>
+
+      <div>
+        <h3 className='text-sm font-semibold mb-2'>
+          Different Collapse Configuration
+        </h3>
+        <Breadcrumbs
+          items={longItems}
+          variant='primary'
+          size='md'
+          separator='arrow'
+          maxItems={4}
+          itemsBeforeCollapse={1}
+          itemsAfterCollapse={1}
+        />
+      </div>
+    </div>
+  ),
 };
 
 export const CompositeExample: Story = {

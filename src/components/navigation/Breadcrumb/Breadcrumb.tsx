@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { forwardRef, Fragment } from 'react';
+import React, { forwardRef, Fragment, useState } from 'react';
 import { Icon } from '@/components/core/Icon/Icon';
 import { slash, arrowRight, home, ellipsis } from '@/constants/icons';
 import { cn } from '@/utils/core-css-utility';
@@ -273,13 +273,16 @@ const Breadcrumbs = forwardRef<HTMLOListElement, BreadcrumbsProps>(
     },
     ref
   ) => {
+    const [isExpanded, setIsExpanded] = useState(false);
+
     const renderSeparator = () => {
       if (separator === 'custom' && customSeparator) {
         return customSeparator;
       }
 
       if (separator === 'line') {
-        return <Icon src={slash} size={size} />;
+        const lineSize = size === 'sm' ? 'xs' : 'sm';
+        return <Icon src={slash} size={lineSize} />;
       }
 
       if (separator === 'arrow') {
@@ -290,7 +293,6 @@ const Breadcrumbs = forwardRef<HTMLOListElement, BreadcrumbsProps>(
     };
 
     let allItems = [...items];
-    // Add home item if needed
     if (showHomeIcon && allItems.length > 0) {
       allItems = [
         { name: 'Home', icon: <Icon src={home} size='sm' /> },
@@ -298,10 +300,10 @@ const Breadcrumbs = forwardRef<HTMLOListElement, BreadcrumbsProps>(
       ];
     }
 
-    // Handle item collapsing when maxItems is set
     let itemsToRender = allItems;
 
     if (
+      !isExpanded &&
       maxItems &&
       maxItems < allItems.length &&
       maxItems > itemsBeforeCollapse + itemsAfterCollapse
@@ -312,6 +314,10 @@ const Breadcrumbs = forwardRef<HTMLOListElement, BreadcrumbsProps>(
       itemsToRender = [...beforeItems, { name: 'collapsed' }, ...afterItems];
     }
 
+    const handleExpandCollapse = () => {
+      setIsExpanded(true);
+    };
+
     return (
       <BreadcrumbRoot ref={ref} size={size} className={className} {...props}>
         {itemsToRender.map((item, index) => {
@@ -321,7 +327,7 @@ const Breadcrumbs = forwardRef<HTMLOListElement, BreadcrumbsProps>(
           if (isCollapsed) {
             return (
               <Fragment key='collapsed'>
-                <BreadcrumbCollapsed />
+                <BreadcrumbCollapsed onClick={handleExpandCollapse} />
                 <BreadcrumbSeparator size={size} variant={variant}>
                   {renderSeparator()}
                 </BreadcrumbSeparator>

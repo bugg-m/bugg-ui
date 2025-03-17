@@ -9,7 +9,7 @@ const meta: Meta<typeof Icon> = {
   argTypes: {
     size: {
       control: 'select',
-      options: ['sm', 'md', 'lg', 'xl'],
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
     },
     iconColor: {
       control: 'select',

@@ -1,9 +1,9 @@
-import { useToast } from '@/hooks/use-toast-hook';
 import { createContext, useContext } from 'react';
+import { UseToastResult } from '@/hooks/use-toast-hook';
 
-export const ToastContext = createContext<
-  ReturnType<typeof useToast> | undefined
->(undefined);
+export const ToastContext = createContext<UseToastResult | undefined>(
+  undefined
+);
 
 export const useToastContext = () => {
   const context = useContext(ToastContext);
