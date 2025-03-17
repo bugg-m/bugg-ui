@@ -73,7 +73,7 @@ export interface UseToastResult {
   setLimit: (limit: number) => void;
 }
 
-export const useToast = (
+export const useToastHook = (
   initialPosition: ToastPosition = 'top-right',
   initialLimit: number = 5
 ): UseToastResult => {
@@ -96,16 +96,14 @@ export const useToast = (
   }, []);
 
   const removeToastWithAnimation = useCallback((id: string) => {
-    // First update status to exiting to trigger animation
     dispatch({
       type: 'UPDATE_TOAST_STATUS',
       payload: { id, status: 'exiting' },
     });
 
-    // Then remove after animation completes
     setTimeout(() => {
       dispatch({ type: 'REMOVE_TOAST', payload: { id } });
-    }, 300); // Animation duration + small buffer
+    }, 300);
   }, []);
 
   const addToast = useCallback(
@@ -117,7 +115,7 @@ export const useToast = (
         message,
         variant: options.variant || 'info',
         size: options.size || 'md',
-        duration: options.duration ?? 5000, // Default to 5 seconds
+        duration: options.duration ?? 5000,
         dismissible: options.dismissible ?? true,
         onClose: options.onClose,
         action: options.action,
@@ -126,13 +124,12 @@ export const useToast = (
 
       dispatch({ type: 'ADD_TOAST', payload: toast });
 
-      // Update status to entered after animation completes
       setTimeout(() => {
         dispatch({
           type: 'UPDATE_TOAST_STATUS',
           payload: { id, status: 'entered' },
         });
-      }, 300); // Match animation duration
+      }, 300);
 
       return id;
     },
@@ -146,7 +143,6 @@ export const useToast = (
     []
   );
 
-  // Clear all toasts when component unmounts
   useEffect(() => {
     return () => {
       dispatch({ type: 'REMOVE_ALL_TOASTS' });
@@ -159,7 +155,6 @@ export const useToast = (
     updateToast,
     removeToast: removeToastWithAnimation,
     removeAllToasts: () => {
-      // Update all toasts to exiting status
       state.toasts.forEach((toast) => {
         dispatch({
           type: 'UPDATE_TOAST_STATUS',
@@ -167,7 +162,6 @@ export const useToast = (
         });
       });
 
-      // Then remove all after animation
       setTimeout(() => {
         dispatch({ type: 'REMOVE_ALL_TOASTS' });
       }, 300);

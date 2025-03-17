@@ -1,7 +1,7 @@
 // toast-provider.tsx
 import { ToastContainer } from '@/components/feedback/Toast/Toast';
 import { ToastContext } from '@/contexts/toast-context';
-import { useToast } from '@/hooks/use-toast-hook';
+import { useToastHook } from '@/hooks/use-toast-hook';
 import React, { ReactNode } from 'react';
 
 interface ToastProviderProps {
@@ -21,7 +21,7 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
   initialPosition = 'top-right',
   initialLimit = 5,
 }) => {
-  const toast = useToast(initialPosition, initialLimit);
+  const toast = useToastHook(initialPosition, initialLimit);
 
   return (
     <ToastContext.Provider value={toast}>
