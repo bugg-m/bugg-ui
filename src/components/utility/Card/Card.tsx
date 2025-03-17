@@ -11,7 +11,7 @@ export interface ICardProps
   loaderColor?: ILoaderProps['color'];
   as?: React.ElementType;
   clickable?: boolean;
-  hoverable?: boolean;
+  hoverAble?: boolean;
   fullWidth?: boolean;
 }
 
@@ -54,7 +54,7 @@ const cardStyles = cva('rounded-lg transition-all duration-200', {
       800: '',
       900: '',
     },
-    hoverable: {
+    hoverAble: {
       true: 'hover:shadow-xl hover:-translate-y-1',
       false: '',
     },
@@ -76,7 +76,7 @@ const cardStyles = cva('rounded-lg transition-all duration-200', {
     variant: 'elevated',
     colorScheme: 'primary',
     tone: 500,
-    hoverable: false,
+    hoverAble: false,
     clickable: false,
     fullWidth: false,
     disabled: false,
@@ -108,7 +108,7 @@ const Card = forwardRef<HTMLDivElement, ICardComponentProps<React.ElementType>>(
       size,
       colorScheme,
       tone,
-      hoverable,
+      hoverAble,
       clickable,
       fullWidth,
       disabled,
@@ -136,7 +136,7 @@ const Card = forwardRef<HTMLDivElement, ICardComponentProps<React.ElementType>>(
             size,
             colorScheme,
             tone,
-            hoverable,
+            hoverAble,
             clickable,
             fullWidth,
             disabled,

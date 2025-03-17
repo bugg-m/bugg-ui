@@ -185,3 +185,183 @@
     }
   }
 }
+
+@layer utilities {
+  /* Keyframes definitions */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes zoomIn {
+    0% {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes zoomOut {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+  }
+
+  @keyframes slideInTop {
+    0% {
+      transform: translateY(-60%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideOutTop {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-60%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes slideInBottom {
+    0% {
+      transform: translateY(60%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideOutBottom {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(60%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes slideInLeft {
+    0% {
+      transform: translateX(-60%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideOutLeft {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-60%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes slideInRight {
+    0% {
+      transform: translateX(60%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideOutRight {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(60%);
+      opacity: 0;
+    }
+  }
+
+  /* Animation classes */
+  .animate-fade-in {
+    animation: fadeIn 0.2s ease-out;
+  }
+
+  .animate-fade-out {
+    animation: fadeOut 0.2s ease-in;
+  }
+
+  .animate-zoom-in {
+    animation: zoomIn 0.2s ease-out;
+  }
+
+  .animate-zoom-out {
+    animation: zoomOut 0.2s ease-in;
+  }
+
+  .animate-slide-in-top {
+    animation: slideInTop 0.2s ease-out;
+  }
+
+  .animate-slide-out-top {
+    animation: slideOutTop 0.2s ease-in;
+  }
+
+  .animate-slide-in-bottom {
+    animation: slideInBottom 0.2s ease-out;
+  }
+
+  .animate-slide-out-bottom {
+    animation: slideOutBottom 0.2s ease-in;
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft 0.2s ease-out;
+  }
+
+  .animate-slide-out-left {
+    animation: slideOutLeft 0.2s ease-in;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.2s ease-out;
+  }
+
+  .animate-slide-out-right {
+    animation: slideOutRight 0.2s ease-in;
+  }
+}

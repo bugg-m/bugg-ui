@@ -18,8 +18,18 @@ import eye from '@/assets/eye.svg';
 import eyeOff from '@/assets/eye-off.svg';
 import triangleAlert from '@/assets/triangle-alert.svg';
 import slash from '@/assets/slash.svg';
+import home from '@/assets/home.svg';
+import settings from '@/assets/settings.svg';
+import dashboard from '@/assets/dashboard.svg';
+import user from '@/assets/user.svg';
+import ellipsis from '@/assets/ellipsis.svg';
 
-export default {
+export {
+  home,
+  ellipsis,
+  dashboard,
+  settings,
+  user,
   plus,
   slash,
   close,

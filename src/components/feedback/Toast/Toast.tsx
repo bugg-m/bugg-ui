@@ -1,13 +1,20 @@
-import { useEffect, ReactNode, forwardRef } from 'react';
+import {
+  useEffect,
+  ReactNode,
+  forwardRef,
+  useState,
+  useRef,
+  useCallback,
+} from 'react';
 import { createPortal } from 'react-dom';
 import { cn } from '@/utils/core-css-utility';
-import { cva, VariantProps } from 'class-variance-authority';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { Icon } from '@/components/core/Icon/Icon';
-import icons from '@/constants/icons';
+import { close } from '@/constants/icons';
 import { Button } from '@/main';
 
 const toastStyles = cva(
-  'flex items-center gap-3 px-4 py-3 rounded-md shadow-lg',
+  'flex items-center gap-3 px-4 py-3 rounded-md shadow-lg transition-all',
   {
     variants: {
       variant: {
@@ -35,6 +42,14 @@ const toastStyles = cva(
   }
 );
 
+export type ToastPosition =
+  | 'top-right'
+  | 'top-left'
+  | 'top-center'
+  | 'bottom-right'
+  | 'bottom-left'
+  | 'bottom-center';
+
 export interface IToast {
   id: string;
   message: ReactNode;
@@ -42,46 +57,110 @@ export interface IToast {
   size?: VariantProps<typeof toastStyles>['size'];
   duration?: number;
   dismissible?: boolean;
+  onClose?: () => void;
+  action?: ReactNode;
+  status?: 'entering' | 'entered' | 'exiting' | 'exited';
 }
 
 interface IToastContainerProps {
   toasts: IToast[];
   onRemove: (id: string) => void;
+  position?: ToastPosition;
+  limit?: number;
 }
 
+const positionStyles: Record<ToastPosition, string> = {
+  'top-right': 'fixed top-5 right-5 flex flex-col items-end',
+  'top-left': 'fixed top-5 left-5 flex flex-col items-start',
+  'top-center':
+    'fixed top-5 left-1/2 -translate-x-1/2 flex flex-col items-center',
+  'bottom-right': 'fixed bottom-5 right-5 flex flex-col items-end',
+  'bottom-left': 'fixed bottom-5 left-5 flex flex-col items-start',
+  'bottom-center':
+    'fixed bottom-5 left-1/2 -translate-x-1/2 flex flex-col items-center',
+};
+
+const getAnimationClasses = (
+  position: ToastPosition,
+  status: IToast['status']
+) => {
+  const animations = {
+    'top-right': {
+      entering: 'animate-slide-in-right',
+      exiting: 'animate-slide-out-right',
+    },
+    'top-left': {
+      entering: 'animate-slide-in-left',
+      exiting: 'animate-slide-out-left',
+    },
+    'top-center': {
+      entering: 'animate-slide-in-top',
+      exiting: 'animate-slide-out-top',
+    },
+    'bottom-right': {
+      entering: 'animate-slide-in-right',
+      exiting: 'animate-slide-out-right',
+    },
+    'bottom-left': {
+      entering: 'animate-slide-in-left',
+      exiting: 'animate-slide-out-left',
+    },
+    'bottom-center': {
+      entering: 'animate-slide-in-bottom',
+      exiting: 'animate-slide-out-bottom',
+    },
+  };
+
+  if (status === 'entering') return animations[position].entering;
+  if (status === 'exiting') return animations[position].exiting;
+  return '';
+};
+
 const ToastContainer = forwardRef<HTMLDivElement, IToastContainerProps>(
-  ({ toasts, onRemove }, ref) => {
+  ({ toasts, onRemove, position = 'top-right', limit = 5 }, ref) => {
+    const [portalElement, setPortalElement] = useState<HTMLElement | null>(
+      null
+    );
+
+    useEffect(() => {
+      setPortalElement(document.body);
+    }, []);
+
+    const visibleToasts = toasts.slice(0, limit);
+
+    if (!portalElement) return null;
+
     return createPortal(
       <div
         ref={ref}
-        className='fixed top-5 right-5 z-50 flex flex-col gap-3'
+        className={cn(
+          positionStyles[position],
+          'z-50 flex flex-col gap-3 pointer-events-none'
+        )}
         role='region'
         aria-live='polite'
-        aria-atomic='true'
+        aria-atomic='false'
+        aria-relevant='additions removals'
       >
-        {toasts.map(
-          ({
-            id,
-            message,
-            variant = 'info',
-            size = 'md',
-            duration,
-            dismissible = true,
-          }) => (
-            <ToastItem
-              key={id}
-              id={id}
-              message={message}
-              variant={variant}
-              size={size}
-              onRemove={onRemove}
-              duration={duration}
-              dismissible={dismissible}
-            />
-          )
+        {visibleToasts.map((toast) => (
+          <div
+            key={toast.id}
+            className={cn(
+              'pointer-events-auto w-full md:max-w-sm',
+              getAnimationClasses(position, toast.status)
+            )}
+          >
+            <ToastItem {...toast} onRemove={onRemove} />
+          </div>
+        ))}
+        {toasts.length > limit && (
+          <div className='text-sm text-gray-500 mt-2 text-center'>
+            {toasts.length - limit} more{' '}
+            {toasts.length - limit === 1 ? 'notification' : 'notifications'}
+          </div>
         )}
       </div>,
-      document.body
+      portalElement
     );
   }
 );
@@ -103,33 +182,61 @@ const ToastItem = forwardRef<HTMLDivElement, IToastItemProps>(
       onRemove,
       duration = 3000,
       dismissible = true,
+      onClose,
+      action,
     },
     ref
   ) => {
-    useEffect(() => {
-      if (duration) {
-        const timer = setTimeout(() => {
-          onRemove(id);
-        }, duration);
-        return () => clearTimeout(timer);
+    const [isPaused, setIsPaused] = useState(false);
+    const timerRef = useRef<number | null>(null);
+
+    const clearTimer = () => {
+      if (timerRef.current !== null) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
       }
-    }, [id, onRemove, duration]);
+    };
+
+    const handleClose = useCallback(() => {
+      clearTimer();
+      onRemove(id);
+      onClose?.();
+    }, [id, onRemove, onClose]);
+
+    useEffect(() => {
+      if (duration && !isPaused) {
+        clearTimer();
+        timerRef.current = window.setTimeout(() => {
+          handleClose();
+        }, duration);
+      }
+
+      return () => clearTimer();
+    }, [duration, handleClose, isPaused]);
 
     return (
       <div
         ref={ref}
-        className={cn(toastStyles({ variant, size }))}
+        className={cn(toastStyles({ variant, size }), 'w-full')}
         role='alert'
+        aria-labelledby={`toast-${id}-message`}
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
       >
-        <p>{message}</p>
+        <div className='flex-1' id={`toast-${id}-message`}>
+          {message}
+        </div>
+
+        {action && <div className='ml-auto mr-2'>{action}</div>}
+
         {dismissible && (
           <Button
             variant='link'
-            className='ml-auto'
-            onClick={() => onRemove(id)}
+            className='ml-auto flex-shrink-0'
+            onClick={handleClose}
             aria-label='Dismiss'
           >
-            <Icon src={icons.close} iconColor={variant} />
+            <Icon src={close} iconColor={variant} />
           </Button>
         )}
       </div>

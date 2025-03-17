@@ -19,9 +19,8 @@ const meta: Meta<typeof Card> = {
       control: 'select',
       options: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900],
     },
-    hoverable: { control: 'boolean' },
+    hoverAble: { control: 'boolean' },
     clickable: { control: 'boolean' },
-    fullWidth: { control: 'boolean' },
     disabled: { control: 'boolean' },
     loading: { control: 'boolean' },
   },
@@ -39,7 +38,7 @@ export const Default: Story = {
     size: 'md',
     colorScheme: 'primary',
     tone: 500,
-    hoverable: false,
+    hoverAble: false,
     clickable: false,
   },
 };
@@ -50,7 +49,7 @@ export const Outlined: Story = {
     size: 'md',
     colorScheme: 'secondary',
     tone: 400,
-    hoverable: true,
+    hoverAble: true,
     clickable: true,
   },
 };
@@ -61,7 +60,7 @@ export const Filled: Story = {
     size: 'lg',
     colorScheme: 'success',
     tone: 600,
-    hoverable: true,
+    hoverAble: true,
     clickable: true,
   },
 };
@@ -77,7 +76,7 @@ export const Flat: Story = {
 
 export const WithFullWidth: Story = {
   args: {
-    fullWidth: true,
+    className: 'w-full',
     children: 'This card stretches full width.',
   },
 };
@@ -92,7 +91,7 @@ export const Loading: Story = {
 export const Interactive: Story = {
   args: {
     clickable: true,
-    hoverable: true,
+    hoverAble: true,
     children: 'Click or hover me!',
   },
 };

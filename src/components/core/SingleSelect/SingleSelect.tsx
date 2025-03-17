@@ -3,7 +3,7 @@ import { cn } from '@/utils/core-css-utility';
 import { useOnClickOutside } from '@/hooks/use-click-outside-hook';
 import { cva, VariantProps } from 'class-variance-authority';
 import { Icon } from '../Icon/Icon';
-import icons from '@/constants/icons';
+import { check, arrowDown } from '@/constants/icons';
 
 interface ISingleSelectOptions {
   value: string;
@@ -102,7 +102,7 @@ const SingleSelect = forwardRef<HTMLSelectElement, ISingleSelectProps>(
         >
           <span>{selectedLabel || placeholder || 'Select an option'}</span>
           <Icon
-            src={icons.arrowDown}
+            src={arrowDown}
             className={cn('transition-transform', {
               'rotate-180': isOpen,
             })}
@@ -126,10 +126,7 @@ const SingleSelect = forwardRef<HTMLSelectElement, ISingleSelectProps>(
               >
                 {option.label}
                 {selectedOption === option.value && (
-                  <Icon
-                    src={icons.check}
-                    className='ml-auto text-primary-600'
-                  />
+                  <Icon src={check} className='ml-auto text-primary-600' />
                 )}
               </li>
             ))}

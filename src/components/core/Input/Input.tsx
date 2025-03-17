@@ -1,7 +1,7 @@
 import React, { forwardRef, useState, useEffect, useMemo } from 'react';
 import { cn } from '@/utils/core-css-utility';
 import { VariantProps, cva } from 'class-variance-authority';
-import icons from '@/constants/icons';
+import { eye, eyeOff } from '@/constants/icons';
 import { Icon } from '../Icon/Icon';
 import { Button } from '@/main';
 
@@ -96,11 +96,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           aria-label={showPassword ? 'Hide password' : 'Show password'}
           disabled={disabled}
         >
-          {showPassword ? (
-            <Icon src={icons.eye} />
-          ) : (
-            <Icon src={icons.eyeOff} />
-          )}
+          {showPassword ? <Icon src={eye} /> : <Icon src={eyeOff} />}
         </Button>
       );
     }, [type, showPassword, disabled]);
