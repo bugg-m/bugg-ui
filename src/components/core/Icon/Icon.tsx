@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '@/utils/core-css-utility';
 import SVG, { Props } from 'react-inlinesvg';
@@ -53,11 +53,38 @@ const iconStyles = cva('stroke-current fill-none p-1', {
   },
 });
 
+const LoadingPlaceholder = ({ size }: { size?: IconProps['size'] }) => {
+  const sizeClass =
+    size === 'xs'
+      ? 'w-5 h-5'
+      : size === 'sm'
+        ? 'w-6 h-6'
+        : size === 'md'
+          ? 'w-8 h-8'
+          : size === 'lg'
+            ? 'w-10 h-10'
+            : size === 'xl'
+              ? 'w-12 h-12'
+              : 'w-6 h-6';
+
+  return (
+    <div
+      className={`${sizeClass} rounded-full bg-gray-100 bg-gradient-to-r from-transparent via-gray-300 to-transparent bg-[length:200%_100%] animate-shimmer`}
+    />
+  );
+};
+
 const Icon = React.forwardRef<SVGSVGElement, IconProps>(
   (
     { src, size, className, iconColor, rounded, backgroundColor, ...props },
     ref
   ) => {
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+
+    const handleLoad = () => {
+      setIsLoading(false);
+    };
+
     const combinedClassName = cn(
       iconStyles({ iconColor, size, rounded, backgroundColor }),
       className
@@ -67,20 +94,27 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(
       return (
         <SVG
           cacheRequests={true}
-          src={src as string}
+          src={src}
           className={combinedClassName}
+          onLoad={handleLoad}
+          loader={<LoadingPlaceholder size={size} />}
           {...props}
         />
       );
     } else {
       const SvgIcon = src as React.FC<React.SVGProps<SVGSVGElement>>;
+
       return (
-        <SvgIcon
-          cacheRequests={true}
-          className={combinedClassName}
-          ref={ref}
-          {...props}
-        />
+        <>
+          {isLoading && <LoadingPlaceholder size={size} />}
+          <SvgIcon
+            className={combinedClassName}
+            style={{ display: isLoading ? 'none' : 'inline' }}
+            onLoad={handleLoad}
+            ref={ref}
+            {...props}
+          />
+        </>
       );
     }
   }
