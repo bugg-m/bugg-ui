@@ -3,7 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/utils/core-css-utility';
 import { Skeleton } from '@/main';
 
-const imageStyles = cva('transition-opacity duration-300', {
+const imageStyles = cva('', {
   variants: {
     size: {
       sm: 'w-8 h-8',
@@ -82,28 +82,28 @@ const Image = forwardRef<HTMLImageElement, ImageProps>(
     const handleLoad = () => {
       setIsLoading(false);
     };
-    if (isLoading) {
-      return (
-        <Skeleton
-          className={cn(imageStyles({ size, rounded }))}
-          shape={rounded === 'full' ? 'circle' : 'square'}
-        />
-      );
-    }
 
     return (
-      <img
-        ref={ref}
-        src={imgSrc}
-        alt={alt}
-        className={cn(
-          imageStyles({ size, rounded, backgroundColor, objectFit }),
-          className
+      <>
+        {isLoading && (
+          <Skeleton
+            className={cn(imageStyles({ size, rounded }))}
+            shape={rounded === 'full' ? 'circle' : 'square'}
+          />
         )}
-        onError={handleError}
-        onLoad={handleLoad}
-        {...props}
-      />
+        <img
+          ref={ref}
+          src={imgSrc}
+          alt={alt}
+          className={cn(
+            imageStyles({ size, rounded, backgroundColor, objectFit }),
+            className
+          )}
+          onError={handleError}
+          onLoad={handleLoad}
+          {...props}
+        />
+      </>
     );
   }
 );
