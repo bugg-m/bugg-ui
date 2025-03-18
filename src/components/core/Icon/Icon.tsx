@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '@/utils/core-css-utility';
 import SVG, { Props } from 'react-inlinesvg';
+import { Skeleton } from '@/main';
 
 type CombinedSVGProps = Omit<Props, 'src'> & React.SVGProps<SVGSVGElement>;
 
@@ -53,27 +54,6 @@ const iconStyles = cva('stroke-current fill-none p-1', {
   },
 });
 
-const LoadingPlaceholder = ({ size }: { size?: IconProps['size'] }) => {
-  const sizeClass =
-    size === 'xs'
-      ? 'w-5 h-5'
-      : size === 'sm'
-        ? 'w-6 h-6'
-        : size === 'md'
-          ? 'w-8 h-8'
-          : size === 'lg'
-            ? 'w-10 h-10'
-            : size === 'xl'
-              ? 'w-12 h-12'
-              : 'w-6 h-6';
-
-  return (
-    <div
-      className={`${sizeClass} rounded-full bg-gray-100 bg-gradient-to-r from-transparent via-gray-300 to-transparent bg-[length:200%_100%] animate-shimmer`}
-    />
-  );
-};
-
 const Icon = React.forwardRef<SVGSVGElement, IconProps>(
   (
     { src, size, className, iconColor, rounded, backgroundColor, ...props },
@@ -97,19 +77,31 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(
           src={src}
           className={combinedClassName}
           onLoad={handleLoad}
-          loader={<LoadingPlaceholder size={size} />}
+          loader={
+            <Skeleton
+              className={cn(iconStyles({ size }))}
+              variant={backgroundColor === 'none' ? 'default' : backgroundColor}
+              shape={rounded === 'full' ? 'circle' : 'square'}
+            />
+          }
           {...props}
         />
       );
     } else {
       const SvgIcon = src as React.FC<React.SVGProps<SVGSVGElement>>;
-
+      if (isLoading) {
+        return (
+          <Skeleton
+            className={cn(iconStyles({ size }))}
+            variant={backgroundColor === 'none' ? 'default' : backgroundColor}
+            shape={rounded === 'full' ? 'circle' : 'square'}
+          />
+        );
+      }
       return (
         <>
-          {isLoading && <LoadingPlaceholder size={size} />}
           <SvgIcon
             className={combinedClassName}
-            style={{ display: isLoading ? 'none' : 'inline' }}
             onLoad={handleLoad}
             ref={ref}
             {...props}

@@ -82,36 +82,28 @@ const Image = forwardRef<HTMLImageElement, ImageProps>(
     const handleLoad = () => {
       setIsLoading(false);
     };
+    if (isLoading) {
+      return (
+        <Skeleton
+          className={cn(imageStyles({ size, rounded }))}
+          shape={rounded === 'full' ? 'circle' : 'square'}
+        />
+      );
+    }
 
     return (
-      <div
+      <img
+        ref={ref}
+        src={imgSrc}
+        alt={alt}
         className={cn(
-          imageStyles({ size, rounded }),
-          'relative overflow-hidden',
-          size === 'full' && 'w-40 h-40'
+          imageStyles({ size, rounded, backgroundColor, objectFit }),
+          className
         )}
-      >
-        {isLoading && (
-          <Skeleton
-            size='full'
-            shape={rounded === 'full' ? 'circle' : 'square'}
-            width='full'
-          />
-        )}
-        <img
-          ref={ref}
-          src={imgSrc}
-          alt={alt}
-          className={cn(
-            imageStyles({ size, rounded, backgroundColor, objectFit }),
-            isLoading ? 'opacity-0' : 'opacity-100',
-            className
-          )}
-          onError={handleError}
-          onLoad={handleLoad}
-          {...props}
-        />
-      </div>
+        onError={handleError}
+        onLoad={handleLoad}
+        {...props}
+      />
     );
   }
 );
