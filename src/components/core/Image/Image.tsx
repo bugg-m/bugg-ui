@@ -87,7 +87,11 @@ const Image = forwardRef<HTMLImageElement, ImageProps>(
       <>
         {isLoading && (
           <Skeleton
-            className={cn(imageStyles({ size, rounded }))}
+            className={cn(
+              imageStyles({ size, rounded }),
+              'absolute inset-0',
+              className
+            )}
             shape={rounded === 'full' ? 'circle' : 'square'}
           />
         )}
@@ -97,7 +101,8 @@ const Image = forwardRef<HTMLImageElement, ImageProps>(
           alt={alt}
           className={cn(
             imageStyles({ size, rounded, backgroundColor, objectFit }),
-            className
+            className,
+            isLoading && 'relative'
           )}
           onError={handleError}
           onLoad={handleLoad}

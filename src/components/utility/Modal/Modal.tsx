@@ -69,7 +69,7 @@ const modalVariants = cva(
   }
 );
 
-const backdropVariants = cva('fixed inset-0 z-10 flex overflow-y-auto', {
+const backdropVariants = cva('fixed inset-0 z-[60] flex overflow-y-auto', {
   variants: {
     backdrop: {
       default: 'bg-gray-900/75',
@@ -330,7 +330,7 @@ const Modal = React.memo(
                   fullWidth,
                   animation,
                 }),
-                'z-[51]',
+                'z-[61]',
                 isClosing ? 'animate-out fade-out duration-200' : '',
                 className
               )}

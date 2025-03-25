@@ -89,17 +89,15 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(
       );
     } else {
       const SvgIcon = src as React.FC<React.SVGProps<SVGSVGElement>>;
-      if (isLoading) {
-        return (
-          <Skeleton
-            className={cn(iconStyles({ size }))}
-            variant={backgroundColor === 'none' ? 'default' : backgroundColor}
-            shape={rounded === 'full' ? 'circle' : 'square'}
-          />
-        );
-      }
       return (
         <>
+          {isLoading && (
+            <Skeleton
+              className={cn(iconStyles({ size }))}
+              variant={backgroundColor === 'none' ? 'default' : backgroundColor}
+              shape='circle'
+            />
+          )}
           <SvgIcon
             className={combinedClassName}
             onLoad={handleLoad}
