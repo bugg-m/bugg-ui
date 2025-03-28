@@ -23,7 +23,7 @@ const meta: Meta<typeof Button> = {
     },
     rounded: {
       control: 'select',
-      options: ['sm', 'md', 'lg', 'xl', 'full'],
+      options: ['none', 'sm', 'md', 'lg', 'xl', 'full'],
     },
     size: {
       control: 'select',

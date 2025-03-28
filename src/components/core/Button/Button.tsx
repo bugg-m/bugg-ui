@@ -14,6 +14,7 @@ const buttonStyles = cva(
         link: 'bg-transparent underline-offset-4',
       },
       rounded: {
+        none: '',
         sm: 'rounded-sm',
         md: 'rounded-md',
         lg: 'rounded-lg',
