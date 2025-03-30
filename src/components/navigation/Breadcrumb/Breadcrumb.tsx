@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { forwardRef, Fragment, useState } from 'react';
 import { Icon } from '@/components/core/Icon/Icon';
 import { slash, arrowRight, home, ellipsis } from '@/constants/icons';
