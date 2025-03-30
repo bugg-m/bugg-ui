@@ -124,7 +124,7 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, IButtonProps>(
       loadingText,
       leftIcon,
       rightIcon,
-      children = 'Button',
+      children,
       loaderColor = 'white',
       type = 'button',
       disabled,
