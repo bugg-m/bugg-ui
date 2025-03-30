@@ -1,4 +1,3 @@
-import { withThemeByClassName } from '@storybook/addon-themes';
 import type { Preview } from '@storybook/react';
 import '../src/index.css';
 import customTheme from './customTheme';
@@ -10,6 +9,8 @@ const preview: Preview = {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
+      expanded: false,
+      hideNoControlsWarning: true,
     },
     docs: {
       theme: customTheme,
@@ -20,13 +21,3 @@ const preview: Preview = {
 };
 
 export default preview;
-
-export const decorators = [
-  withThemeByClassName({
-    themes: {
-      light: 'light',
-      dark: 'dark',
-    },
-    defaultTheme: 'light',
-  }),
-];

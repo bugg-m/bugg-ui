@@ -6,13 +6,7 @@ const dir = import.meta.dirname ?? __dirname;
 
 const config: StorybookConfig = {
   stories: ['../src/components/**/*.stories.@(ts|tsx)'],
-  addons: [
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@chromatic-com/storybook',
-    '@storybook/addon-interactions',
-    '@storybook/addon-themes',
-  ],
+  addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
 
   framework: {
     name: '@storybook/react-vite',
