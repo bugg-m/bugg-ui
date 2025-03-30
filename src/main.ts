@@ -17,6 +17,7 @@ export * from '@/components/core/TextArea/TextArea';
 // feedback components
 export * from '@/components/feedback/Alert/Alert';
 export * from '@/components/feedback/Loader/Loader';
+export * from '@/components/feedback/Skeleton/Skeleton';
 
 // navigation components
 export * from '@/components/navigation/Breadcrumb/Breadcrumb';

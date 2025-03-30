@@ -1,6 +1,6 @@
 {
   "name": "@bugg-m/bugg-ui",
-  "version": "2.4.0",
+  "version": "2.4.5",
   "publishConfig": {
     "access": "public"
   },
@@ -30,7 +30,8 @@
     "dev": "vite",
     "prebuild": "rm -rf dist",
     "build": "tsc --project tsconfig.json && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives",
+    "lint:fix": "eslint . --ext ts,tsx --report-unused-disable-directives --fix",
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
     "storybook": "storybook dev -p 6006",

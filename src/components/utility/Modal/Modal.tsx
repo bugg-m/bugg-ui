@@ -69,7 +69,7 @@ const modalVariants = cva(
   }
 );
 
-const backdropVariants = cva('fixed inset-0 z-10 flex overflow-y-auto', {
+const backdropVariants = cva('fixed inset-0 z-[60] flex overflow-y-auto', {
   variants: {
     backdrop: {
       default: 'bg-gray-900/75',
@@ -153,6 +153,7 @@ export interface ModalProps
   showCloseIcon?: boolean;
   headerClassName?: string;
   footerClassName?: string;
+  backdropClassName?: string;
   headerVariant?: VariantProps<typeof headerVariants>['variant'];
   footerVariant?: VariantProps<typeof footerVariants>['variant'];
   footerAlign?: VariantProps<typeof footerVariants>['align'];
@@ -160,6 +161,7 @@ export interface ModalProps
   closeIcon?: React.ReactNode;
   style?: React.CSSProperties;
   id?: string;
+  className?: string;
   'data-testid'?: string;
 }
 
@@ -188,6 +190,7 @@ const Modal = React.memo(
         footer,
         headerClassName,
         footerClassName,
+        backdropClassName,
         headerVariant = 'default',
         footerVariant = 'default',
         footerAlign = 'end',
@@ -206,41 +209,34 @@ const Modal = React.memo(
       const triggerRef = useRef<HTMLElement | null>(null);
       const firstFocusableRef = useRef<HTMLElement | null>(null);
 
-      // Handle modal closing with animations
       const handleClose = useCallback(() => {
         setIsClosing(true);
         setTimeout(() => {
           onClose();
           setIsClosing(false);
-        }, 200); // Match your animation duration
+        }, 200);
       }, [onClose]);
 
-      // Use the custom hook for outside clicks
       useOnClickOutside(modalRef, () => {
         if (closeOnBackdropClick && isOpen) {
           handleClose();
         }
       });
 
-      // Handle focus management
       useEffect(() => {
         if (!isOpen || !modalRef.current) return;
 
-        // Store the element that had focus before the modal was opened
         triggerRef.current = document.activeElement as HTMLElement;
 
-        // Find all focusable elements within the modal
         const focusableElements = modalRef.current.querySelectorAll(
           'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
         );
 
         if (focusableElements && focusableElements.length > 0) {
-          // Focus the first focusable element
           (focusableElements[0] as HTMLElement).focus();
           firstFocusableRef.current = focusableElements[0] as HTMLElement;
         }
 
-        // Return focus to the triggering element when the modal closes
         return () => {
           if (triggerRef.current) {
             triggerRef.current.focus();
@@ -248,7 +244,6 @@ const Modal = React.memo(
         };
       }, [isOpen]);
 
-      // Handle escape key
       useEffect(() => {
         if (!isOpen) return;
 
@@ -267,7 +262,6 @@ const Modal = React.memo(
         };
       }, [isOpen, closeOnEsc, handleClose]);
 
-      // Handle scroll locking
       useEffect(() => {
         if (!isOpen) return;
 
@@ -289,14 +283,10 @@ const Modal = React.memo(
         }
       }, [isOpen, disableScroll]);
 
-      // Monitor modal size changes
       useEffect(() => {
         if (!isOpen || !modalRef.current) return;
 
-        const resizeObserver = new ResizeObserver(() => {
-          // This could be used to adjust position or other properties
-          // when the content changes size
-        });
+        const resizeObserver = new ResizeObserver(() => {});
 
         resizeObserver.observe(modalRef.current);
 
@@ -305,7 +295,6 @@ const Modal = React.memo(
         };
       }, [isOpen]);
 
-      // Component mounting
       useEffect(() => {
         setMounted(true);
         return () => setMounted(false);
@@ -321,8 +310,8 @@ const Modal = React.memo(
         <div
           className={cn(
             backdropVariants({ backdrop, animation: backdropAnimation }),
-            'backdrop-container',
-            isClosing ? 'animate-out fade-out duration-200' : ''
+            isClosing ? 'animate-out fade-out duration-200' : '',
+            backdropClassName
           )}
           aria-hidden={!isOpen}
           role='dialog'
@@ -330,7 +319,7 @@ const Modal = React.memo(
           data-state={isOpen ? 'open' : 'closed'}
           data-testid={dataTestId ? `${dataTestId}-backdrop` : undefined}
         >
-          <div className='min-h-full w-full p-4 flex items-center justify-center backdrop-container'>
+          <div className='min-h-full w-full p-4 flex items-center justify-center'>
             <div
               ref={modalRef || ref}
               className={cn(
@@ -341,7 +330,7 @@ const Modal = React.memo(
                   fullWidth,
                   animation,
                 }),
-                'z-[51]',
+                'z-[61]',
                 isClosing ? 'animate-out fade-out duration-200' : '',
                 className
               )}
@@ -389,6 +378,7 @@ const Modal = React.memo(
                       onClick={handleClose}
                       aria-label={closeButtonLabel}
                       type='button'
+                      rounded='full'
                     >
                       {closeIcon || <Icon src={close} />}
                       <span className='sr-only'>{closeButtonLabel}</span>

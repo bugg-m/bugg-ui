@@ -1,16 +1,9 @@
-import React, { forwardRef, useState } from 'react';
-import { cva, VariantProps } from 'class-variance-authority';
+import React, { forwardRef, useEffect, useState } from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/utils/core-css-utility';
+import { Skeleton } from '@/main';
 
-interface ImageProps
-  extends React.ImgHTMLAttributes<HTMLImageElement>,
-    VariantProps<typeof imageStyles> {
-  src: string;
-  alt: string;
-  fallbackSrc?: string;
-}
-
-const imageStyles = cva('object-cover', {
+const imageStyles = cva('', {
   variants: {
     size: {
       sm: 'w-8 h-8',
@@ -34,29 +27,51 @@ const imageStyles = cva('object-cover', {
       warning: 'bg-warning-200',
       error: 'bg-error-200',
     },
+    objectFit: {
+      contain: 'object-contain',
+      cover: 'object-cover',
+      fill: 'object-fill',
+      none: 'object-none',
+      scaleDown: 'object-scale-down',
+    },
   },
   defaultVariants: {
     size: 'md',
     rounded: 'none',
     backgroundColor: 'none',
+    objectFit: 'cover',
   },
 });
+
+interface ImageProps
+  extends React.ImgHTMLAttributes<HTMLImageElement>,
+    VariantProps<typeof imageStyles> {
+  src: string;
+  alt: string;
+  fallbackSrc?: string;
+}
 
 const Image = forwardRef<HTMLImageElement, ImageProps>(
   (
     {
       src,
-      alt = 'image',
+      alt,
       fallbackSrc,
       className,
       size,
       rounded,
       backgroundColor,
+      objectFit,
       ...props
     },
     ref
   ) => {
-    const [imgSrc, setImgSrc] = useState(src);
+    const [imgSrc, setImgSrc] = useState<string>(src);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+
+    useEffect(() => {
+      setImgSrc(src);
+    }, [src]);
 
     const handleError = () => {
       if (fallbackSrc) {
@@ -64,19 +79,36 @@ const Image = forwardRef<HTMLImageElement, ImageProps>(
       }
     };
 
+    const handleLoad = () => {
+      setIsLoading(false);
+    };
+
     return (
-      <img
-        ref={ref}
-        src={imgSrc}
-        alt={alt.replace(' ', '-')}
-        loading='lazy'
-        onError={handleError}
-        className={cn(
-          imageStyles({ size, rounded, backgroundColor }),
-          className
+      <>
+        {isLoading && (
+          <Skeleton
+            className={cn(
+              imageStyles({ size, rounded }),
+              'absolute inset-0',
+              className
+            )}
+            shape={rounded === 'full' ? 'circle' : 'square'}
+          />
         )}
-        {...props}
-      />
+        <img
+          ref={ref}
+          src={imgSrc}
+          alt={alt}
+          className={cn(
+            imageStyles({ size, rounded, backgroundColor, objectFit }),
+            className,
+            isLoading && 'relative'
+          )}
+          onError={handleError}
+          onLoad={handleLoad}
+          {...props}
+        />
+      </>
     );
   }
 );

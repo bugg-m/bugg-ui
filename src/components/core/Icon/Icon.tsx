@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '@/utils/core-css-utility';
 import SVG, { Props } from 'react-inlinesvg';
+import { Skeleton } from '@/main';
 
 type CombinedSVGProps = Omit<Props, 'src'> & React.SVGProps<SVGSVGElement>;
 
@@ -58,6 +59,12 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(
     { src, size, className, iconColor, rounded, backgroundColor, ...props },
     ref
   ) => {
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+
+    const handleLoad = () => {
+      setIsLoading(false);
+    };
+
     const combinedClassName = cn(
       iconStyles({ iconColor, size, rounded, backgroundColor }),
       className
@@ -67,20 +74,37 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(
       return (
         <SVG
           cacheRequests={true}
-          src={src as string}
+          src={src}
           className={combinedClassName}
+          onLoad={handleLoad}
+          loader={
+            <Skeleton
+              className={cn(iconStyles({ size }))}
+              variant={backgroundColor === 'none' ? 'default' : backgroundColor}
+              shape={rounded === 'full' ? 'circle' : 'square'}
+            />
+          }
           {...props}
         />
       );
     } else {
       const SvgIcon = src as React.FC<React.SVGProps<SVGSVGElement>>;
       return (
-        <SvgIcon
-          cacheRequests={true}
-          className={combinedClassName}
-          ref={ref}
-          {...props}
-        />
+        <>
+          {isLoading && (
+            <Skeleton
+              className={cn(iconStyles({ size }))}
+              variant={backgroundColor === 'none' ? 'default' : backgroundColor}
+              shape='circle'
+            />
+          )}
+          <SvgIcon
+            className={combinedClassName}
+            onLoad={handleLoad}
+            ref={ref}
+            {...props}
+          />
+        </>
       );
     }
   }

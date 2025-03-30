@@ -15,6 +15,10 @@ const meta: Meta<typeof Image> = {
       control: 'select',
       options: ['none', 'primary', 'secondary', 'success', 'warning', 'error'],
     },
+    objectFit: {
+      control: 'select',
+      options: ['none', 'contain', 'cover', 'fill', 'scaleDown'],
+    },
     rounded: {
       control: 'select',
       options: ['none', 'sm', 'md', 'lg', 'full'],

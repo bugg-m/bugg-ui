@@ -14,6 +14,7 @@ const buttonStyles = cva(
         link: 'bg-transparent underline-offset-4',
       },
       rounded: {
+        none: '',
         sm: 'rounded-sm',
         md: 'rounded-md',
         lg: 'rounded-lg',
@@ -123,7 +124,7 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, IButtonProps>(
       loadingText,
       leftIcon,
       rightIcon,
-      children = 'Button',
+      children,
       loaderColor = 'white',
       type = 'button',
       disabled,
