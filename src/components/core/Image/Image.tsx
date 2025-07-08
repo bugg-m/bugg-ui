@@ -89,7 +89,7 @@ const Image = forwardRef<HTMLImageElement, ImageProps>(
           <Skeleton
             className={cn(
               imageStyles({ size, rounded }),
-              'absolute inset-0',
+              'absolute',
               className
             )}
             shape={rounded === 'full' ? 'circle' : 'square'}

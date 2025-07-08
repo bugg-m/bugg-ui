@@ -11,33 +11,36 @@ import {
 } from '@/constants/icons';
 import { Button } from '@/main';
 
-const alertStyles = cva('flex items-start justify-center p-4 rounded-lg', {
-  variants: {
-    variant: {
-      solid: '',
-      outline: 'bg-transparent border',
-      filled: 'bg-transparent',
+const alertStyles = cva(
+  'flex w-full items-start justify-center p-4 rounded-lg',
+  {
+    variants: {
+      variant: {
+        solid: '',
+        outline: 'bg-transparent border',
+        filled: 'bg-transparent',
+      },
+      colorScheme: {
+        primary: '',
+        secondary: '',
+        error: '',
+        success: '',
+        warning: '',
+        info: '',
+      },
+      size: {
+        sm: 'text-sm',
+        md: 'text-base',
+        lg: 'text-lg',
+      },
     },
-    colorScheme: {
-      primary: '',
-      secondary: '',
-      error: '',
-      success: '',
-      warning: '',
-      info: '',
+    defaultVariants: {
+      variant: 'filled',
+      colorScheme: 'primary',
+      size: 'md',
     },
-    size: {
-      sm: 'text-sm',
-      md: 'text-base',
-      lg: 'text-lg',
-    },
-  },
-  defaultVariants: {
-    variant: 'filled',
-    colorScheme: 'primary',
-    size: 'md',
-  },
-});
+  }
+);
 
 const titleText = {
   sm: 'text-sm',
@@ -97,6 +100,7 @@ const Alert = forwardRef<HTMLDivElement, IAlertProps>(
       colorScheme,
       variant,
       size = 'md',
+      className,
       ...props
     },
     ref
@@ -108,7 +112,11 @@ const Alert = forwardRef<HTMLDivElement, IAlertProps>(
     const textSize = size ?? 'md';
     return (
       <div
-        className={cn(alertStyles({ variant, size }), computedColorClasses)}
+        className={cn(
+          alertStyles({ variant, size }),
+          computedColorClasses,
+          className
+        )}
         ref={ref}
         {...props}
       >

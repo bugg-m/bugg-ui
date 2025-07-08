@@ -92,7 +92,7 @@ const getColorClasses = (
     return `bg-${color}-${tone} ${tone < 500 ? 'text-neutral-800' : 'text-neutral-50'} border-${color}-${tone}`;
   }
   if (variant === 'outlined') {
-    return `bg-white text-${color}-${tone} border-${color}-${tone} hover:bg-${color}-${tone}`;
+    return `bg-white text-${color}-${tone} border-${color}-${tone}`;
   }
   if (variant === 'flat') {
     return `bg-transparent text-${color}-${tone}`;
