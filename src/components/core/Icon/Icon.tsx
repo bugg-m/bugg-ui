@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '@/utils/core-css-utility';
 import SVG, { Props } from 'react-inlinesvg';
@@ -59,14 +59,6 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(
     { src, size, className, iconColor, rounded, backgroundColor, ...props },
     ref
   ) => {
-    const [isLoading, setIsLoading] = useState<boolean>(
-      typeof src === 'string'
-    );
-
-    const handleLoad = () => {
-      setIsLoading(false);
-    };
-
     const combinedClassName = cn(
       iconStyles({ iconColor, size, rounded, backgroundColor }),
       className
@@ -77,7 +69,6 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(
         <SVG
           cacheRequests
           src={src}
-          onLoad={handleLoad}
           loader={
             <Skeleton
               className={cn(iconStyles({ size }))}
@@ -91,23 +82,7 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(
       );
     } else {
       const SvgIcon = src as React.FC<React.SVGProps<SVGSVGElement>>;
-      return (
-        <>
-          {isLoading && (
-            <Skeleton
-              className={cn(iconStyles({ size }), 'inset-0')}
-              variant={backgroundColor === 'none' ? 'default' : backgroundColor}
-              shape={rounded === 'full' ? 'circle' : 'square'}
-            />
-          )}
-          <SvgIcon
-            onLoad={handleLoad}
-            className={combinedClassName}
-            ref={ref}
-            {...props}
-          />
-        </>
-      );
+      return <SvgIcon className={combinedClassName} ref={ref} {...props} />;
     }
   }
 );
