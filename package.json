@@ -1,6 +1,6 @@
 {
   "name": "@bugg-m/bugg-ui",
-  "version": "2.4.6",
+  "version": "2.4.7",
   "publishConfig": {
     "access": "public"
   },
@@ -60,8 +60,8 @@
     "@storybook/react-vite": "8.5.5",
     "@storybook/theming": "8.5.5",
     "@types/node": "^22.10.7",
-    "@types/react": "^18.2.66",
-    "@types/react-dom": "^18.2.22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "@vitejs/plugin-react-swc": "^3.5.0",

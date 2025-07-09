@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '@/utils/core-css-utility';
 import SVG, { Props } from 'react-inlinesvg';
@@ -59,15 +59,13 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(
     { src, size, className, iconColor, rounded, backgroundColor, ...props },
     ref
   ) => {
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [isLoading, setIsLoading] = useState<boolean>(
+      typeof src === 'string'
+    );
 
     const handleLoad = () => {
       setIsLoading(false);
     };
-
-    useEffect(() => {
-      handleLoad();
-    }, []);
 
     const combinedClassName = cn(
       iconStyles({ iconColor, size, rounded, backgroundColor }),
@@ -77,9 +75,8 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(
     if (typeof src === 'string') {
       return (
         <SVG
-          cacheRequests={true}
+          cacheRequests
           src={src}
-          className={combinedClassName}
           onLoad={handleLoad}
           loader={
             <Skeleton
@@ -88,6 +85,7 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(
               shape={rounded === 'full' ? 'circle' : 'square'}
             />
           }
+          className={combinedClassName}
           {...props}
         />
       );
@@ -97,12 +95,17 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(
         <>
           {isLoading && (
             <Skeleton
-              className={cn(iconStyles({ size }))}
+              className={cn(iconStyles({ size }), 'inset-0')}
               variant={backgroundColor === 'none' ? 'default' : backgroundColor}
               shape={rounded === 'full' ? 'circle' : 'square'}
             />
           )}
-          <SvgIcon className={combinedClassName} ref={ref} {...props} />
+          <SvgIcon
+            onLoad={handleLoad}
+            className={combinedClassName}
+            ref={ref}
+            {...props}
+          />
         </>
       );
     }
