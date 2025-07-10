@@ -1,7 +1,6 @@
-import React, { forwardRef, useEffect, useState } from 'react';
+import React, { forwardRef } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/utils/core-css-utility';
-import { Skeleton } from '@/main';
 
 const imageStyles = cva('', {
   variants: {
@@ -48,7 +47,6 @@ interface ImageProps
     VariantProps<typeof imageStyles> {
   src: string;
   alt: string;
-  fallbackSrc?: string;
 }
 
 const Image = forwardRef<HTMLImageElement, ImageProps>(
@@ -56,7 +54,6 @@ const Image = forwardRef<HTMLImageElement, ImageProps>(
     {
       src,
       alt,
-      fallbackSrc,
       className,
       size,
       rounded,
@@ -66,49 +63,18 @@ const Image = forwardRef<HTMLImageElement, ImageProps>(
     },
     ref
   ) => {
-    const [imgSrc, setImgSrc] = useState<string>(src);
-    const [isLoading, setIsLoading] = useState<boolean>(true);
-
-    useEffect(() => {
-      setImgSrc(src);
-    }, [src]);
-
-    const handleError = () => {
-      if (fallbackSrc) {
-        setImgSrc(fallbackSrc);
-      }
-    };
-
-    const handleLoad = () => {
-      setIsLoading(false);
-    };
-
     return (
-      <>
-        {isLoading && (
-          <Skeleton
-            className={cn(
-              imageStyles({ size, rounded }),
-              'absolute',
-              className
-            )}
-            shape={rounded === 'full' ? 'circle' : 'square'}
-          />
+      <img
+        ref={ref}
+        src={src}
+        alt={alt}
+        className={cn(
+          imageStyles({ size, rounded, backgroundColor, objectFit }),
+          className
         )}
-        <img
-          ref={ref}
-          src={imgSrc}
-          alt={alt}
-          className={cn(
-            imageStyles({ size, rounded, backgroundColor, objectFit }),
-            className,
-            isLoading && 'relative'
-          )}
-          onError={handleError}
-          onLoad={handleLoad}
-          {...props}
-        />
-      </>
+        loading='lazy'
+        {...props}
+      />
     );
   }
 );
