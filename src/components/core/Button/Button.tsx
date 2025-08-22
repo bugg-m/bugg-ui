@@ -198,6 +198,7 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, IButtonProps>(
             'hover:underline': variant === 'link',
           },
           hideBackground && variant === 'ghost' ? 'hover:bg-transparent' : '',
+          variant === 'link' && 'p-1',
           className
         )}
         ref={ref}
